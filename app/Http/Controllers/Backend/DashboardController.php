@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -20,11 +21,11 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // return view ('admin.dashboard');
+        $roles = Role::all();
         if (Auth::user()->hasRole('Super Admin')) {
-            return view('admin.dashboard');
+            return view('admin.dashboard', compact('roles'));
        } elseif (Auth::user()->hasRole('Admin')) {
-           return view('admin.dashboard');
+           return view('admin.dashboard', compact('roles'));
        } else {
            return view('home');
        }

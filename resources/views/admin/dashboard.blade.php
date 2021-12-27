@@ -210,7 +210,9 @@
                         </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold">{{ Auth::user()->name }}</h5>
-                            {{-- <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6> --}}
+                            @foreach ($roles as $item)
+                            <h6 class="text-muted mb-0">{{ $item->name }}</h6>
+                            @endforeach
                         </div>
                     </div>
                 </div>
