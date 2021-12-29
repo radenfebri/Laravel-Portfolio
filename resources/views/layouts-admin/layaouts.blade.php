@@ -55,6 +55,8 @@
 
     @include('layouts-admin.js')
 
+    @include('sweetalert::alert')
+
 </body>
 
 </html>

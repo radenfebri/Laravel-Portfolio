@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="page-content">
+
     <!-- Input with Icons start -->
     <section id="input-with-icons">
         <div class="row match-height">
@@ -13,75 +14,55 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h6>Role Name</h6>
-                                <div class="form-group position-relative has-icon-left">
-                                    <input type="text" class="form-control" placeholder="Role Name">
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <h6>Guard Name</h6>
-                                <div class="form-group position-relative has-icon-right">
-                                    <input type="text" class="form-control" placeholder="Default Web" readonly>
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-bookmarks"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            {{-- <div class="col-12 col-md-4">
-                                <button id="top-center" class="btn btn-outline-success btn-sm">Create</button>
-                            </div> --}}
-
-                        </div>
+                        <form action="{{ route('role.store') }}" method="POST">
+                            @csrf
+                            @include('admin.roles.form-control', ['submit' => 'Create'])
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
     <!-- Input with Icons end -->
+
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                Simple Datatable
+            </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($roles as $no => $item)
+                        <tr>
+                            <td>{{ $no + 1 }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>
+                                <a href="{{ route('role.edit', $item) }}" class="btn btn-sm text-warning"><i class="fas fa-edit"></i></a>
+
+                                <form action="{{ route('role.destroy', $item->id ) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 </div>
 
 
-<div id="main">
-    <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <section class="section">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Types</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 col-md-4">
-                                    <button id="basic" class="btn btn-outline-primary btn-block btn-lg">Basic
-                                        Toast</button>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <button id="background"
-                                        class="btn btn-outline-primary btn-block btn-lg">Custom
-                                        Background</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
 
-
-            @endsection
+@endsection

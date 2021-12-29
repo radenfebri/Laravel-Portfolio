@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\LogController;
 use App\Http\Controllers\Backend\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,7 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 
     // ROLE USER
     Route::resource('role', RoleController::class);
+
+    // LOG USER
+    Route::resource('log', LogController::class);
 });

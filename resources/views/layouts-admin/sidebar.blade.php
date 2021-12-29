@@ -27,5 +27,11 @@
                 </li>
             </ul>
         </li>
+        <li class="sidebar-item {{ $menu == 'log' ? 'active' : '' }}">
+            <a href="{{ route('log.index') }}" class='sidebar-link'>
+                <i class="bi bi-grid-fill"></i>
+                <span>Log</span>
+            </a>
+        </li>
     </ul>
 </div>

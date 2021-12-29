@@ -13,5 +13,21 @@
     <link rel="shortcut icon" href="{{ asset('template') }}/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('template') }}/vendors/iconly/bold.css">
     <link rel="stylesheet" href="{{ asset('template') }}/vendors/toastify/toastify.css">
+    <link rel="stylesheet" href="{{ asset('template') }}/vendors/simple-datatables/style.css">
+    <link rel="stylesheet" href="{{ asset('template') }}/vendors/fontawesome/all.min.css">
+    <style>
+        .fontawesome-icons {
+            text-align: center;
+        }
+
+        article dl {
+            background-color: rgba(0, 0, 0, .02);
+            padding: 20px;
+        }
+
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
+    </style>
 
 </head>

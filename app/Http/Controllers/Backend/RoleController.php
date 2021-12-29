@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -19,5 +20,44 @@ class RoleController extends Controller
         $role = new Role;
 
         return view('admin.roles.index', compact('roles', 'role'));
+    }
+
+    public function store()
+    {
+        request()->validate([
+            'name' => 'required|string|min:2',
+        ]);
+
+        Role::create([
+            'name' => request('name'),
+            'guard_name' => request('guard_name') ?? 'web',
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil ditambahkan');
+
+        return back();
+    }
+
+    public function edit(Role $role)
+    {
+        return view('admin.roles.edit', [
+            'role' => $role,
+            'submit' => 'Update'
+        ]);
+    }
+
+    public function update(Role $role)
+    {
+        request()->validate([
+            'name' => 'required|string|min:2',
+        ]);
+
+        $role->update([
+            'name' => request('name'),
+            'guard_name' => request('gurad_name') ?? 'web'
+        ]);
+
+        Alert::info('Berhasil', 'Data Role Berhasil diUpdate');
+        return redirect()->route('role.index');
     }
 }
