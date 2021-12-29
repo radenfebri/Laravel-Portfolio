@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role as ModelsRole;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
@@ -22,6 +23,8 @@ class RoleController extends Controller
         return view('admin.roles.index', compact('roles', 'role'));
     }
 
+
+
     public function store()
     {
         request()->validate([
@@ -33,10 +36,12 @@ class RoleController extends Controller
             'guard_name' => request('guard_name') ?? 'web',
         ]);
 
-        Alert::success('Berhasil', 'Data Berhasil ditambahkan');
+        toast('Data Berhasil ditambahkan','success');
 
         return back();
     }
+
+
 
     public function edit(Role $role)
     {
@@ -45,6 +50,8 @@ class RoleController extends Controller
             'submit' => 'Update'
         ]);
     }
+
+
 
     public function update(Role $role)
     {
@@ -57,7 +64,29 @@ class RoleController extends Controller
             'guard_name' => request('gurad_name') ?? 'web'
         ]);
 
-        Alert::info('Berhasil', 'Data Role Berhasil diUpdate');
+        toast('Data Role Berhasil diupdate','info');
+
         return redirect()->route('role.index');
     }
+
+
+
+    public function destroy($id)
+    {
+        $role = Role::find($id);
+        $role->delete();
+
+        toast('Data Berhasil duhapus','success');
+
+        return redirect()->route('role.index');
+    }
+
+
+    public function trash()
+    {
+        $roles = 
+        return view('admin.roles.trash', compact('roles'));
+    }
+
+
 }

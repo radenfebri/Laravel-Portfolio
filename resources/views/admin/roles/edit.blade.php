@@ -11,6 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Update Role</h4>
+                        <a href="{{ route('role.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
                     </div>
 
                     <div class="card-body">

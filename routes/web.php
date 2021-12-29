@@ -28,6 +28,8 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // ROLE USER
+    Route::get('role/trash', [RoleController::class, 'trash'])->name('trash');
+    Route::get('role/delete/{id?}', [RoleController::class, 'trash'])->name('delete');
     Route::resource('role', RoleController::class);
 
     // LOG USER
