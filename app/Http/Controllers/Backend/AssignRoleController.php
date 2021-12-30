@@ -23,4 +23,39 @@ class AssignRoleController extends Controller
 
         return view('admin.assignrole.index', compact('roles', 'users', 'usersall'));
     }
+
+
+
+    public function store()
+    {
+        $user = User::where('email', request('email'))->first();
+        $user->assignRole(request('roles'));
+
+        toast('Data Berhasil Ditambahkan','success');
+
+        return back();
+    }
+
+
+
+    public function edit(User $user)
+    {
+        return view('admin.assignrole.edit', [
+            'user' => $user,
+            'roles' => Role::get(),
+            'users' => User::has('roles')->get(),
+        ]);
+    }
+
+
+
+    public function update(User $user)
+    {
+        $user->syncRoles(request('roles'));
+
+        toast('Data Berhasil Diupdate','info');
+
+        return redirect()->route('assignrole.index');
+
+    }
 }

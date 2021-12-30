@@ -23,7 +23,7 @@
                     <a href="{{ route('assignpermission.index') }}">Assign Permission</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="{{ route('assignrole.index') }}">Permission to User</a>
+                    <a href="{{ route('assignrole.index') }}">Assign Role to User</a>
                 </li>
             </ul>
         </li>

@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Assign Permission to Role</h4>
-                        <a href="{{ route('assignpermission.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
+                        <a href="{{ route('assignrole.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -18,19 +18,16 @@
                                 <form action="" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <div class="form-group">
-                                        <h6>Select Role</h6>
-                                        <fieldset class="form-group">
-                                            <select class="form-select" name="role" id="role">
-                                                <option disabled selected>--pilih role--</option>
-                                                @foreach ($roles as $item)
-                                                <option {{ $role->id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $role->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('role')
-                                            <div class="text-danger" mt-2 d-block>{{ $message }}</div>
-                                            @enderror
-                                        </fieldset>
+                                    <div class="form-group position-relative has-icon-left">
+                                        <input type="text" class="form-control " placeholder="Permission Name" value=" {{ $user->email }}" autocomplete="name" readonly autofocus required>
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person"></i>
+                                        </div>
                                     </div>
 
                                     <div class="form-group mt-4">
@@ -38,8 +35,8 @@
                                         <div class="form-group">
                                             <select class="choices form-select multiple-remove" multiple="multiple" name="permissions[]" id="permissions">
                                                 <optgroup label="--pilih permission--">
-                                                    @foreach ($permissions as $item)
-                                                    <option {{ $role->permissions()->find($item->id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @foreach ($roles as $item)
+                                                        <option {{ $user->roles()->find($item->id) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>

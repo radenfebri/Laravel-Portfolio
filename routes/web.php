@@ -44,13 +44,15 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 
     // ASSIGN PERMISSION TO ROLE
     Route::get('assignpermission', [AssignPermissionController::class, 'index'])->name('assignpermission.index');
+    Route::post('assignpermission', [AssignPermissionController::class, 'store'])->name('assignpermission.index');
     Route::get('assignpermission/{role}/edit', [AssignPermissionController::class, 'edit'])->name('assignpermission.edit');
     Route::put('assignpermission/{role}/edit', [AssignPermissionController::class, 'update']);
 
     // ASSIGN ROLE TO USER
     Route::get('assignrole', [AssignRoleController::class, 'index'])->name('assignrole.index');
-    Route::get('assignrole/{role}/edit', [AssignRoleController::class, 'edit'])->name('assignrole.edit');
-    Route::put('assignrole/{role}/edit', [AssignRoleController::class, 'update']);
+    Route::post('assignrole', [AssignRoleController::class, 'store'])->name('assignrole.index');
+    Route::get('assignrole/{user}/edit', [AssignRoleController::class, 'edit'])->name('assignrole.edit');
+    Route::put('assignrole/{user}/edit', [AssignRoleController::class, 'update']);
 
     // LOG USER
     Route::resource('log', LogController::class);

@@ -19,10 +19,10 @@
                                     <div class="form-group">
                                         <h6>Select Email</h6>
                                         <div class="form-group">
-                                            <select class="choices form-select" required>
+                                            <select class="choices form-select form-control" name="email" id="email" required>
                                                 <option disabled selected>--pilih email--</option>
                                                 @foreach ($usersall as $item)
-                                                <option value="{{ $item->id }}">{{ $item->email }}</option>
+                                                <option value="{{ $item->email }}">{{ $item->email }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -73,7 +73,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ implode(', ', $item->getRoleNames()->toArray() ) }}</td>
                                 <td>
-                                    <a href="{{ route('assignpermission.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('assignrole.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                             @endforeach
