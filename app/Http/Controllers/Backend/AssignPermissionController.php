@@ -24,4 +24,46 @@ class AssignPermissionController extends Controller
             'permissions' => Permission::orderBy('created_at', 'desc')->get(),
         ]);
     }
+
+
+    public function store()
+    {
+        request()->validate([
+            'role' => 'required',
+            'permissions' => 'array|required',
+        ]);
+
+        $role = Role::find(request('role'));
+        $role->givePermissionTo(request('permissions'));
+
+        toast('Data Berhasil Ditambahkan','success');
+
+        return back();
+    }
+
+
+    public function edit(Role $role)
+    {
+        return view('admin.assignpermission.edit', [
+            'role' => $role,
+            'roles' => Role::get(),
+            'permissions' => Permission::get(),
+        ]);
+    }
+
+
+    public function update(Role $role)
+    {
+        request()->validate([
+            'role' => 'required',
+            'permissions' => 'array',
+        ]);
+
+        $role->syncPermissions(request('permissions'));
+
+        toast('Data Berhasil Diupdate','info');
+
+        return redirect()->route('assignpermission.index');
+
+    }
 }

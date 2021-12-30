@@ -14,12 +14,12 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="row">
-                                <form action="{{ route('assignpermission.store') }}" method="POST">
-
+                                <form action="{{ route('assignpermission.index') }}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <h6>Select Role</h6>
                                         <fieldset class="form-group">
-                                            <select class="form-select" name="role" id="role">
+                                            <select class="form-select" name="role" id="role" required>
                                                 <option disabled selected>--pilih role--</option>
                                                 @foreach ($roles as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -33,12 +33,15 @@
                                     <div class="form-group mt-4">
                                         <h6>Select Permission</h6>
                                         <div class="form-group">
-                                            <select class="choices form-select multiple-remove" multiple="multiple" name="permissions[]" id="permissions">
+                                            <select class="choices form-select multiple-remove" multiple="multiple" name="permissions[]" id="permissions" required>
                                                 <optgroup label="--pilih permission--">
                                                     @foreach ($permissions as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
                                                 </optgroup>
+                                                @error('permissions')
+                                                <div class="text-danger" mt-2 d-block>{{ $message }}</div>
+                                                @enderror
                                             </select>
                                         </div>
                                     </div>
@@ -77,7 +80,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ implode(', ', $item->getPermissionNames()->toArray() ) }}</td>
                                 <td>
-                                    <a href="{{ route('permission.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('assignpermission.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                             @endforeach

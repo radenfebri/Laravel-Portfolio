@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AssignPermissionController;
+use App\Http\Controllers\Backend\AssignRoleController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LogController;
 use App\Http\Controllers\Backend\PermissionController;
@@ -42,7 +43,14 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::resource('permission', PermissionController::class);
 
     // ASSIGN PERMISSION TO ROLE
-    Route::resource('assignpermission', AssignPermissionController::class);
+    Route::get('assignpermission', [AssignPermissionController::class, 'index'])->name('assignpermission.index');
+    Route::get('assignpermission/{role}/edit', [AssignPermissionController::class, 'edit'])->name('assignpermission.edit');
+    Route::put('assignpermission/{role}/edit', [AssignPermissionController::class, 'update']);
+
+    // ASSIGN ROLE TO USER
+    Route::get('assignrole', [AssignRoleController::class, 'index'])->name('assignrole.index');
+    Route::get('assignrole/{role}/edit', [AssignRoleController::class, 'edit'])->name('assignrole.edit');
+    Route::put('assignrole/{role}/edit', [AssignRoleController::class, 'update']);
 
     // LOG USER
     Route::resource('log', LogController::class);
