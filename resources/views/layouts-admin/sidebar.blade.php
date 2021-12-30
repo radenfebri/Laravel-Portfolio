@@ -17,10 +17,10 @@
                     <a href="{{ route('role.index') }}">Role</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="auth-register.html">Permission</a>
+                    <a href="{{ route('permission.index') }}">Permission</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="auth-forgot-password.html">Assign Permission</a>
+                    <a href="{{ route('assignpermission.index') }}">Assign Permission</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="auth-forgot-password.html">Permission to User</a>

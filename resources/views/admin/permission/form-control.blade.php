@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-sm-6">
-        <h6>Role Name</h6>
+        <h6>Permission Name</h6>
         <div class="form-group position-relative has-icon-left">
-            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Role Name"
-            value="{{ old('name') ?? $role->name }}" autocomplete="name" autofocus required>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Permission Name"
+            value="{{ old('name') ?? $permission->name }}" autocomplete="name" autofocus required>
             @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

@@ -30,7 +30,7 @@
         <div class="card">
             <div class="card-header">
                 Table Role
-                <a href="{{ route('trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
+                <a href="{{ route('role.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
                 </div>
                 <div class="card-body">
 
@@ -48,7 +48,7 @@
                                 <td>{{ $no + 1 }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    <a href="{{ route('role.edit', $item ) }}" class="btn btn-sm text-warning"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('role.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
 
                                     <form action="{{ route('role.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus role {{ $item->name }}?')" method="POST" class="d-inline">
                                         @csrf

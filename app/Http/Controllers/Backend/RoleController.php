@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Role;
-use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {

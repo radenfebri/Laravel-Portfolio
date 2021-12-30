@@ -6,6 +6,8 @@
 <script src="{{ asset('template') }}/vendors/toastify/toastify.js"></script>
 <script src="{{ asset('template') }}/js/extensions/toastify.js"></script>
 <script src="{{ asset('template') }}/vendors/fontawesome/all.min.js"></script>
+<script src="{{ asset('template') }}/vendors/choices.js/choices.min.js"></script>
+<script src="{{ asset('template') }}/js/pages/form-element-select.js"></script>
 <script src="{{ asset('template') }}/vendors/simple-datatables/simple-datatables.js"></script>
 <script>
     // Simple Datatable
