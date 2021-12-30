@@ -9,41 +9,49 @@
         <div class="card">
             <div class="card-header">
                 Table Data Role Terhapus
-                <a href="{{ route('trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
-                </div>
-                <div class="card-body">
-
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($roles as $no => $item)
-                            <tr>
-                                <td>{{ $no + 1 }}</td>
-                                <td>{{ $item->name }}</td>
-                                {{-- <td>
-                                    <a href="{{ route('role.edit', $item) }}" class="btn btn-sm text-warning"><i class="fas fa-edit"></i></a>
-
-                                    <form action="{{ route('role.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus role {{ $item->name }}?')" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </form>
-                                </td> --}}
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="btn-group" style="float: right">
+                    <div class="bnt-group dropdown mb-1">
+                        <a href="{{ route('role.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
+                    </div>
+                    <div>
+                        <a href="{{ route('restore') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-undo"></i><a>
+                    </div>
+                    <div>
+                        <a href="{{ route('delete') }}" onclick="return confirm('Apkaha anda yakin akan menghapus semua data secara permanen?')" class="btn btn-sm text-danger" style="float: right"><i class="fas fa-trash"></i><a>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="card-body">
+
+                <table class="table table-striped" id="table1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($roles as $no => $item)
+                        <tr>
+                            <td>{{ $no + 1 }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>
+                                <a href="{{ route('restore', $item->id ) }}" class="btn btn-sm text-primary"><i class="fas fa-undo-alt"></i></a>
+
+                                <form action="{{ route('delete', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus role {{ $item->name }} secara permanen?')" class="d-inline">
+                                    <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
 
 
 
-    @endsection
+@endsection

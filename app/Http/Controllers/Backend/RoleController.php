@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role as ModelsRole;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -14,6 +14,7 @@ class RoleController extends Controller
     {
         $this->middleware('auth');
     }
+
 
     public function index()
     {
@@ -28,7 +29,7 @@ class RoleController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required|string|min:2',
+            'name' => 'required|string|unique:roles,name|min:2',
         ]);
 
         Role::create([
@@ -36,7 +37,7 @@ class RoleController extends Controller
             'guard_name' => request('guard_name') ?? 'web',
         ]);
 
-        toast('Data Berhasil ditambahkan','success');
+        toast('Data Berhasil Ditambahkan','success');
 
         return back();
     }
@@ -64,7 +65,7 @@ class RoleController extends Controller
             'guard_name' => request('gurad_name') ?? 'web'
         ]);
 
-        toast('Data Role Berhasil diupdate','info');
+        toast('Data Role Berhasil Diupdate','info');
 
         return redirect()->route('role.index');
     }
@@ -76,7 +77,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->delete();
 
-        toast('Data Berhasil duhapus','success');
+        toast('Data Berhasil Dihapus','success');
 
         return redirect()->route('role.index');
     }
@@ -84,8 +85,34 @@ class RoleController extends Controller
 
     public function trash()
     {
-        $roles = 
+        $roles = Role::onlyTrashed()->get();
         return view('admin.roles.trash', compact('roles'));
+    }
+
+
+    public function restore($id = null)
+    {
+        if($id !=null) {
+            $id = Role::onlyTrashed()->where('id' , $id)->restore();
+        } else {
+            $id = Role::onlyTrashed()->restore();
+        }
+
+        toast('Data Berhasil Direstore Semua','success');
+        return back();
+    }
+
+
+    public function delete($id = null)
+    {
+        if($id !=null) {
+            $id = Role::onlyTrashed()->where('id' , $id)->forceDelete();
+        } else {
+            $id = Role::onlyTrashed()->forceDelete();
+        }
+
+        toast('Data Berhasil Dihapus Permanen','success');
+        return back();
     }
 
 

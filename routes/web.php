@@ -29,7 +29,8 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 
     // ROLE USER
     Route::get('role/trash', [RoleController::class, 'trash'])->name('trash');
-    Route::get('role/delete/{id?}', [RoleController::class, 'trash'])->name('delete');
+    Route::get('role/restore/{id?}', [RoleController::class, 'restore'])->name('restore');
+    Route::get('role/delete/{id?}', [RoleController::class, 'delete'])->name('delete');
     Route::resource('role', RoleController::class);
 
     // LOG USER
