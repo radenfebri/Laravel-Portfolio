@@ -1,4 +1,6 @@
-@extends('layouts-admin.layaouts', ['menu' => 'authentication'])
+@extends('layouts-admin.layaouts', ['menu' => 'authentication', 'submenu' => 'manajemenusers'])
+
+@section('title', 'Update User')
 
 @section('content')
 
@@ -8,6 +10,8 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Form Create New User</h4>
+                <a href="{{ route('users.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
+
             </div>
             <div class="card-content">
                 <div class="card-body">

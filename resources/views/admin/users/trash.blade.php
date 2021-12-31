@@ -1,6 +1,6 @@
 @extends('layouts-admin.layaouts', ['menu' => 'authentication', 'submenu' => 'manajemenusers'])
 
-@section('title', 'Users')
+@section('title', 'Trash Users')
 
 @section('content')
 
@@ -10,8 +10,15 @@
         <div class="card">
             <div class="card-header">
                 Table All Users
-                    <a href="{{ route('users.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
-                    <a href="{{ route('users.create') }}" class="btn btn-sm text-success" style="float: right"><i class="fas fa-plus"></i><a>
+                <div>
+                    <a href="{{ route('users.delete') }}" onclick="return confirm('Apakah anda yakin akan menghapus semua data secara permanen?')" class="btn btn-sm text-danger" style="float: right"><i class="fas fa-trash"></i><a>
+                </div>
+                <div>
+                    <a href="{{ route('users.restore') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-undo"></i><a>
+                </div>
+                <div>
+                    <a href="{{ route('users.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
+                </div>
                 </div>
                 <div class="card-body">
 
@@ -41,13 +48,9 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>
-                                    <a href="{{ route('users.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('users.restore', $item->id ) }}" class="btn btn-sm text-primary"><i class="fas fa-undo-alt"></i></a>
 
-                                    <a href="{{ route('editpassword', $item ) }}" class="btn btn-sm text-warning"><i class="fas fa-key"></i></a>
-
-                                    <form action="{{ route('users.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus permission {{ $item->name }}?')" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('delete')
+                                    <form action="{{ route('users.delete', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus role {{ $item->name }} secara permanen?')" class="d-inline">
                                         <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>
                                     </form>
                                 </td>

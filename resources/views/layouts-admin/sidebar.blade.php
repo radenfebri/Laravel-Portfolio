@@ -13,19 +13,19 @@
                 <span>Authentication</span>
             </a>
             <ul class="submenu ">
-                <li class="submenu-item ">
+                <li class="submenu-item {{ $submenu == 'role' ? 'active' : '' }}">
                     <a href="{{ route('role.index') }}">Role</a>
                 </li>
-                <li class="submenu-item ">
+                <li class="submenu-item {{ $submenu == 'permission' ? 'active' : '' }}">
                     <a href="{{ route('permission.index') }}">Permission</a>
                 </li>
-                <li class="submenu-item ">
+                <li class="submenu-item {{ $submenu == 'assignpermission' ? 'active' : '' }}">
                     <a href="{{ route('assignpermission.index') }}">Assign Permission</a>
                 </li>
-                <li class="submenu-item ">
+                <li class="submenu-item {{ $submenu == 'assignrole' ? 'active' : '' }}">
                     <a href="{{ route('assignrole.index') }}">Assign Role to User</a>
                 </li>
-                <li class="submenu-item ">
+                <li class="submenu-item {{ $submenu == 'manajemenusers' ? 'active' : '' }}">
                     <a href="{{ route('users.index') }}">Manajemen Users</a>
                 </li>
             </ul>

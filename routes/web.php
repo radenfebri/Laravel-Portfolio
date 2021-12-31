@@ -58,6 +58,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // MANAJEMEN USER
     Route::get('editpassword/{user}/edit', [UserController::class, 'editpassword'])->name('editpassword');
     Route::put('editpassword/{user}/edit', [UserController::class, 'updatepassword'])->name('updatepassword');
+    Route::get('users/trash', [UserController::class, 'trash'])->name('users.trash');
+    Route::get('users/restore/{id?}', [UserController::class, 'restore'])->name('users.restore');
+    Route::get('users/delete/{id?}', [UserController::class, 'delete'])->name('users.delete');
     Route::resource('users', UserController::class);
 
     // LOG USER

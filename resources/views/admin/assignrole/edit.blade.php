@@ -1,4 +1,6 @@
-@extends('layouts-admin.layaouts', ['menu' => 'authentication'])
+@extends('layouts-admin.layaouts', ['menu' => 'authentication', 'submenu' => 'assignrole'])
+
+@section('title', 'Update Assign Role')
 
 @section('content')
 

@@ -1,4 +1,6 @@
-@extends('layouts-admin.layaouts', ['menu' => 'dashboard'])
+@extends('layouts-admin.layaouts', ['menu' => 'dashboard', 'submenu' => ''])
+
+@section('title', 'Dashboard')
 
 @section('content')
 <div class="page-content">

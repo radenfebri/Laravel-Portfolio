@@ -1,4 +1,6 @@
-@extends('layouts-admin.layaouts', ['menu' => 'authentication'])
+@extends('layouts-admin.layaouts', ['menu' => 'authentication', 'submenu' => 'manajemenusers'])
+
+@section('title', 'Create User')
 
 @section('content')
 
@@ -8,6 +10,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Form Create New User</h4>
+                <a href="{{ route('users.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
             </div>
             <div class="card-content">
                 <div class="card-body">
@@ -54,19 +57,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-md-4">
-                                    <label>Foto</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input class="form-control form-control-sm" id="formFileSm" type="file">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-image"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                                 <div class="col-md-4">
                                     <label>Password</label>
                                 </div>

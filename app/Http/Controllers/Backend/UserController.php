@@ -115,4 +115,49 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+
+
+    public function destroy($id)
+    {
+        $role = User::find($id);
+        $role->delete();
+
+        toast('Data Berhasil Dihapus','success');
+
+        return redirect()->route('users.index');
+    }
+
+
+    public function trash()
+    {
+        $users = User::onlyTrashed()->get();
+        return view('admin.users.trash', compact('users'));
+    }
+
+
+    public function restore($id = null)
+    {
+        if($id !=null) {
+            $id = User::onlyTrashed()->where('id' , $id)->restore();
+        } else {
+            $id = User::onlyTrashed()->restore();
+        }
+
+        toast('Data Berhasil Direstore Semua','success');
+        return back();
+    }
+
+
+    public function delete($id = null)
+    {
+        if($id !=null) {
+            $id = User::onlyTrashed()->where('id' , $id)->forceDelete();
+        } else {
+            $id = User::onlyTrashed()->forceDelete();
+        }
+
+        toast('Data Berhasil Dihapus Permanen','success');
+        return back();
+    }
 }
