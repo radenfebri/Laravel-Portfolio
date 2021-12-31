@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\LogController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+// Route::get('/{username}', ProfileController::class, 'profile');
+
 
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // DASHBOARD
@@ -62,6 +66,10 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::get('users/restore/{id?}', [UserController::class, 'restore'])->name('users.restore');
     Route::get('users/delete/{id?}', [UserController::class, 'delete'])->name('users.delete');
     Route::resource('users', UserController::class);
+
+    // SETTING PROFILE
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // LOG USER
     Route::resource('log', LogController::class);
