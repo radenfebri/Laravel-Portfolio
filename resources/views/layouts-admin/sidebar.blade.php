@@ -25,6 +25,9 @@
                 <li class="submenu-item ">
                     <a href="{{ route('assignrole.index') }}">Assign Role to User</a>
                 </li>
+                <li class="submenu-item ">
+                    <a href="{{ route('users.index') }}">Manajemen Users</a>
+                </li>
             </ul>
         </li>
         <li class="sidebar-item {{ $menu == 'log' ? 'active' : '' }}">

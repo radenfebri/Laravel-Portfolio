@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LogController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::post('assignrole', [AssignRoleController::class, 'store'])->name('assignrole.index');
     Route::get('assignrole/{user}/edit', [AssignRoleController::class, 'edit'])->name('assignrole.edit');
     Route::put('assignrole/{user}/edit', [AssignRoleController::class, 'update']);
+
+    // MANAJEMEN USER
+    Route::resource('users', UserController::class);
 
     // LOG USER
     Route::resource('log', LogController::class);
