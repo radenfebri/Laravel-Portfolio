@@ -56,6 +56,8 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::put('assignrole/{user}/edit', [AssignRoleController::class, 'update']);
 
     // MANAJEMEN USER
+    Route::get('editpassword/{user}/edit', [UserController::class, 'editpassword'])->name('editpassword');
+    Route::put('editpassword/{user}/edit', [UserController::class, 'updatepassword'])->name('updatepassword');
     Route::resource('users', UserController::class);
 
     // LOG USER

@@ -92,4 +92,27 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
     }
+
+
+    public function editpassword(User $user)
+    {
+        return view('admin.users.edit-password', compact('user'));
+    }
+
+
+    public function updatepassword(Request $request, $user)
+    {
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::find($user);
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        toast('Data Berhasil Diupdate','info');
+
+        return redirect()->route('users.index');
+    }
 }

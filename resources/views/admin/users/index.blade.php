@@ -41,7 +41,7 @@
                                 <td>
                                     <a href="{{ route('users.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
 
-                                    <a href="" class="btn btn-sm text-warning"><i class="fas fa-key"></i></a>
+                                    <a href="{{ route('editpassword', $item ) }}" class="btn btn-sm text-warning"><i class="fas fa-key"></i></a>
 
                                     <form action="" onsubmit="return confirm('Yakin anda akan menghapus permission {{ $item->name }}?')" method="POST" class="d-inline">
                                         @csrf

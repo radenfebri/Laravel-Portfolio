@@ -92,12 +92,12 @@
                                 <div class="col-md-8">
                                     <div class="form-group has-icon-left">
                                         <div class="position-relative">
-                                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" id="password-confirm"
+                                            <input type="password" class="form-control @error('current_password') is-invalid @enderror" name="password_confirmation" id="password-confirm"
                                             placeholder="Password Confirmation" autocomplete="new-password" required>
                                             <div class="form-control-icon">
                                                 <i class="bi bi-lock"></i>
                                             </div>
-                                            @error('password-confirm')
+                                            @error('password_confirmation')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
