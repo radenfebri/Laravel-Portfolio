@@ -28,9 +28,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/{username}', ProfileController::class, 'profile');
-
-
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // DASHBOARD
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -74,3 +71,7 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // LOG USER
     Route::resource('log', LogController::class);
 });
+
+
+// VIEW PROFILE PUBLIC
+Route::get('/{username}', [ProfileController::class, 'detail'])->name('detail');

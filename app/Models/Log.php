@@ -11,5 +11,8 @@ class Log extends Model
 
     protected $table = 'authentication_log';
 
+    protected $guarded = [];
+
     protected $hidden = [];
+
 }

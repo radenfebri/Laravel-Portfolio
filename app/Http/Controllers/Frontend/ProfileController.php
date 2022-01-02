@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Psy\Command\WhereamiCommand;
 
 class ProfileController extends Controller
 {
@@ -15,6 +18,23 @@ class ProfileController extends Controller
         $user = User::all();
         return view('admin.profile.index', compact('user'));
     }
+
+
+
+    public function detail(User $username)
+    {
+        if ($username == true){
+            $username = User::where('username')->get();
+        } else {
+            // 404;
+            return view('admin.profile.detail');
+        }
+
+        dd($username);
+
+        return view('admin.profile.detail', compact('user', 'username'));
+    }
+
 
 
     public function update(Request $request)
@@ -29,7 +49,7 @@ class ProfileController extends Controller
         if (empty($request->file('foto'))) {
             auth()->user()->update([
                 'name' => $request->name,
-                'username' => $request->username,
+                'username' => Str::slug($request->username),
                 'email' => $request->email,
                 'alamat' => $request->alamat,
                 'about' => $request->about,
@@ -49,7 +69,7 @@ class ProfileController extends Controller
             Storage::delete(Auth::user()->foto);
             auth()->user()->update([
                 'name' => $request->name,
-                'username' => $request->username,
+                'username' => Str::slug($request->username),
                 'email' => $request->email,
                 'alamat' => $request->alamat,
                 'about' => $request->about,

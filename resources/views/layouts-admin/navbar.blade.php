@@ -42,7 +42,7 @@
             <li>
                 <h6 class="dropdown-header">Hello, {{ Auth::user()->name }}!</h6>
             </li>
-            <li><a class="dropdown-item {{ $menu == 'profile' ? 'active' : '' }}" href=""><i class="icon-mid bi bi-person me-2"></i>MyProfile</a></li>
+            <li><a class="dropdown-item {{ $menu == 'profile' ? 'active' : '' }}" href="/{{ Auth::user()->username }}"><i class="icon-mid bi bi-person me-2"></i>MyProfile</a></li>
             <li><a class="dropdown-item {{ $menu == 'settingprofile' ? 'active' : '' }}" href="{{ route('profile.index') }}"><i class="icon-mid bi bi-gear me-2"></i>Settings</a></li>
             <li><a class="dropdown-item {{ $menu == 'changepassword' ? 'active' : '' }}" href=""><i class="icon-mid bi bi-lock me-2"></i>Change Password</a></li>
             {{-- <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>Wallet</a></li> --}}

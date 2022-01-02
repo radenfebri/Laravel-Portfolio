@@ -1,4 +1,4 @@
-@extends('layouts-admin.layaouts', ['menu' => 'log'])
+@extends('layouts-admin.layaouts', ['menu' => 'log', 'submenu' => ''])
 
 @section('content')
 
@@ -15,20 +15,21 @@
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">IP Address</th>
-                                {{-- <th scope="col">Location</th> --}}
+                                <th scope="col">Name</th>
                                 <th scope="col">Login at</th>
                                 <th scope="col">Login Successfully</th>
                                 <th scope="col">Logout at</th>
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $key => $item)
+                                @foreach ($log as $key => $item)
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{ $item['ip_address'] }}</td>
-                                    {{-- <td>{{ $item->location['city'] }}</td> --}}
+                                    {{-- <td>{{ $item['authenticatable_id'] }}</td> --}}
+                                    <td>{{ $user }}</td>
                                     <td>{{ Carbon\Carbon::parse($item['login_at'])->isoFormat('D MMMM YYYY h:mm A') }}</td>
-                                    <td>{{ $item['login_successful']  === true ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $item['login_successful']  === 1 ? 'Yes' : 'No' }}</td>
                                     <td>{{ $item['logout_at'] === NULL ? '-' : Carbon\Carbon::parse($item->logout_at)->isoFormat('D MMMM YYYY h:mm A') }}</td>
                                 </tr>
                                 @endforeach
