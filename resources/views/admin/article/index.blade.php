@@ -9,8 +9,12 @@
         <div class="card-header">
             Table Role
             @can('roles.trash')
-            <a href="{{ route('role.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
-                @endcan
+                <a href="{{ route('role.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
+            @endcan
+
+            @can('roles.trash')
+                <a href="{{ route('article.create') }}" class="btn btn-sm text-success" style="float: right"><i class="fas fa-plus"></i><a>
+            @endcan
             </div>
             <div class="card-body">
 
@@ -50,9 +54,11 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('role.edit', $item ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('article.show', $item->id ) }}" class="btn btn-sm text-info"><i class="fas fa-eye"></i></a>
 
-                                <form action="{{ route('role.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus role {{ $item->name }}?')" method="POST" class="d-inline">
+                                <a href="{{ route('article.edit', $item->id ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+
+                                <form action="{{ route('article.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus article {{ $item->judul }}?')" method="POST" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>

@@ -73,4 +73,4 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 
 
 // VIEW PROFILE PUBLIC
-Route::get('/{username}', [ProfileController::class, 'detail'])->name('detail');
+Route::get('/{username}', [ProfileController::class, 'show'])->name('show');

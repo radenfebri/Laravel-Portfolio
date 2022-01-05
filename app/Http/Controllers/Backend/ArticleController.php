@@ -8,6 +8,7 @@ use App\Models\Categorie;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -47,5 +48,64 @@ class ArticleController extends Controller
         toast('Data Berhasil Ditambahkan','success');
 
         return redirect()->route('article.index');
+    }
+
+
+    public function edit($id)
+    {
+        $articles = Article::findOrFail($id);
+        $categories = Categorie::all();
+
+        return view('admin.article.edit', compact('articles', 'categories'));
+    }
+
+
+    public function show($id)
+    {
+        return view('admin.article.show', [
+            'articles' => Article::findOrFail($id)
+        ]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'judul' => 'required|string',
+        ]);
+
+
+        if (empty($request->file('gambar_artikel'))) {
+            $articles = Article::find($id);
+            $articles->update([
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'deskripsi' => $request->deskripsi,
+                'kategori_id' => $request->kategori_id,
+                'is_active' => $request->is_active,
+                'user_id' => Auth::id(),
+            ]);
+
+            toast('Data Berhasil Diupdate','success');
+
+            return redirect()->route('article.index');
+
+        } else {
+            $articles = Article::find($id);
+            Storage::delete($articles->gambar_artikel);
+            $articles->update([
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'deskripsi' => $request->deskripsi,
+                'kategori_id' => $request->kategori_id,
+                'is_active' => $request->is_active,
+                'user_id' => Auth::id(),
+                'gambar_artikel' => $request->file('gambar_artikel')->store('gambar-artikel'),
+            ]);
+
+            toast('Data Berhasil Diupdate','success');
+
+            return redirect()->route('article.index');
+        }
     }
 }
