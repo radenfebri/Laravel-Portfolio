@@ -7,6 +7,21 @@
                 <span>Dashboard</span>
             </a>
         </li>
+        <li class="sidebar-item {{ $menu == 'article' ? 'active' : '' }} has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-journal-text"></i>
+                <span>Article</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item {{ $submenu == 'categorie' ? 'active' : '' }}">
+                    <a href="{{ route('categorie.index') }}">Categorie</a>
+                </li>
+
+                <li class="submenu-item {{ $submenu == 'post' ? 'active' : '' }}">
+                    <a href="{{ route('article.index') }}">Post</a>
+                </li>
+            </ul>
+        </li>
         <li class="sidebar-item {{ $menu == 'authentication' ? 'active' : '' }} has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>

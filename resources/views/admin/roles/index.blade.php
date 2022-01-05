@@ -33,8 +33,8 @@
             <div class="card-header">
                 Table Role
                 @can('roles.trash')
-                    <a href="{{ route('role.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
-                @endcan
+                <a href="{{ route('role.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
+                    @endcan
                 </div>
                 <div class="card-body">
 
