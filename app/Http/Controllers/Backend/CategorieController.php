@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class CategorieController extends Controller
@@ -78,6 +80,19 @@ class CategorieController extends Controller
         $categories->update($data);
 
         toast('Data Categorie Berhasil Diupdate','info');
+
+        return redirect()->route('categorie.index');
+    }
+
+
+    public function destroy($id)
+    {
+        abort_if(Gate::denies('role-destroy'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
+        $categories = Categorie::find($id);
+        $categories->delete();
+
+        toast('Data Berhasil Dihapus','success');
 
         return redirect()->route('categorie.index');
     }

@@ -65,14 +65,12 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|min:3|max:191',
-            // 'email' => 'required|string|unique:users|email|min:3|max:191'. auth()->id(),
         ]);
 
         if (empty($request->file('foto'))) {
             $user = User::find($user);
             $user->update([
                 'name' => $request->name,
-                // 'email' => $request->email,
             ]);
 
             toast('Data Berhasil Diupdate','success');
@@ -83,7 +81,6 @@ class UserController extends Controller
             Storage::delete($user->foto);
             $user->update([
                 'name' => $request->name,
-                // 'email' => $request->email,
                 'foto' => $request->file('foto')->store('foto-profile'),
             ]);
 

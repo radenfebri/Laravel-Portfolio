@@ -11,13 +11,13 @@ class Article extends Model
 
     protected $table = 'articles';
 
-    protected $fillable = ['judul', 'slug', 'deskripsi', 'kategori_id', 'user_id', 'gambar_artikel', 'is_Active'];
+    protected $fillable = ['judul', 'slug', 'deskripsi', 'kategori_id', 'user_id', 'gambar_artikel', 'is_active'];
 
     protected $hidden = [];
 
     public function categories()
     {
-        return $this->belongsTo(Categorie::class, 'nama_kategori', 'id');
+        return $this->belongsTo(Categorie::class, 'kategori_id', 'id');
     }
 
     public function users()

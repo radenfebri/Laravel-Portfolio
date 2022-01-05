@@ -34,6 +34,11 @@
                                 <td>{{ $item->slug }}</td>
                                 <td>
                                     <a href="{{ route('categorie.edit', $item->id ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                    <form action="{{ route('categorie.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus categorie {{ $item->nama_kategori }}?')" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
