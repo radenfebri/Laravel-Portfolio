@@ -19,9 +19,11 @@ class CreateArticlesTable extends Migration
             $table->text('slug');
             $table->text('deskripsi');
             $table->integer('kategori_id');
+            $table->integer('tag_id');
             $table->integer('user_id');
             $table->string('gambar_artikel');
             $table->boolean('is_active');
+            $table->timestamp('tgl_publish');
             $table->timestamps();
         });
     }

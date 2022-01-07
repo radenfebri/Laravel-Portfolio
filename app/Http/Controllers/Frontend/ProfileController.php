@@ -23,21 +23,14 @@ class ProfileController extends Controller
 
     public function show($username)
     {
-        return view('admin.profile.show', [
-            // dd($username),
-            'users' => User::findOrFail($username)
-        ]);
+        User::where('username', $username)->get();
 
         // dd($username);
+
+        return view('admin.profile.show', compact('username'));
+
+
     }
-
-
-    // public function show($id)
-    // {
-    //     return view('admin.article.show', [
-    //         'articles' => Article::findOrFail($id)
-    //     ]);
-    // }
 
 
 

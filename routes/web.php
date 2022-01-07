@@ -9,7 +9,7 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
-
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\ProfileController;
 
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +30,7 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE FOR ARTICLE
     Route::resource('article', ArticleController::class);
     Route::resource('categorie', CategorieController::class);
+    Route::resource('tag', TagController::class);
 
     // ROLE USER
     Route::get('role/trash', [RoleController::class, 'trash'])->name('role.trash');

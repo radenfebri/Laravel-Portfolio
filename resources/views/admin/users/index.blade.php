@@ -30,11 +30,11 @@
                                 <td>
                                     @if ($item->foto)
                                         <div class="avatar avatar-md">
-                                            <img src="{{ asset('storage/'. $item->foto ) }}" alt="Face 1">
+                                            <img src="{{ asset('storage/'. $item->foto ) }}" alt="{{ $item->name }}">
                                         </div>
                                     @else
                                         <div class="avatar avatar-md">
-                                            <img src="{{ asset('template') }}/images/faces/profile.jpg" alt="Face 1">
+                                            <img src="{{ asset('template') }}/images/faces/profile.jpg" alt="{{ $item->name }}">
                                         </div>
                                     @endif
                                 </td>

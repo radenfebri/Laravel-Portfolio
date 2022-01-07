@@ -35,11 +35,11 @@
                             <td>
                                 @if ($item->gambar_artikel)
                                 <div class="avatar avatar-md">
-                                    <img src="{{ asset('storage/'. $item->gambar_artikel ) }}" alt="Face 1">
+                                    <img src="{{ asset('storage/'. $item->gambar_artikel ) }}" alt="{{ $item->categories->nama_kategori }}">
                                 </div>
                                 @else
                                 <div class="avatar avatar-md">
-                                    <img src="{{ asset('template') }}/images/faces/profile.jpg" alt="Face 1">
+                                    <img src="{{ asset('template') }}/images/faces/profile.jpg" alt="{{ $item->categories->nama_kategori }}">
                                 </div>
                                 @endif
                             </td>

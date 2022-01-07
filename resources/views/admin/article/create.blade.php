@@ -57,8 +57,26 @@
                                         </div>
                                         <div class="mt-4">
                                             <div class="form-group">
+                                                    <h6>Multiple Select Tag</h6>
+                                                        <div class="form-group">
+                                                            <select class="choices form-select multiple-remove" name="tag_id[0]" id="tag_id[0]" multiple="multiple">
+                                                            <optgroup label="Figures">
+                                                                @foreach ($tags as $item)
+                                                                @if (old('tag_id') == $item->id)
+                                                                <option value="{{ $item->id }}" selected>{{ $item->nama_tag }}</option>
+                                                                @else
+                                                                <option value="{{ $item->id }}">{{ $item->nama_tag }}</option>
+                                                                @endif
+                                                                @endforeach
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <div class="form-group">
                                                 <label for="email-id-column">Gambar Artcile</label>
-                                                <input class="form-control" id="gambar_artikel" name="gambar_artikel" type="file" required autocomplete="gambar_artikel">
+                                                <input class="form-control" id="gambar_artikel" name="gambar_artikel" type="file" autocomplete="gambar_artikel">
                                                 @error('gambar_artikel')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -81,6 +99,22 @@
                                                 </fieldset>
                                             </div>
                                         </div>
+                                        <div class="mt-4">
+                                            <div class="form-group">
+                                                <h6>Tanggal Publish</h6>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                                                    <input type="date" id="tgl_publish" name="tgl_publish" class="form-control  @error('tgl_publish') is-invalid @enderror"
+                                                    placeholder="Tgl Publish" value="{{ old('tgl_publish' ) }}" autocomplete="tgl_publish">
+                                                    @error('tgl_publish')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="mt-4">
                                             <div class="form-group">
                                                 <label for="email-id-column">Deskripsi</label>

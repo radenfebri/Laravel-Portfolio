@@ -17,6 +17,10 @@
                     <a href="{{ route('categorie.index') }}">Categorie</a>
                 </li>
 
+                <li class="submenu-item {{ $submenu == 'tag' ? 'active' : '' }}">
+                    <a href="{{ route('tag.index') }}">Tag</a>
+                </li>
+
                 <li class="submenu-item {{ $submenu == 'post' ? 'active' : '' }}">
                     <a href="{{ route('article.index') }}">Post</a>
                 </li>
