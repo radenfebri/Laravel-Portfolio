@@ -58,24 +58,6 @@
                                         </div>
                                         <div class="mt-4">
                                             <div class="form-group">
-                                                    <h6>Multiple Select Tag</h6>
-                                                        <div class="form-group">
-                                                            <select class="choices form-select multiple-remove" name="tag_id" id="tag_id" multiple="multiple">
-                                                            <optgroup label="Figures">
-                                                                @foreach ($tags as $item)
-                                                                @if ($item->id == $articles->tag_id)
-                                                                <option value="{{ $item->id }}" selected>{{ $item->nama_tag }}</option>
-                                                                @else
-                                                                <option value="{{ $item->id }}">{{ $item->nama_tag }}</option>
-                                                                @endif
-                                                                @endforeach
-                                                            </optgroup>
-                                                        </select>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <div class="form-group">
                                                 <label for="email-id-column">Gambar Artcile</label>
                                                 <input class="form-control" id="gambar_artikel" name="gambar_artikel" type="file" autocomplete="gambar_artikel">
                                                 <br>

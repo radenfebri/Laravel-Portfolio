@@ -7,6 +7,8 @@
                 <span>Dashboard</span>
             </a>
         </li>
+
+        {{-- ARTIKEL --}}
         <li class="sidebar-item {{ $menu == 'article' ? 'active' : '' }} has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-journal-text"></i>
@@ -17,15 +19,26 @@
                     <a href="{{ route('categorie.index') }}">Categorie</a>
                 </li>
 
-                <li class="submenu-item {{ $submenu == 'tag' ? 'active' : '' }}">
-                    <a href="{{ route('tag.index') }}">Tag</a>
-                </li>
-
                 <li class="submenu-item {{ $submenu == 'post' ? 'active' : '' }}">
                     <a href="{{ route('article.index') }}">Post</a>
                 </li>
             </ul>
         </li>
+
+        {{-- STORE --}}
+        <li class="sidebar-item {{ $menu == 'store' ? 'active' : '' }} has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-cart4"></i>
+                <span>Store</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item {{ $submenu == 'categorie-product' ? 'active' : '' }}">
+                    <a href="{{ route('categorie-product.index') }}">Categorie</a>
+                </li>
+            </ul>
+        </li>
+
+        {{-- AUTHENTICATION --}}
         <li class="sidebar-item {{ $menu == 'authentication' ? 'active' : '' }} has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>
@@ -64,11 +77,14 @@
 
             </ul>
         </li>
+
+        {{-- LOG --}}
         <li class="sidebar-item {{ $menu == 'log' ? 'active' : '' }}">
             <a href="{{ route('log.index') }}" class='sidebar-link'>
                 <i class="bi bi-grid-fill"></i>
                 <span>Log</span>
             </a>
         </li>
+
     </ul>
 </div>

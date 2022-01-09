@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
+use App\Http\Controllers\Backend\CategorieProductController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Frontend\ProfileController;
 
@@ -30,7 +31,6 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE FOR ARTICLE
     Route::resource('article', ArticleController::class);
     Route::resource('categorie', CategorieController::class);
-    Route::resource('tag', TagController::class);
 
     // ROLE USER
     Route::get('role/trash', [RoleController::class, 'trash'])->name('role.trash');
@@ -70,6 +70,12 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 
     // LOG USER
     Route::resource('log', LogController::class);
+});
+
+
+Route::middleware(['has.role'])->middleware('auth')->group(function (){
+    // ROUTE CATEGORIE PRODUCT
+    Route::resource('categorie-product', CategorieProductController::class);
 });
 
 

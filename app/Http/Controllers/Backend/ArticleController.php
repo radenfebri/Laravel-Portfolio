@@ -25,9 +25,8 @@ class ArticleController extends Controller
     {
         $articles = Article::all();
         $categories = Categorie::all();
-        $tags = Tag::all();
 
-        return view('admin.article.create', compact('articles', 'categories', 'tags'));
+        return view('admin.article.create', compact('articles', 'categories'));
     }
 
 
@@ -35,10 +34,9 @@ class ArticleController extends Controller
     {
         request()->validate([
             'judul' => 'required|string|unique:articles,judul',
-            'gambar_artikel' => 'file|image',
+            'gambar_artikel' => 'file|image|mimes:png,jpg,jpeg',
             'deskripsi' => 'required',
             'kategori_id' => 'required',
-            'tag_id' => 'array|required',
         ]);
 
 
@@ -48,13 +46,10 @@ class ArticleController extends Controller
                 'slug' => Str::slug($request->judul),
                 'deskripsi' => $request->deskripsi,
                 'kategori_id' => $request->kategori_id,
-                'tag_id' => $request->tag_id,
                 'is_active' => $request->is_active,
                 'tgl_publish' => $request->tgl_publish ?? (now()),
                 'user_id' => Auth::id(),
                 'gambar_artikel' => $request->gambar_artikel ?? '',
-
-
             ]);
 
             toast('Data Berhasil Ditambahkan','success');
@@ -68,7 +63,6 @@ class ArticleController extends Controller
                 'slug' => Str::slug($request->judul),
                 'deskripsi' => $request->deskripsi,
                 'kategori_id' => $request->kategori_id,
-                'tag_id' => $request->tag_id,
                 'is_active' => $request->is_active,
                 'tgl_publish' => $request->tgl_publish ?? (now()),
                 'user_id' => Auth::id(),
@@ -86,10 +80,9 @@ class ArticleController extends Controller
         {
             $articles = Article::findOrFail($id);
             $categories = Categorie::all();
-            $tags = Tag::all();
 
 
-            return view('admin.article.edit', compact('articles', 'categories', 'tags'));
+            return view('admin.article.edit', compact('articles', 'categories'));
         }
 
 
@@ -115,7 +108,6 @@ class ArticleController extends Controller
                     'slug' => Str::slug($request->judul),
                     'deskripsi' => $request->deskripsi,
                     'kategori_id' => $request->kategori_id,
-                    'tag_id' => $request->tag_id,
                     'tgl_publish' => $request->tgl_publish ?? (now()),
                     'is_active' => $request->is_active,
                     'user_id' => Auth::id(),
@@ -133,7 +125,6 @@ class ArticleController extends Controller
                     'slug' => Str::slug($request->judul),
                     'deskripsi' => $request->deskripsi,
                     'kategori_id' => $request->kategori_id,
-                    'tag_id' => $request->tag_id,
                     'tgl_publish' => $request->tgl_publish ?? (now()),
                     'is_active' => $request->is_active,
                     'user_id' => Auth::id(),
