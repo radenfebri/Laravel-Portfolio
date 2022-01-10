@@ -20,7 +20,7 @@
     </section>
     <!-- End Breadcrumbs -->
 
-    <!-- ======= Testimonials Section ======= -->
+    <!-- ======= Product Section ======= -->
     <section id="testimonials" class="testimonials">
         <div class="container" data-aos="fade-up">
             <header class="section-header">
@@ -32,16 +32,15 @@
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <div class="stars">
-                                <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
                             </div>
                             {{-- <p>
                                 Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                             </p> --}}
                             <div class="profile mt-auto">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
                                 <h3>{{ $item->name }}</h3>
-                                <span class="float-start"><s>Rp.{{ $item->original_price }}</s></span>
-                                <span class="float-end">Rp.{{ $item->selling_price }}</span>
+                                <span class="float-start"><s>Rp.{{ number_format($item->original_price) }}</s></span>
+                                <span class="float-end">Rp.{{ number_format($item->selling_price) }}</span>
                             </div>
                         </div>
                     </div>
@@ -51,7 +50,35 @@
             </div>
         </div>
     </section>
-    <!-- End Testimonials Section -->
+    <!-- End Product Section -->
+
+    <!-- ======= Recent Blog Posts Section ======= -->
+    <section id="recent-blog-posts" class="recent-blog-posts">
+
+        <div class="container" data-aos="fade-up">
+
+          <header class="section-header">
+            <p>All Categorie Product</p>
+          </header>
+
+          <div class="row">
+            @foreach ($categorieproduct as $item)
+            <div class="col-lg-4">
+              <div class="post-box">
+                <div class="post-img"><img src="{{ asset('storage/'. $item->image ) }}" class="img-fluid" alt=""></div>
+                <h3 class="post-title">{{ $item->name }}</h3>
+                <p>{{ $item->description }}</p>
+                <a href="{{ route('viewcategorie.index', $item->slug ) }}" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+            @endforeach
+
+          </div>
+
+        </div>
+
+      </section>
+      <!-- End Recent Blog Posts Section -->
 
 
 </main>
@@ -59,25 +86,4 @@
 
 @endsection
 
-
-@section('scripts')
-<script>
-    $('.featured-carousel').owlCarousel({
-        loop:true,
-        margin:10,
-        nav:true,
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items:3
-            },
-            1000:{
-                items:5
-            }
-        }
-    })
-</script>
-@endsection
 
