@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
 
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('user.index');
+// });
+
+// HALAMAN FRONTEND
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('store', [FrontendController::class, 'store'])->name('store.index');
 
 Auth::routes();
 
