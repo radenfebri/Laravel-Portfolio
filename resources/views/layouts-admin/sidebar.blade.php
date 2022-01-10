@@ -35,6 +35,11 @@
                 <li class="submenu-item {{ $submenu == 'categorie-product' ? 'active' : '' }}">
                     <a href="{{ route('categorie-product.index') }}">Categorie</a>
                 </li>
+
+                <li class="submenu-item {{ $submenu == 'product' ? 'active' : '' }}">
+                    <a href="{{ route('product.index') }}">Product</a>
+                </li>
+
             </ul>
         </li>
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
-use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\ProfileController;
 
 use Illuminate\Support\Facades\Auth;
@@ -76,6 +76,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE CATEGORIE PRODUCT
     Route::resource('categorie-product', CategorieProductController::class);
+
+    // ROUTE PRODUCT
+    Route::resource('product', ProductController::class);
 });
 
 
