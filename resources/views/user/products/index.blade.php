@@ -89,7 +89,10 @@
                             </div>
                             <div class="col-md-10">
                                 <br>
+                                @if ($product->qty > 0)
                                 <button type="button" class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <i class="fas fa-cart-plus"></i></button>
+                                @else
+                                @endif
                                 <button type="button" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fas fa-heart"></i></button>
                             </div>
                         </div>

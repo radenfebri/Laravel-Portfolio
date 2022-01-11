@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
 
@@ -36,12 +37,12 @@ Route::post('update-cart', [CartController::class, 'updatecart']);
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE CATEGORIE PRODUCT
     Route::resource('categorieproduct', CategorieProductController::class);
-
     // ROUTE PRODUCT
     Route::resource('product', ProductController::class);
-
-    // CART LIST
+    // ROUTE CART LIST
     Route::get('cart', [CartController::class, 'cartview'])->name('cartview.index');
+    // ROUTE CHECKOUT
+    Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
 

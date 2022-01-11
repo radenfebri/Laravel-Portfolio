@@ -33,7 +33,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->categorieproduct->name }}</td>
                             <td>{{ $item->selling_price }}</td>
-                            <td>{!! $item->description !!}</td>
+                            <td>{!! \Illuminate\Support\Str::words($item->description, 5,'....') !!}</td>
                             <td>
                                 @if ($item->image)
                                 <div class="avatar avatar-lg">
