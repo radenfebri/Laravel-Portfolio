@@ -20,7 +20,7 @@ $(document).ready(function() {
                 'product_qty': product_qty,
             },
             success: function(response) {
-                swal(response.status);
+                swal("", response.status, "success");
             }
         });
     });
@@ -95,6 +95,7 @@ $(document).ready(function() {
             url: "update-cart",
             data: data,
             success: function(response) {
+                swal("", response.status, "info");
                 window.location.reload();
             }
         });

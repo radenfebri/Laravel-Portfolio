@@ -24,8 +24,6 @@
     </script>
   @endif
 
-  @include('sweetalert::alert')
-
 </body>
 
 </html>

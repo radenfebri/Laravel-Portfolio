@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
 
     public function addProduct(Request $request)
     {
@@ -45,6 +40,7 @@ class CartController extends Controller
             }
 
         } else {
+
             return response()->json(['status' => "Login to Continue"]);
 
         }

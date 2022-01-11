@@ -25,7 +25,7 @@
     <link href="{{ asset('front') }}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="{{ asset('front') }}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template') }}/vendors/toastify/toastify.css">
-    <link rel="stylesheet" href="{{ asset('template') }}/vendors/sweetalert2/sweetalert2.min.css">
+    {{-- <link rel="stylesheet" href="{{ asset('template') }}/vendors/sweetalert2/sweetalert2.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('template') }}/vendors/fontawesome/all.min.css">
     <style>
         .fontawesome-icons {

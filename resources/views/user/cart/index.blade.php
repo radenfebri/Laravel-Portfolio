@@ -11,8 +11,8 @@
         <div class="container">
 
             <ol>
-                <li><a href="/">Home</a></li>
-                <li>@yield('title')</li>
+                <li><a href="{{ route('store.index') }}">Store</a></li>
+                <li><a href="{{ route('cartview.index') }}">My Cart</a></li>
             </ol>
             <h2>@yield('title') Page</h2>
 
