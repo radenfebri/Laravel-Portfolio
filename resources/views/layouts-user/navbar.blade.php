@@ -12,7 +12,7 @@
                 <li><a class="nav-link scrollto {{ $menu == 'home' ? 'active' : '' }} " href="/">Home</a></li>
                 {{-- <li><a class="nav-link scrollto" href="#about">About</a></li> --}}
                 <li><a class="nav-link scrollto {{ $menu == 'store' ? 'active' : '' }} " href="{{ route('store.index') }}">Store</a></li>
-                <li><a class="nav-link scrollto {{ $menu == 'cart' ? 'active' : '' }} " href="{{ route('cart.index') }}">Cart</a></li>
+                <li><a class="nav-link scrollto {{ $menu == 'cart' ? 'active' : '' }} " href="{{ route('cartview.index') }}">Cart</a></li>
                 {{-- <li><a class="nav-link scrollto" href="#services">Services</a></li> --}}
                 {{-- <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li> --}}
                 {{-- <li><a class="nav-link scrollto" href="#team">Team</a></li> --}}

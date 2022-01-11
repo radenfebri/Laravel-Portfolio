@@ -18,7 +18,11 @@
 
   @include('layouts-user.js')
 
-  @yield('scripts')
+  {{-- @if (session('status'))
+    <script>
+        swal("{{ session('status') }}");
+    </script>
+  @endif --}}
 
 </body>
 

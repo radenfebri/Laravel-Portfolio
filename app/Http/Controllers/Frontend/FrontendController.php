@@ -29,7 +29,7 @@ class FrontendController extends Controller
         if(CategorieProduct::where('slug', $slug)->exists())
         {
             $categorieproduct = CategorieProduct::where('slug', $slug)->first();
-            $product = Product::where('categorie_id', $categorieproduct->id)->where('status', '0')->get();
+            $product = Product::where('categorie_id', $categorieproduct->id)->get();
             return view('user.categorieproduct.index', compact('categorieproduct', 'product'));
 
         } else {

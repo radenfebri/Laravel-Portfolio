@@ -44,7 +44,7 @@
                 <div class="col-lg-4">
                     <div class="portfolio-info">
                         <h3>Product Information</h3>
-                        <p><a type="button" class="btn btn-success">{{ $product->trending == '1' ? 'Trending':'' }}</a></p>
+                        <p><a type="button" class="btn btn-danger">{{ $product->trending == '1' ? 'Trending':'' }}</a></p>
                         <ul>
                             <li><strong>Category</strong>: {{ $categorieproduct->name }}</li>
                             <li><strong>Harga Asli</strong>: <s>Rp.{{ number_format($product->original_price) }}</s></li>
@@ -73,13 +73,13 @@
                                 <label for="Quantity">Quantity</label>
                                 <div class="input-group text-center mb-3">
                                     <span class="input-group-btn">
-                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                        <button type="button" class="input-group-text btn btn-danger decrement-btn">
                                             <span class="glyphicon glyphicon-minus">-</span>
                                         </button>
                                     </span>
-                                    <input type="text" id="quantity" name="quantity" class="form-control qty-input text-center input-number" value="1" min="1" max="100">
+                                    <input type="text" id="quantity" name="quantity" class="form-control qty-input text-center input-number" value="1">
                                     <span class="input-group-btn">
-                                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                        <button type="button" class="input-group-text btn btn-success increment-btn" >
                                             <span class="glyphicon glyphicon-plus">+</span>
                                         </button>
                                     </span>
@@ -107,54 +107,5 @@
 @endsection
 
 
-@section('scripts')
-<script>
-    $(document).ready(function(){
-        var quantitiy=0;
-        $('.quantity-right-plus').click(function(e){
-            e.preventDefault();
-            var quantity = parseInt($('#quantity').val());
-            $('#quantity').val(quantity + 1);
-        });
-
-        $('.quantity-left-minus').click(function(e){
-            e.preventDefault();
-            var quantity = parseInt($('#quantity').val());
-            if(quantity>0){
-                $('#quantity').val(quantity - 1);
-            }
-        });
-
-        $('.addToCartBtn').click(function(e){
-            e.preventDefault();
-
-            var product_id = $(this).closest('.product_data').find('.prod_id').val();
-            var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-
-            // alert(product_id);
-            // alert(product_qty);
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                method: "POST",
-                url: "/add-to-cart",
-                data: {
-                    'product_id' : product_id,
-                    'product_qty' : product_qty,
-                },
-                success: function(response) {
-                    alert(response.status);
-                }
-            });
-        });
-
-    });
-</script>
-@endsection
 
 

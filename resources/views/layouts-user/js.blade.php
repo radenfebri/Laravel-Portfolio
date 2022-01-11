@@ -12,5 +12,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('front') }}/js/main.js"></script>
+  <script src="{{ asset('front') }}/js/custom.js"></script>
+
 
 

@@ -28,6 +28,9 @@ Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::cla
 // ADD TO CART
 Route::post('add-to-cart', [CartController::class, 'addProduct']);
 
+// REMOVE CART LIST
+Route::post('delete-cart-item', [CartController::class, 'deleteproduct']);
+
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE CATEGORIE PRODUCT
     Route::resource('categorie-product', CategorieProductController::class);
@@ -36,7 +39,7 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::resource('product', ProductController::class);
 
     // CART LIST
-    Route::get('cart', [CartController::class, 'cart'])->name('cart.index');
+    Route::get('cart', [CartController::class, 'cartview'])->name('cartview.index');
 });
 
 Auth::routes();
