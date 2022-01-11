@@ -38,6 +38,9 @@ class CartController extends Controller
                     $cartItem->prod_qty = $product_qty;
                     $cartItem->save();
                     return response()->json(['status' => $prod_check->name." Added to Cart"]);
+                    // toast('Data Berhasil Ditambahkan','success');
+
+                    // return redirect()->route('cart');
                 }
             }
 
@@ -52,6 +55,24 @@ class CartController extends Controller
         $cartItem = Cart::where('user_id', Auth::id())->get();
 
         return view('user.cart.index', compact('cartItem'));
+    }
+
+
+    public function updatecart(Request $request)
+    {
+        $prod_id = $request->input('prod_id');
+        $product_qty = $request->input('prod_qty');
+
+        if(Auth::check())
+        {
+            if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
+            {
+                $cart = Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->first();
+                $cart->prod_qty = $product_qty;
+                $cart->update();
+                return response()->json(['status' => "Quantity Update"]);
+            }
+        }
     }
 
 

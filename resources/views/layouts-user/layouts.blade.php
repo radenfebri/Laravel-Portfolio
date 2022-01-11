@@ -23,6 +23,7 @@
         swal("{{ session('status') }}");
     </script>
   @endif --}}
+  @include('sweetalert::alert')
 
 </body>
 

@@ -26,10 +26,12 @@ Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategori
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
 
 // ADD TO CART
-Route::post('add-to-cart', [CartController::class, 'addProduct']);
-
+Route::post('add-to-cart', [CartController::class, 'addProduct'])->name('addcart');
 // REMOVE CART LIST
 Route::post('delete-cart-item', [CartController::class, 'deleteproduct']);
+// UPDATE CART
+Route::post('update-cart', [CartController::class, 'updatecart']);
+
 
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE CATEGORIE PRODUCT
@@ -42,7 +44,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::get('cart', [CartController::class, 'cartview'])->name('cartview.index');
 });
 
+
 Auth::routes();
+
 
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // DASHBOARD
