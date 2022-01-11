@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
 
@@ -23,6 +24,20 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('store', [FrontendController::class, 'store'])->name('store.index');
 Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategorie'])->name('viewcategorie.index');
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
+
+// ADD TO CART
+Route::post('add-to-cart', [CartController::class, 'addProduct']);
+
+Route::middleware(['has.role'])->middleware('auth')->group(function (){
+    // ROUTE CATEGORIE PRODUCT
+    Route::resource('categorie-product', CategorieProductController::class);
+
+    // ROUTE PRODUCT
+    Route::resource('product', ProductController::class);
+
+    // CART LIST
+    Route::get('cart', [CartController::class, 'cart'])->name('cart.index');
+});
 
 Auth::routes();
 
@@ -74,14 +89,6 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::resource('log', LogController::class);
 });
 
-
-Route::middleware(['has.role'])->middleware('auth')->group(function (){
-    // ROUTE CATEGORIE PRODUCT
-    Route::resource('categorie-product', CategorieProductController::class);
-
-    // ROUTE PRODUCT
-    Route::resource('product', ProductController::class);
-});
 
 
 // VIEW PROFILE PUBLIC

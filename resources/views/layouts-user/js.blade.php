@@ -6,6 +6,9 @@
   <script src="{{ asset('front') }}/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="{{ asset('front') }}/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="{{ asset('front') }}/vendor/php-email-form/validate.js"></script>
+  <script src="{{ asset('template') }}/vendors/fontawesome/all.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 
   <!-- Template Main JS File -->
   <script src="{{ asset('front') }}/js/main.js"></script>

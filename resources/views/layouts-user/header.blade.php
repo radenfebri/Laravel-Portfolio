@@ -7,6 +7,8 @@
 
     <meta content="" name="keywords">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Favicons -->
     <link href="{{ asset('front') }}/img/favicon.png" rel="icon">
     <link href="{{ asset('front') }}/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -22,13 +24,24 @@
     <link href="{{ asset('front') }}/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="{{ asset('front') }}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="{{ asset('front') }}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('template') }}/vendors/fontawesome/all.min.css">
+    <style>
+        .fontawesome-icons {
+            text-align: center;
+        }
+
+        article dl {
+            background-color: rgba(0, 0, 0, .02);
+            padding: 20px;
+        }
+
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
+    </style>
 
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('front') }}/css/style.css" rel="stylesheet">
-
-    {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
-    {{-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> --}}
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 </head>
