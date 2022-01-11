@@ -20,12 +20,7 @@ $(document).ready(function() {
                 'product_qty': product_qty,
             },
             success: function(response) {
-<<<<<<< HEAD
-                swal("", response.status, "success");
-=======
-                // toast(response.status);
-                // toast('Data Berhasil Ditambahkan', 'success');
->>>>>>> b6a85d9cf5db9a5854b13ae3f3e6805a5bb38b3e
+                swal(response.status);
             }
         });
     });
@@ -78,16 +73,9 @@ $(document).ready(function() {
             data: {
                 'prod_id': prod_id,
             },
-<<<<<<< HEAD
             success: function (response) {
                 window.location.reload();
                 swal("", response.status, "success");
-=======
-            success: function(response) {
-                // swal("", response.status, "success");
-                window.location.reload();
-                // toast('Data Berhasil Dihapus', 'success')
->>>>>>> b6a85d9cf5db9a5854b13ae3f3e6805a5bb38b3e
             }
         });
     });

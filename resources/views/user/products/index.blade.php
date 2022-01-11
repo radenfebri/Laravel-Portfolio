@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'store', 'submenu' => ''])
 
-@section('title' , $product->name )
+@section('title' , "Product $product->name" )
 
 @section('content')
 
@@ -25,9 +25,7 @@
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details product_data">
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-8">
                     <div class="portfolio-details-slider swiper">
                         <div class="swiper-wrapper align-items-center">
@@ -44,19 +42,23 @@
                 <div class="col-lg-4">
                     <div class="portfolio-info">
                         <h3>Product Information</h3>
-                        <p><a type="button" class="btn btn-danger">{{ $product->trending == '1' ? 'Trending':'' }}</a></p>
+                        <p>
+                            @if ($product->trending == '1')
+                            <a type="button" class="btn btn-danger">{{ $product->trending == '1' ? 'Trending':'' }}</a>
+                            @else
+
+                            @endif
+                        </p>
                         <ul>
                             <li><strong>Category</strong>: {{ $categorieproduct->name }}</li>
                             <li><strong>Harga Asli</strong>: <s>Rp.{{ number_format($product->original_price) }}</s></li>
                             <li><strong>Harga Promo</strong>: Rp.{{ number_format($product->selling_price) }}</li>
-                            {{-- <span class="float-start"></span>
-                            <span class="float-end"></span> --}}
                         </ul>
                     </div>
                     <div class="portfolio-description">
-                        <h2>{{ $product->name }}</h2>
+                        <h2>Detail</h2>
                         <p>
-                            {{ $product->description }}.
+                            {{ $product->small_description }}.
                         </p>
 
                         @if ($product->qty > 0)
@@ -95,6 +97,13 @@
                     </div>
                 </div>
 
+            </div>
+            <br>
+
+            <hr>
+            <div class="container">
+                <h2><b>{{ $product->name }}</b></h2>
+                {{ $product->description }}
             </div>
 
         </div>

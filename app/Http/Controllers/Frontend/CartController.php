@@ -29,36 +29,24 @@ class CartController extends Controller
             {
                 if(Cart::where('prod_id', $product_id)->where('user_id', Auth::id())->exists())
                 {
-                    // return response()->json(['status' => $prod_check->name." Already Added to Cart"]);
-                    toast('Data Berhasil Ditambahkan','success');
-
-
-                    return redirect()->route('cart');
-
+                    return response()->json(['status' => $prod_check->name." Already Added to Cart"]);
 
                 } else {
+
                     $cartItem = new Cart();
                     $cartItem->prod_id = $product_id;
                     $cartItem->user_id = Auth::id();
                     $cartItem->prod_qty = $product_qty;
                     $cartItem->save();
-<<<<<<< HEAD
-                    return response()->json(['status' => $prod_check->name." Added to Cart"]);
-=======
-                    // return response()->json(['status' => $prod_check->name." Added to Cart"]);
-                    toast('Data Berhasil Ditambahkan','success');
 
-                    return redirect()->route('cart');
->>>>>>> b6a85d9cf5db9a5854b13ae3f3e6805a5bb38b3e
+                    return response()->json(['status' => $prod_check->name." Added to Cart"]);
+
                 }
             }
 
         } else {
-            // return response()->json(['status' => "Login to Continue"]);
+            return response()->json(['status' => "Login to Continue"]);
 
-            toast('Data Berhasil Ditambahkan','success');
-
-            return redirect()->route('login');
         }
     }
 
