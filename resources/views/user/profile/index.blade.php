@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'setting-profile', 'submenu' => ''])
 
-@section('title' , "Checkout" )
+@section('title' , "Update Profile" )
 
 @section('content')
 

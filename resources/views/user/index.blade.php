@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'home', 'submenu' => ''])
 
-@section('title' , 'Home')
+@section('title' , 'Raden Febri')
 
 @section('content')
 
