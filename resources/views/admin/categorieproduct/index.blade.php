@@ -10,7 +10,7 @@
             Table Categorie Product
                 <a href="" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
 
-                <a href="{{ route('categorie-product.create') }}" class="btn btn-sm text-success" style="float: right"><i class="fas fa-plus"></i><a>
+                <a href="{{ route('categorieproduct.create') }}" class="btn btn-sm text-success" style="float: right"><i class="fas fa-plus"></i><a>
             </div>
             <div class="card-body">
 
@@ -42,9 +42,9 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('categorie-product.edit', $item->id ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('categorieproduct.edit', $item->id ) }}" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a>
 
-                                <form action="{{ route('categorie-product.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus categorie {{ $item->name }}?')" method="POST" class="d-inline">
+                                <form action="{{ route('categorieproduct.destroy', $item->id ) }}" onsubmit="return confirm('Yakin anda akan menghapus categorie {{ $item->name }}?')" method="POST" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>

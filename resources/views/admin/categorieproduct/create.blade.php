@@ -12,12 +12,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Create Categorie Product</h4>
-                        <a href="{{ route('categorie-product.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
+                        <a href="{{ route('categorieproduct.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
                         </div>
                         <div class="card-content">
                             <div class="card-body">
 
-                                <form action="{{ route('categorie-product.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('categorieproduct.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="">

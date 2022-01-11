@@ -33,7 +33,7 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item {{ $submenu == 'categorie-product' ? 'active' : '' }}">
-                    <a href="{{ route('categorie-product.index') }}">Categorie</a>
+                    <a href="{{ route('categorieproduct.index') }}">Categorie</a>
                 </li>
 
                 <li class="submenu-item {{ $submenu == 'product' ? 'active' : '' }}">

@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'store', 'submenu' => ''])
 
-@section('title' , 'View Categorie')
+@section('title' , "Categorie $categorieproduct->name" )
 
 @section('content')
 
@@ -11,8 +11,8 @@
         <div class="container">
 
             <ol>
-                <li><a href="/">Home</a></li>
-                <li>@yield('title')</li>
+                <li><a href="{{ route('store.index') }}">Store</a></li>
+                <li><a href="{{ route('viewcategorie.index', $categorieproduct->slug ) }}">{{ $categorieproduct->name }}</a></li>
             </ol>
             <h2>@yield('title') Page</h2>
 

@@ -52,7 +52,7 @@ class CategorieProductController extends Controller
 
             toast('Data Berhasil Ditambahkan','success');
 
-            return redirect()->route('categorie-product.index');
+            return redirect()->route('categorieproduct.index');
 
         } else {
 
@@ -70,7 +70,7 @@ class CategorieProductController extends Controller
 
             toast('Data Berhasil Ditambahkan','success');
 
-            return redirect()->route('categorie-product.index');
+            return redirect()->route('categorieproduct.index');
         }
     }
 
@@ -105,7 +105,7 @@ class CategorieProductController extends Controller
 
             toast('Data Berhasil Diupdate','success');
 
-            return redirect()->route('categorie-product.index');
+            return redirect()->route('categorieproduct.index');
 
         } else {
 
@@ -125,7 +125,7 @@ class CategorieProductController extends Controller
 
             toast('Data Berhasil Diupdate','success');
 
-            return redirect()->route('categorie-product.index');
+            return redirect()->route('categorieproduct.index');
         }
     }
 
@@ -141,6 +141,6 @@ class CategorieProductController extends Controller
 
         toast('Data Berhasil Dihapus','success');
 
-        return redirect()->route('categorie-product.index');
+        return redirect()->route('categorieproduct.index');
     }
 }

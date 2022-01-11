@@ -20,7 +20,7 @@
     </section>
     <!-- End Breadcrumbs -->
 
-    <!-- ======= Product Section ======= -->
+    <!-- ======= Featured Product Section ======= -->
     <section id="testimonials" class="testimonials">
         <div class="container" data-aos="fade-up">
             <header class="section-header">
@@ -28,7 +28,7 @@
             </header>
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper">
-                    @foreach ($product as $item)
+                    @foreach ($featured_product as $item)
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <div class="stars">
@@ -50,35 +50,65 @@
             </div>
         </div>
     </section>
-    <!-- End Product Section -->
+    <!-- End Featured Product Section -->
 
-    <!-- ======= Recent Blog Posts Section ======= -->
+    <!-- ======= Categorie Trending Section ======= -->
+    <section id="testimonials" class="testimonials">
+        <div class="container" data-aos="fade-up">
+            <header class="section-header">
+                <p>Categorie Trending</p>
+            </header>
+            <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper">
+                    @foreach ($trending_categorie as $item)
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <a href="{{ route('viewcategorie.index', $item->slug ) }}">
+                                <div class="stars">
+                                    <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                                </div>
+                                <p>{{ $item->description }}</p>
+                                <div class="profile mt-auto">
+                                    <h3>{{ $item->name }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+    <!-- End Categorie Trending Section -->
+
+    <!-- ======= All Categorie Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
 
         <div class="container" data-aos="fade-up">
 
-          <header class="section-header">
-            <p>All Categorie Product</p>
-          </header>
+            <header class="section-header">
+                <p>All Categorie Product</p>
+            </header>
 
-          <div class="row">
-            @foreach ($categorieproduct as $item)
-            <div class="col-lg-4">
-              <div class="post-box">
-                <div class="post-img"><img src="{{ asset('storage/'. $item->image ) }}" class="img-fluid" alt=""></div>
-                <h3 class="post-title">{{ $item->name }}</h3>
-                <p>{{ $item->description }}</p>
-                <a href="{{ route('viewcategorie.index', $item->slug ) }}" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              </div>
+            <div class="row">
+                @foreach ($categorieproduct as $item)
+                <div class="col-lg-4 mb-4">
+                    <div class="post-box">
+                        <div class="post-img"><img src="{{ asset('storage/'. $item->image ) }}" class="img-fluid" alt=""></div>
+                        <h3 class="post-title">{{ $item->name }}</h3>
+                        <p>{{ $item->description }}</p>
+                        <a href="{{ route('viewcategorie.index', $item->slug ) }}" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                @endforeach
+
             </div>
-            @endforeach
-
-          </div>
 
         </div>
 
-      </section>
-      <!-- End Recent Blog Posts Section -->
+    </section>
+    <!-- End All Categorie Section -->
 
 
 </main>

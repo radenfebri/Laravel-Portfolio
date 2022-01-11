@@ -20,8 +20,7 @@ $(document).ready(function(){
                 'product_qty' : product_qty,
             },
             success: function(response) {
-                toast(response.status);
-                toast('Data Berhasil Ditambahkan','success');
+                swal("", response.status, "success");
             }
         });
     });
@@ -77,8 +76,8 @@ $(document).ready(function(){
                 'prod_id': prod_id,
             },
             success: function (response) {
+                window.location.reload();
                 swal("", response.status, "success");
-                // toast('Data Berhasil Dihapus','success')
             }
         });
     });

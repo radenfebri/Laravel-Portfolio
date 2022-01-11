@@ -17,10 +17,11 @@ class FrontendController extends Controller
 
     public function store()
     {
-        $product = Product::where('trending', '1')->take(15)->get();
-        $categorieproduct = CategorieProduct::where('status', '0')->get();
+        $featured_product = Product::where('trending', '1')->take(15)->get();
+        $trending_categorie = CategorieProduct::where('popular', '1')->take(15)->get();
+        $categorieproduct = CategorieProduct::all();
 
-        return view('user.store', compact('product', 'categorieproduct'));
+        return view('user.store', compact('featured_product', 'trending_categorie','categorieproduct'));
     }
 
 

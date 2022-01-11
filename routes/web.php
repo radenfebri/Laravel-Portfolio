@@ -35,7 +35,7 @@ Route::post('update-cart', [CartController::class, 'updatecart']);
 
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE CATEGORIE PRODUCT
-    Route::resource('categorie-product', CategorieProductController::class);
+    Route::resource('categorieproduct', CategorieProductController::class);
 
     // ROUTE PRODUCT
     Route::resource('product', ProductController::class);

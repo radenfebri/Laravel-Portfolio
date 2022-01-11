@@ -18,11 +18,12 @@
 
   @include('layouts-user.js')
 
-  {{-- @if (session('status'))
+  @if (session('status'))
     <script>
         swal("{{ session('status') }}");
     </script>
-  @endif --}}
+  @endif
+
   @include('sweetalert::alert')
 
 </body>

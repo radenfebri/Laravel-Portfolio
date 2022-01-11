@@ -11,9 +11,9 @@
         <div class="container">
 
             <ol>
-                <li><a href="/">Home</a></li>
-                <li>{{ $categorieproduct->name }}</li>
-                <li>@yield('title')</li>
+                <li><a href="{{ route('store.index') }}">Store</a></li>
+                <li><a href="{{ route('viewcategorie.index', $categorieproduct->slug ) }}">{{ $categorieproduct->name }}</a></li>
+                <li><a href="{{ url('categorie-product/'.$categorieproduct->slug.'/'.$product->slug) }}">{{ $product->name }}</a></li>
             </ol>
             <h2>@yield('title') Page</h2>
 
