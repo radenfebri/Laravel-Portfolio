@@ -36,17 +36,50 @@
                 </li> --}}
                 {{-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> --}}
                 <li>
-                    @auth
-                    <a class="getstarted scrollto" href="{{ route('dashboard') }}">Dashboard</a>
-                    @else
-                    <a class="getstarted scrollto" href="{{ route('login') }}">Login</a>
-                    @endauth
-                </li>
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-        <!-- .navbar -->
+                    @guest
+                    @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @endif
 
-    </div>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif
+                    @else
+                    <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            @if (Auth::user()->hasRole('Super Admin'))
+                                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            @elseif (Auth::user()->hasRole('Admin'))
+                                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            @elseif (Auth::user()->hasRole('User'))
+                                <li><a href="#">My Profile</a></li>
+                                <li><a class="{{ $menu == 'setting-profile' ? 'active' : '' }}" href="{{ route('userprofile.index') }}">Setting Profile</a></li>
+                            @endif
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </li>
+            @endguest
+
+        </li>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+</nav>
+<!-- .navbar -->
+
+</div>
 </header>
 <!-- End Header -->

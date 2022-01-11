@@ -1,4 +1,4 @@
-@extends('layouts-user.layouts', ['menu' => 'store', 'submenu' => ''])
+@extends('layouts-user.layouts', ['menu' => 'cart', 'submenu' => ''])
 
 @section('title' , "Checkout" )
 

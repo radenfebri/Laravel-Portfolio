@@ -15,7 +15,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ProfileController;
-
+use App\Http\Controllers\Frontend\ProfileUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +92,8 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // SETTING PROFILE
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('setting-profile', [ProfileUserController::class, 'index'])->name('userprofile.index');
+    Route::put('setting-profile', [ProfileUserController::class, 'update'])->name('userprofile.update');
 
     // LOG USER
     Route::resource('log', LogController::class);
