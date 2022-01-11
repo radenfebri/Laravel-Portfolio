@@ -12,12 +12,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Update Categorie Product <strong>{{ $categorieproduct->name }}</strong></h4>
-                        <a href="{{ route('categorie-product.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
+                        <a href="{{ route('categorieproduct.index') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-backward"></i><a>
                         </div>
                         <div class="card-content">
                             <div class="card-body">
 
-                                <form action="{{ route('categorie-product.update', $categorieproduct->id ) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('categorieproduct.update', $categorieproduct->id ) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
