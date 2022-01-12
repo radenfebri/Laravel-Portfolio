@@ -38,7 +38,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:products,name',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'categorie_id' => 'required',
         ]);
 
 
