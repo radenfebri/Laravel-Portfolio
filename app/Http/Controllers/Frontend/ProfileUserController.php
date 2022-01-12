@@ -41,9 +41,9 @@ class ProfileUserController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => ['required','string','min:3','max:191'],
-            'email' => ['email','string','max:191','min:3','required'],
-            'username' => ['required','alpha_num','unique:users,username,' . auth()->id()],
+            'name' => 'required|string',
+            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|alpha_num|unique:users,username,'. auth()->id(),
         ]);
 
 

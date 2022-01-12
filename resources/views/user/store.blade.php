@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'store', 'submenu' => ''])
 
-@section('title' , 'Raden Febri Store')
+@section('title' , 'Raden Febri - Store')
 
 @section('content')
 
