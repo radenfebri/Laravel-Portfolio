@@ -65,6 +65,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|min:3|max:191',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if (empty($request->file('foto'))) {

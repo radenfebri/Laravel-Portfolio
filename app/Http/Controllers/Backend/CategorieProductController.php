@@ -33,7 +33,8 @@ class CategorieProductController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:categorie_products,name',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 
@@ -86,7 +87,8 @@ class CategorieProductController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:categorie_products,name',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
 

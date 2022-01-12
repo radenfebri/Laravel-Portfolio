@@ -38,14 +38,14 @@
                                         <div class="mt-4">
                                             <div class="form-group">
                                                 <label for="email-id-column">Deskripsi</label>
-                                                <textarea class="form-control" name="description" required autocomplete="description"></textarea>
+                                                <textarea class="form-control" name="description" required autocomplete="description">{{ old('description' ) }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mt-4 col-12">
                                             <div class="form-group">
                                                 <h6>Status</h6>
                                                 <div class="checkbox">
-                                                    <input type="checkbox" name="status" id="status" class="form-check-input" >
+                                                    <input type="checkbox"  name="status" id="status" class="form-check-input" >
                                                     <label for="checkbox1">Status</label>
                                                 </div>
                                                 @error('status')

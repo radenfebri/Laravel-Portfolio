@@ -40,7 +40,7 @@ class ArticleController extends Controller
     {
         request()->validate([
             'judul' => 'required|string|unique:articles,judul',
-            'gambar_artikel' => 'file|image|mimes:png,jpg,jpeg',
+            'gambar_artikel' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'deskripsi' => 'required',
             'kategori_id' => 'required',
         ]);
@@ -103,7 +103,10 @@ class ArticleController extends Controller
         public function update(Request $request, $id)
         {
             request()->validate([
-                'judul' => 'required|string',
+                'judul' => 'required|string|unique:articles,judul',
+                'gambar_artikel' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'deskripsi' => 'required',
+                'kategori_id' => 'required',
             ]);
 
 
