@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'store', 'submenu' => ''])
 
-@section('title' , 'Store')
+@section('title' , 'Raden Febri Store')
 
 @section('content')
 
@@ -32,7 +32,11 @@
                     <div class="swiper-slide">
                         <div class="testimonial-item">
                             <div class="stars">
-                                <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                                @if ($item->image)
+                                    <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                                @else
+                                    <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
+                                @endif
                             </div>
                             {{-- <p>
                                 Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
@@ -65,7 +69,15 @@
                         <div class="testimonial-item">
                             <a href="{{ route('viewcategorie.index', $item->slug ) }}">
                                 <div class="stars">
-                                    <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                                    @if ($item->image)
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                                    </div>
+                                    @else
+                                    <div class="avatar avatar-lg">
+                                        <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
+                                    </div>
+                                    @endif
                                 </div>
                                 <p>{{ $item->description }}</p>
                                 <div class="profile mt-auto">
@@ -95,7 +107,17 @@
                 @foreach ($categorieproduct as $item)
                 <div class="col-lg-4 mb-4">
                     <div class="post-box">
-                        <div class="post-img"><img src="{{ asset('storage/'. $item->image ) }}" class="img-fluid" alt=""></div>
+                        <div class="post-img">
+                            @if ($item->image)
+                            <div class="avatar avatar-lg">
+                                <img src="{{ asset('storage/'. $item->image ) }}" class="img-fluid" alt="">
+                            </div>
+                            @else
+                            <div class="avatar avatar-lg">
+                                <img src="{{ asset('template') }}/images/faces/profile.jpg" class="img-fluid" alt="{{ $item->name }}">
+                            </div>
+                            @endif
+                        </div>
                         <h3 class="post-title">{{ $item->name }}</h3>
                         <p>{{ $item->description }}</p>
                         <a href="{{ route('viewcategorie.index', $item->slug ) }}" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>

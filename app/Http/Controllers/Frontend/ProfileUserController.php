@@ -64,7 +64,7 @@ class ProfileUserController extends Controller
             ]);
 
             // toast('Data Berhasil Diupdate','success');
-            alert('success', 'Data Berhasil Diupdate');
+            toast('Data Berhasil Diupdate', 'success');
 
             return redirect()->route('userprofile.index');
 
@@ -86,7 +86,7 @@ class ProfileUserController extends Controller
                 'foto' => $request->file('foto')->store('foto-profile'),
             ]);
 
-            alert('success', 'Data Berhasil Diupdate');
+            toast('Data Berhasil Diupdate', 'success');
             // toast('Data Berhasil Diupdate','success');
 
             return redirect()->route('userprofile.index');

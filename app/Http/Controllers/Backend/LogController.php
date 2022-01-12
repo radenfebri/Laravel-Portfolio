@@ -20,22 +20,16 @@ class LogController extends Controller
         $user=Session::get('user');
         $log = Log::all();
 
-        $user = Auth::user()->name;
-        // $email = $user->email;
+        if (Auth::check()) {
+            $user = User::where('name', Auth::id())->get();
 
-        // $dt = Carbon::now();
-        // $todayDate = $dt->toDayDateTimeString();
+            // $user = Auth::user()->name;
+        } else {
+            $user = Auth::user()->name;
 
-        // $log = [
-        //     'ip_address' => $name,
-        //     'email' => $email,
-        //     'description' => 'LOgout',
-        //     'date_time' => $todayDate
-        // ];
+        }
 
-        // dd($user);
-        // DB::table('logs')->insert($log);
-        // Auth::logout();
+
         return view('admin.log.log', compact('log', 'user'));
     }
 }

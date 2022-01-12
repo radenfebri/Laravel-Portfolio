@@ -103,7 +103,7 @@ class ArticleController extends Controller
         public function update(Request $request, $id)
         {
             request()->validate([
-                'judul' => 'required|string|unique:articles,judul',
+                'judul' => 'required|string|unique:articles,judul,'.$id,
                 'gambar_artikel' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'deskripsi' => 'required',
                 'kategori_id' => 'required',

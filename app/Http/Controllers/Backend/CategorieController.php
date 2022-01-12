@@ -69,7 +69,7 @@ class CategorieController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'nama_kategori' => 'required|string|min:4|unique:categories,nama_kategori',
+            'nama_kategori' => 'required|string|min:4|unique:categories,nama_kategori,'.$id,
         ]);
 
 

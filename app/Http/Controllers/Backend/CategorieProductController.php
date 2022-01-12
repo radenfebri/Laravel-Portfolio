@@ -87,7 +87,7 @@ class CategorieProductController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'name' => 'required|string|unique:categorie_products,name',
+            'name' => 'required|string|unique:categorie_products,name,'.$id,
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

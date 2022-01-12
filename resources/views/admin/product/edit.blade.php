@@ -24,11 +24,11 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">Name</label>
+                                            <label for="first-name-column">Product Name</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-bag"></i></span>
                                                 <input type="text" id="alamat" name="name" class="form-control  @error('name') is-invalid @enderror"
-                                                placeholder="name" value="{{ old('name', $product->name ) }}" autocomplete="name">
+                                                placeholder="Product Name" value="{{ old('name', $product->name ) }}" autocomplete="name">
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Categorie Product</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-basket"></i></span>
                                                 <select class="form-select" name="categorie_id" id="categorie_id" required>
                                                     <option disabled selected>--pilih kategori--</option>
                                                     @foreach ($categorieproduct as $item)
@@ -62,9 +62,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Small Description</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="small_description" name="small_description" class="form-control  @error('small_description') is-invalid @enderror"
-                                                placeholder="radenfebri" value="{{ old('small_description') }}" autocomplete="small_description">{{ $product->small_description }}</textarea>
+                                                placeholder="Small Description" value="{{ old('small_description') }}" autocomplete="small_description">{{ $product->small_description }}</textarea>
                                                 @error('small_description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -77,9 +77,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Description</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="description" name="description" class="form-control  @error('description') is-invalid @enderror"
-                                                placeholder="radenfebri" value="{{ old('description' ) }}" autocomplete="description">{{  $product->description }}</textarea>
+                                                placeholder="Description" value="{{ old('description' ) }}" autocomplete="description">{{  $product->description }}</textarea>
                                                 @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -92,9 +92,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Original Price</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                                                <span class="input-group-text">Rp.</span>
                                                 <input type="number" id="original_price" name="original_price" class="form-control  @error('original_price') is-invalid @enderror"
-                                                placeholder="original_price" value="{{ old('original_price', $product->original_price ) }}" aria-label="original_price" aria-describedby="basic-addon1">
+                                                placeholder="20.000" value="{{ old('original_price', $product->original_price ) }}" aria-label="original_price" aria-describedby="basic-addon1">
                                                 @error('original_price')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -107,9 +107,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Selling Price</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-briefcase-fill"></i></span>
+                                                <span class="input-group-text">Rp.</span>
                                                 <input type="number" id="selling_price" name="selling_price" class="form-control  @error('selling_price') is-invalid @enderror"
-                                                placeholder="Job Title" value="{{ old('selling_price', $product->selling_price ) }}" aria-label="selling_price" aria-describedby="basic-addon1">
+                                                placeholder="10.000" value="{{ old('selling_price', $product->selling_price ) }}" aria-label="selling_price" aria-describedby="basic-addon1">
                                                 @error('selling_price')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -122,9 +122,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Tax</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-tags"></i></span>
                                                 <input type="number" id="tax" name="tax" class="form-control  @error('tax') is-invalid @enderror"
-                                                placeholder="tax Job Title" value="{{ old('tax',$product->tax ) }}" aria-label="tax" aria-describedby="basic-addon1">
+                                                placeholder="Tax Job Title" value="{{ old('tax',$product->tax ) }}" aria-label="tax" aria-describedby="basic-addon1">
                                                 @error('tax')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -137,9 +137,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Quantity</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text">http://</i></span>
+                                                <span class="input-group-text"><i class="bi bi-tag"></i></span>
                                                 <input type="number" id="qty" name="qty" class="form-control  @error('qty') is-invalid @enderror"
-                                                placeholder="radenfebri.com" value="{{ old('qty', $product->qty ) }}" aria-label="qty" aria-describedby="basic-addon1">
+                                                placeholder="Quantity" value="{{ old('qty', $product->qty ) }}" aria-label="qty" aria-describedby="basic-addon1">
                                                 @error('qty')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -184,9 +184,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Meta Title</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-facebook"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="meta_title" name="meta_title" class="form-control  @error('meta_title') is-invalid @enderror"
-                                                placeholder="radenfebri" value="{{ old('meta_title' ) }}" aria-label="meta_title" aria-describedby="basic-addon1">{{  $product->meta_title }}</textarea>
+                                                placeholder="Meta Title" value="{{ old('meta_title' ) }}" aria-label="meta_title" aria-describedby="basic-addon1">{{  $product->meta_title }}</textarea>
                                                 @error('meta_title')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -199,9 +199,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Meta Keywords</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-facebook"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="meta_keywords" name="meta_keywords" class="form-control  @error('meta_keywords') is-invalid @enderror"
-                                                placeholder="radenfebri" value="{{ old('meta_keywords' ) }}" aria-label="meta_keywords" aria-describedby="basic-addon1">{{ $product->meta_keywords }}</textarea>
+                                                placeholder="Meta Keywords" value="{{ old('meta_keywords' ) }}" aria-label="meta_keywords" aria-describedby="basic-addon1">{{ $product->meta_keywords }}</textarea>
                                                 @error('meta_keywords')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -214,9 +214,9 @@
                                         <div class="form-group">
                                             <label for="first-name-column">Meta Description</label>
                                             <div class="input-group mb-3">
-                                                <span class="input-group-text"><i class="bi bi-facebook"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="meta_description" name="meta_description" class="form-control  @error('meta_description') is-invalid @enderror"
-                                                placeholder="radenfebri" value="{{ old('meta_description') }}" aria-label="meta_description" aria-describedby="basic-addon1">{{ $product->meta_description }}</textarea>
+                                                placeholder="Meta Description" value="{{ old('meta_description') }}" aria-label="meta_description" aria-describedby="basic-addon1">{{ $product->meta_description }}</textarea>
                                                 @error('meta_description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
