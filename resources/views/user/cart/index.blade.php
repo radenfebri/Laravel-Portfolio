@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-3 my-auto">
                             <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
-                            @if ($item->product->qty > $item->prod_qty)
+                            @if ($item->product->qty >= $item->prod_qty)
                                 <label for="Quantity">Quantity</label>
                                 <div class="input-group text-center mb-3" style="width: 130px">
                                     <button type="button" class="input-group-text changeQuantity btn btn-danger decrement-btn">-</button>
@@ -48,7 +48,7 @@
                                 </div>
                                 @php $total += $item->product->selling_price * $item->prod_qty; @endphp
                             @else
-                                <h6>Out of Stoct</h6>
+                                <h6>Out of Stock</h6>
                             @endif
 
                         </div>
