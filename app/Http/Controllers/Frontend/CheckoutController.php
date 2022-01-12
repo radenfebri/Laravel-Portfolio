@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,5 +33,54 @@ class CheckoutController extends Controller
         $cartitem = Cart::where('user_id', Auth::id())->get();
 
         return view('user.checkout.index', compact('cartitem'));
+    }
+
+
+    public function placeorder(Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required|string|max:191',
+        //     'email' => 'required|string,' . auth()->id(),
+        // ]);
+
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->name = $request->input('name');
+        $order->email = $request->input('email');
+        $order->alamat = $request->input('alamat');
+        $order->tracking_no = 'radenfebri'.rand(1111,9999);
+        $order->save();
+
+        $cartitem = Cart::where('user_id', Auth::id())->get();
+        foreach ($cartitem as $item)
+        {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'prod_id' => $item->prod_id,
+                'qty' => $item->prod_id,
+                'price' => $item->product->selling_price,
+            ]);
+
+            $prod = Product::where('id', $item->prod_id)->first();
+            $prod->qty = $prod->qty - $item->prod_qty;
+            $prod->update();
+        }
+
+
+        if(Auth::user()->alamat == null)
+        {
+            $user = User::where('id', Auth::id())->first();
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->alamat = $request->input('alamat');
+            $user->update();
+        }
+
+        $cartitem = Cart::where('user_id', Auth::id())->get();
+        Cart::destroy($cartitem);
+
+        toast('Checkout Berhasil', 'success');
+
+        return redirect()->route('store.index');
     }
 }

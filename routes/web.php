@@ -43,6 +43,8 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::get('cart', [CartController::class, 'cartview'])->name('cartview.index');
     // ROUTE CHECKOUT
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    // ROUTE PLACE ORDER
+    Route::post('place-order', [CheckoutController::class, 'placeorder']);
 });
 
 
