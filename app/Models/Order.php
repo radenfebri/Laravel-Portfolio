@@ -11,7 +11,12 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    protected $fillable = ['order_id','name', 'email', 'alamat', 'status', 'message', 'tracking_no'];
+    protected $fillable = ['order_id','name', 'email', 'alamat', 'status', 'message', 'tracking_no', 'total_price'];
 
     protected $hidden = [];
+
+    public function orderitem()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

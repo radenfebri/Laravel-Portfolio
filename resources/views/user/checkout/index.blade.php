@@ -11,7 +11,8 @@
         <div class="container">
 
             <ol>
-                <li><a href="">Store</a></li>
+                <li><a href="{{ route('store.index') }}">Store</a></li>
+                <li><a href="{{ route('cartview.index') }}">Cart</a></li>
                 <li><a href=""></a>Cehckout</li>
             </ol>
             <h2>@yield('title') Page</h2>
@@ -69,6 +70,8 @@
                             <div class="card-body">
                                 <h6><b>Order Detail</b></h6>
                                 <hr>
+                                @if ($cartitem->count() > 0)
+
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -88,6 +91,12 @@
                                     </tbody>
                                 </table>
                                 <button type="submit" class="btn btn-primary w-100">Place Order</button>
+
+                                @else
+
+                                <h2 class="text-center"><strong>No Product in Cart</strong></h2>
+
+                                @endif
                             </div>
                         </div>
                     </div>

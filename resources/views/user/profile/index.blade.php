@@ -1,4 +1,4 @@
-@extends('layouts-user.layouts', ['menu' => 'setting-profile', 'submenu' => ''])
+@extends('layouts-user.layouts', ['menu' => 'akun', 'submenu' => 'setting-profile'])
 
 @section('title' , "Update Profile" )
 

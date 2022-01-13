@@ -49,15 +49,39 @@
                     </li>
                     @endif
                     @else
-                    <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a class="{{ $menu == 'akun' ? 'active' : '' }}" href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
+                            <li><a class="{{ $submenu == 'myorder' ? 'active' : '' }}" href="{{ route('myorder.index') }}">My Orders</a></li>
                             @if (Auth::user()->hasRole('Super Admin'))
+
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+
+                                @if (Auth::user()->username)
+                                    <li><a class="{{ $submenu == 'myprofile' ? 'active' : '' }}" href="/{{ Auth::user()->username }}">My Profile</a></li>
+                                @else
+
+                                @endif
+
                             @elseif (Auth::user()->hasRole('Admin'))
+
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+
+                                @if (Auth::user()->username)
+                                    <li><a class="{{ $submenu == 'myprofile' ? 'active' : '' }}" href="/{{ Auth::user()->username }}">My Profile</a></li>
+                                @else
+
+                                @endif
+
                             @elseif (Auth::user()->hasRole('User'))
-                                <li><a href="#">My Profile</a></li>
-                                <li><a class="{{ $menu == 'setting-profile' ? 'active' : '' }}" href="{{ route('userprofile.index') }}">Setting Profile</a></li>
+
+                                @if (AUth::user()->username)
+                                    <li><a class="{{ $submenu == 'myprofile' ? 'active' : '' }}" href="/{{ Auth::user()->username }}">My Profile</a></li>
+                                @else
+
+                                @endif
+
+                                <li><a class="{{ $submenu == 'setting-profile' ? 'active' : '' }}" href="{{ route('userprofile.index') }}">Setting Profile</a></li>
+
                             @endif
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();

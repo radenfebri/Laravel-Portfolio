@@ -31,7 +31,11 @@
                         <div class="swiper-wrapper align-items-center">
 
                             <div class="swiper-slide">
-                                <img src="{{ asset('storage/'. $product->image) }}"  style="width: 80%; height: 80%;" alt="">
+                                @if ($product->image)
+                                <img src="{{ asset('storage/'. $product->image) }}"  style="width: 80%; height: 80%;" alt="{{ $product->name }}">
+                                @else
+                                <img src="{{ asset('template') }}/images/faces/profile.jpg"  style="width: 80%; height: 80%;" alt="{{ $product->name }}">
+                                @endif
                             </div>
 
                         </div>

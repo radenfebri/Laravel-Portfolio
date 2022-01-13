@@ -15,4 +15,9 @@ class OrderItem extends Model
 
     protected $hidden = [];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'prod_id', 'id');
+    }
+
 }

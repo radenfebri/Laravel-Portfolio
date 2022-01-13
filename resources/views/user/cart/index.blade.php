@@ -24,12 +24,18 @@
     <section>
         <div class="container">
             <div class="card shadow">
+                @if ($cartItem->count() > 0)
+
                 <div class="card-body">
                     @php $total = 0; @endphp
                     @foreach ($cartItem as $item)
                     <div class="row product_data">
                         <div class="col-md-2">
+                            @if ($item->product->image)
                             <img src="{{ asset('storage/'. $item->product->image ) }}" height="70px" width="70px" alt="{{ $item->product->name }}">
+                            @else
+                            <img src="{{ asset('template') }}/images/faces/profile.jpg" height="70px" width="70px" alt="{{ $item->product->name }}">
+                            @endif
                         </div>
                         <div class="col-md-3 my-auto">
                             <h6>{{ $item->product->name }}</h6>
@@ -58,13 +64,22 @@
                     </div>
                     @endforeach
                 </div>
+
                 <div class="card-footer">
                     <h6>
                         Total Price : Rp.<b>{{ number_format($total) }}</b>
-
                         <a href="{{ route('checkout.index') }}" class="btn btn-outline-success float-end">Checkout</a>
                     </h6>
                 </div>
+
+                @else
+
+                <div class="card-body text-center">
+                    <h2>Your <i class="bi bi-cart-check-fill"></i> Cart is Empty</h2>
+                    <a href="{{ route('store.index') }}" class="btn btn-outline-primary float-end">Continue Shopping</a>
+                </div>
+
+                @endif
             </div>
         </div>
     </section>

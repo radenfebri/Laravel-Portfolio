@@ -14,8 +14,10 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ProfileUserController;
+use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +48,10 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     // ROUTE PLACE ORDER
     Route::post('place-order', [CheckoutController::class, 'placeorder']);
+    // ROUTE CEK ORDER
+    Route::get('my-orders', [OrderController::class, 'index'])->name('myorder.index');
+    // ROUTE VIEW ORDER
+    Route::get('view-orders/{id}', [OrderController::class, 'view'])->name('vieworders');
 });
 
 

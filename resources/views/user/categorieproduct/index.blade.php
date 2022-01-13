@@ -44,8 +44,14 @@
 
                         <div class="price"><sup>Rp</sup><s>{{ number_format($item->original_price) }}</s></div>
                         <div class="price"><sup>Rp</sup>{{ number_format($item->selling_price) }}</div>
-                        <div><img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}"></div>
-                        <img src="assets/img/pricing-starter.png" class="img-fluid" alt="">
+                        <div>
+                            @if ($item->image)
+                            <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                            @else
+                            <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
+                            @endif
+                        </div>
+                        {{-- <img src="assets/img/pricing-starter.png" class="img-fluid" alt=""> --}}
                         <ul>
                             <li>{{ \Illuminate\Support\Str::words($item->description, 10,'....') }}</li>
 

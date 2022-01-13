@@ -38,12 +38,29 @@ class CheckoutController extends Controller
 
     public function placeorder(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|max:255',
+            'alamat' => 'required|string',
+
+        ]);
+
         $order = new Order();
         $order->user_id = Auth::id();
         $order->name = $request->input('name');
         $order->email = $request->input('email');
         $order->alamat = $request->input('alamat');
         $order->tracking_no = 'RFS'.rand(1111,9999);
+
+        // Total Price
+        $total = 0;
+        $cartitem_total = Cart::where('user_id', Auth::id())->get();
+        foreach ($cartitem_total as $prod)
+        {
+            $total += $prod->product->selling_price;
+        }
+        $order->total_price = $total;
+
         $order->save();
 
         $cartitem = Cart::where('user_id', Auth::id())->get();

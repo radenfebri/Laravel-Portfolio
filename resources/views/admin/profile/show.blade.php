@@ -1,4 +1,4 @@
-@extends('layouts-user.layouts', ['menu' => '', 'submenu' => ''])
+@extends('layouts-user.layouts', ['menu' => 'akun', 'submenu' => 'myprofile'])
 
 @section('title' , "$username->name - Raden Febri")
 
@@ -24,7 +24,7 @@
                     <div class="row align-self-center gy-4">
                         <h1>{{ $username->name }}</h1>
                         <br>
-                        <strong>Jointed {{ date('d M Y',strtotime($username->created_at)) }}</strong>
+                        <strong>Joined {{ date('d M Y',strtotime($username->created_at)) }}</strong>
 
                         @if ($username->jobtitle)
                         <strong>{{ $username->jobtitle }} at {{ $username->at }}</strong>
