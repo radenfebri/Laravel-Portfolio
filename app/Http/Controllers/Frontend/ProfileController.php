@@ -13,10 +13,10 @@ use Psy\Command\WhereamiCommand;
 
 class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
 
     public function index()
@@ -27,14 +27,11 @@ class ProfileController extends Controller
 
 
 
-    public function show($username)
+    public function show(User $username)
     {
-        User::where('username', $username)->get();
-
-        // dd($username);
+        $user = User::find($username);
 
         return view('admin.profile.show', compact('username'));
-
 
     }
 

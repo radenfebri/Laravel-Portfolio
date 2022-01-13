@@ -7,7 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    {{ $username }}
-    {{ $username->name }}
+    {{-- {{ $username }} --}}
+    <div class="div">
+        {{ $username->name }}
+    </div>
+    <div class="div">
+        {{ $username->email }}
+    </div>
+    <div class="div">
+        {{ $username->at }}
+    </div>
+    <div class="div">
+        {{ $username->website }}
+    </div>
 </body>
 </html>
