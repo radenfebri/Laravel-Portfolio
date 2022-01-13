@@ -40,6 +40,10 @@
                     <a href="{{ route('product.index') }}">Product</a>
                 </li>
 
+                <li class="submenu-item {{ $submenu == 'order' ? 'active' : '' }}">
+                    <a href="{{ route('orders.index') }}">Order</a>
+                </li>
+
             </ul>
         </li>
 

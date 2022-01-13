@@ -7,7 +7,7 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            Table Role
+            Table Article
             @can('roles.trash')
                 <a href="{{ route('role.trash') }}" class="btn btn-sm text-primary" style="float: right"><i class="fas fa-table"></i> Data Terhapus<a>
             @endcan

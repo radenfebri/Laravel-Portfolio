@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
+use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -52,6 +53,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::get('my-orders', [OrderController::class, 'index'])->name('myorder.index');
     // ROUTE VIEW ORDER
     Route::get('view-orders/{id}', [OrderController::class, 'view'])->name('vieworders');
+    // ROUTE ADMIN ORDER
+    Route::resource('orders', BackendOrderController::class);
+    Route::get('orders-completed', [BackendOrderController::class, 'completed'])->name('completed.index');
 });
 
 
