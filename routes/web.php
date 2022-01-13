@@ -26,8 +26,6 @@ Route::get('store', [FrontendController::class, 'store'])->name('store.index');
 Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategorie'])->name('viewcategorie.index');
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
 
-// VIEW PROFILE PUBLIC
-Route::get('{username:username}', [ProfileController::class, 'show'])->name('show');
 
 // ADD TO CART
 Route::post('add-to-cart', [CartController::class, 'addProduct'])->name('addcart');
@@ -103,5 +101,8 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // LOG USER
     Route::resource('log', LogController::class);
 });
+
+// VIEW PROFILE PUBLIC
+Route::get('{username:username}', [ProfileController::class, 'show'])->name('show');
 
 
