@@ -200,7 +200,7 @@
                                     <div class="form-floating mt-4">
                                         <div class="form-group">
                                             <label for="floatingTextarea">About</label>
-                                            <textarea class="form-control" value="{{ old('about', Auth::user()->about ) }}" placeholder="About you..." name="about" id="about">{{ Auth::user()->about }}</textarea>
+                                            <textarea class="form-control" value="{{ old('about', Auth::user()->about ) }}" placeholder="About you..." name="about" id="about">{{ old('about', Auth::user()->about ) }}</textarea>
                                             @error('about')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
