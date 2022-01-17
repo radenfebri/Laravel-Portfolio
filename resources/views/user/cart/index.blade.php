@@ -11,7 +11,7 @@
         <div class="container">
 
             <ol>
-                <li><a href="{{ route('store.index') }}">Store</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="{{ route('cartview.index') }}">My Cart</a></li>
             </ol>
             <h2>@yield('title') Page</h2>
@@ -46,15 +46,15 @@
                         <div class="col-md-3 my-auto">
                             <input type="hidden" class="prod_id" value="{{ $item->prod_id }}">
                             @if ($item->product->qty >= $item->prod_qty)
-                                <label for="Quantity">Quantity</label>
-                                <div class="input-group text-center mb-3" style="width: 130px">
-                                    <button type="button" class="input-group-text changeQuantity btn btn-danger decrement-btn">-</button>
-                                    <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ $item->prod_qty }}">
-                                    <button type="button" class="input-group-text changeQuantity btn btn-success increment-btn" >+</button>
-                                </div>
-                                @php $total += $item->product->selling_price * $item->prod_qty; @endphp
+                            <label for="Quantity">Quantity</label>
+                            <div class="input-group text-center mb-3" style="width: 130px">
+                                <button type="button" class="input-group-text changeQuantity btn btn-danger decrement-btn">-</button>
+                                <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ $item->prod_qty }}">
+                                <button type="button" class="input-group-text changeQuantity btn btn-success increment-btn" >+</button>
+                            </div>
+                            @php $total += $item->product->selling_price * $item->prod_qty; @endphp
                             @else
-                                <h6>Out of Stock</h6>
+                            <h6>Out of Stock</h6>
                             @endif
 
                         </div>

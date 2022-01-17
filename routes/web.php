@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ProfileUserController;
 use App\Http\Controllers\Frontend\UserController as FrontendUserController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,27 +33,51 @@ Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::cla
 
 // ADD TO CART
 Route::post('add-to-cart', [CartController::class, 'addProduct'])->name('addcart');
+
+// ADD TO WISHLITS
+Route::post('add-to-wishlist', [WishlistController::class, 'add'])->name('addwishlist');
+
 // REMOVE CART LIST
 Route::post('delete-cart-item', [CartController::class, 'deleteproduct']);
+
+// REMOVE WISH LIST
+Route::post('delete-wishlist-item', [WishlistController::class, 'deletewishlist']);
+
 // UPDATE CART
 Route::post('update-cart', [CartController::class, 'updatecart']);
+
+// CART COUNT
+Route::get('/load-cart-data',[CartController::class, 'cartcount']);
+
+// WISHLIST COUNT
+Route::get('/load-wishlist-data', [WishlistController::class, 'wishlistcount']);
 
 
 Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE CATEGORIE PRODUCT
     Route::resource('categorieproduct', CategorieProductController::class);
+
     // ROUTE PRODUCT
     Route::resource('product', ProductController::class);
+
     // ROUTE CART LIST
     Route::get('cart', [CartController::class, 'cartview'])->name('cartview.index');
+
+    // ROUTE WISHLIST
+    Route::get('wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+
     // ROUTE CHECKOUT
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
     // ROUTE PLACE ORDER
     Route::post('place-order', [CheckoutController::class, 'placeorder']);
+
     // ROUTE CEK ORDER
     Route::get('my-orders', [OrderController::class, 'index'])->name('myorder.index');
+
     // ROUTE VIEW ORDER
     Route::get('view-orders/{id}', [OrderController::class, 'view'])->name('vieworders');
+
     // ROUTE ADMIN ORDER
     Route::resource('orders', BackendOrderController::class);
     Route::get('orders-completed', [BackendOrderController::class, 'completed'])->name('completed.index');
