@@ -36,6 +36,7 @@
                                     <tr>
                                         <th>Tracking Number</th>
                                         <th>Total Price</th>
+                                        <th>Tanggal Pemesanan</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -45,7 +46,15 @@
                                     <tr>
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>Rp.{{ number_format($item->total_price) }}</td>
-                                        <td>{{ $item->status == '0' ? 'Pending' : 'Completed' }}</td>
+                                        <td>{{ date('d F Y, h:i:s A',strtotime($item->created_at)) }}</td>
+                                        {{-- <td>{{ $item->status == '0' ? 'Unpaid' : 'Paid' }}</td> --}}
+                                        <td>
+                                            @if ($item->status == '0')
+                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-danger btn-sm">Unpaid</a>
+                                            @else
+                                                <span class="btn btn-success btn-sm">Paid</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
                                         </td>

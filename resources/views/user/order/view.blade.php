@@ -74,7 +74,13 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    <b>Information :</b><p>3 Digit angka dibelakang adalah kode unik.</p>
                                     <h4 class="px-2">Grand Total : <span class="float-end">Rp. {{ number_format($order->total_price) }}</span> </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+asdasdasdasd
                                 </div>
                             </div>
                         </div>
@@ -84,6 +90,9 @@
         </div>
     </section>
     <!-- End Portfolio Details Section -->
+
+
+
 
 
 </main>

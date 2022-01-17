@@ -100,7 +100,7 @@
                                         <div class="mt-4">
                                             <div class="form-group">
                                                 <label for="email-id-column">Deskripsi</label>
-                                                <textarea id="summernote" class="form-control" name="deskripsi" required autocomplete="deskripsi"></textarea>
+                                                <textarea id="summernote" class="form-control" name="deskripsi" required autocomplete="deskripsi">{{ old('deskripsi') }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end">

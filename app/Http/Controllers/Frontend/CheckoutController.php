@@ -59,7 +59,7 @@ class CheckoutController extends Controller
         {
             $total += $prod->product->selling_price;
         }
-        $order->total_price = $total;
+        $order->total_price = $total+rand(111,999);
 
         $order->save();
 

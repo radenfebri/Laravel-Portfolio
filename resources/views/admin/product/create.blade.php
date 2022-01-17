@@ -62,7 +62,7 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="small_description" name="small_description" class="form-control  @error('small_description') is-invalid @enderror"
-                                                placeholder="Small Description" value="{{ old('small_description') }}" autocomplete="small_description"></textarea>
+                                                placeholder="Small Description" value="{{ old('small_description') }}" autocomplete="small_description">{{ old('small_description') }}</textarea>
                                                 @error('small_description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -77,7 +77,7 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="description" name="description" class="form-control  @error('description') is-invalid @enderror"
-                                                placeholder="Description" value="{{ old('description') }}" autocomplete="description"></textarea>
+                                                placeholder="Description" value="{{ old('description') }}" autocomplete="description">{{ old('description') }}</textarea>
                                                 @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -184,7 +184,7 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="meta_title" name="meta_title" class="form-control  @error('meta_title') is-invalid @enderror"
-                                                placeholder="Meta Title" value="{{ old('meta_title' ) }}" aria-label="meta_title" aria-describedby="basic-addon1"></textarea>
+                                                placeholder="Meta Title" value="{{ old('meta_title' ) }}" aria-label="meta_title" aria-describedby="basic-addon1">{{ old('meta_title') }}</textarea>
                                                 @error('meta_title')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -199,7 +199,7 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="meta_keywords" name="meta_keywords" class="form-control  @error('meta_keywords') is-invalid @enderror"
-                                                placeholder="Meta Keywords" value="{{ old('meta_keywords' ) }}" aria-label="meta_keywords" aria-describedby="basic-addon1"></textarea>
+                                                placeholder="Meta Keywords" value="{{ old('meta_keywords' ) }}" aria-label="meta_keywords" aria-describedby="basic-addon1">{{ old('meta_keywords') }}</textarea>
                                                 @error('meta_keywords')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -214,7 +214,7 @@
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text"><i class="bi bi-clipboard-data"></i></span>
                                                 <textarea type="text" id="meta_description" name="meta_description" class="form-control  @error('meta_description') is-invalid @enderror"
-                                                placeholder="Meta Description" value="{{ old('meta_description' ) }}" aria-label="meta_description" aria-describedby="basic-addon1"></textarea>
+                                                placeholder="Meta Description" value="{{ old('meta_description' ) }}" aria-label="meta_description" aria-describedby="basic-addon1">{{ old('meta_description') }}</textarea>
                                                 @error('meta_description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
