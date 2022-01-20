@@ -15,7 +15,7 @@ class Cart extends Model
 
     protected $hidden = [];
 
-    public function product()
+    public function products()
     {
         return $this->belongsTo(Product::class, 'prod_id','id');
     }

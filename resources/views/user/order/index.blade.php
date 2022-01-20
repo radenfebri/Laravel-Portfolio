@@ -42,12 +42,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($order as $item)
+                                    {{-- @php $total = 0; @endphp --}}
+                                    @foreach ($orders as $item)
                                     <tr>
                                         <td>{{ $item->tracking_no }}</td>
                                         <td>Rp.{{ number_format($item->total_price) }}</td>
-                                        <td>{{ date('d F Y, h:i:s A',strtotime($item->created_at)) }}</td>
-                                        {{-- <td>{{ $item->status == '0' ? 'Unpaid' : 'Paid' }}</td> --}}
+                                        <td>{{ date('d F Y',strtotime($item->created_at)) }}</td>
                                         <td>
                                             @if ($item->status == '0')
                                                 <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-danger btn-sm">Unpaid</a>
@@ -56,9 +56,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
+                                            <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-credit-card-2-back-fill"></i></a>
                                         </td>
                                     </tr>
+                                    {{-- @php $total += $item->total_price * $item->prod_qty; @endphp --}}
+                                    {{-- {{ $total }} --}}
                                     @endforeach
                                 </tbody>
                             </table>

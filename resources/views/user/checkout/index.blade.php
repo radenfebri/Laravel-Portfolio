@@ -83,13 +83,13 @@
                                     <tbody>
                                         @foreach ($cartitem as $item)
                                         <tr>
-                                            <td>{{ $item->product->name }}</td>
+                                            <td>{{ $item->products->name }}</td>
                                             <td>{{ $item->prod_qty }}</td>
-                                            <td>Rp.{{ number_format($item->product->selling_price) }}</td>
+                                            <td>Rp.{{ number_format($item->products->selling_price) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                </table>
+                                </table> 
                                 <button type="submit" class="btn btn-primary w-100">Place Order</button>
 
                                 @else

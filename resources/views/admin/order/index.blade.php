@@ -42,7 +42,7 @@
 
                                 {{-- <a href="" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a> --}}
 
-                                <form action="" onsubmit="return confirm('Yakin anda akan menghapus article ?')" method="POST" class="d-inline">
+                                <form action="{{ route('orders.destroy', $item->id) }}" onsubmit="return confirm('Yakin anda akan menghapus article ?')" method="POST" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>

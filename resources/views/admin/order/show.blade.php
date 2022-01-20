@@ -41,7 +41,7 @@
                                     <tbody>
                                         @foreach ($orders->orderitem as $item)
                                         <tr>
-                                            <td>{{ $item->product->name }}</td>
+                                            <td>{{ $item->products->name }}</td>
                                             <td>{{ $item->qty }}</td>
                                             <td>
                                                 @if ($item->image)

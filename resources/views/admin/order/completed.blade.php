@@ -13,7 +13,7 @@
             @endcan
 
             @can('roles.trash')
-                <a href="{{ route('orders.index') }}" class="btn btn-sm text-success" style="float: right"><i class="fas fa-backward"></i><a>
+                <a href="{{ route('completed.index') }}" class="btn btn-sm text-success" style="float: right"><i class="fas fa-backward"></i><a>
             @endcan
             </div>
             <div class="card-body">
@@ -42,7 +42,7 @@
 
                                 {{-- <a href="" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a> --}}
 
-                                <form action="" onsubmit="return confirm('Yakin anda akan menghapus article ?')" method="POST" class="d-inline">
+                                <form action="{{ route('orders.destroy', $item->id) }}" onsubmit="return confirm('Yakin anda akan menghapus article ?')" method="POST" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-sm text-danger"><i class="fas fa-trash-alt"></i></button>

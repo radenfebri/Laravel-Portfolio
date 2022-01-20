@@ -30,7 +30,7 @@
                     <div class="card shadow">
                         <div class="card-header bg-primary">
                             <h4 class="text-white">Order View
-                            <a href="{{ route('myorder.index') }}" class="text-white float-end btn btn-outline-white"><i class="fas fa-backward"></i></a>
+                                <a href="{{ route('myorder.index') }}" class="text-white float-end btn btn-outline-white"><i class="fas fa-backward"></i></a>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -39,11 +39,11 @@
                                     <h4>Shipping Detail</h4>
                                     <hr>
                                     <label for="">Name</label>
-                                    <div class="border p-2 mb-2">{{ $order->name }}</div>
+                                    <div class="border p-2 mb-2">{{ $orders->name }}</div>
                                     <label class="mt-2" for="">Email</label>
-                                    <div class="border p-2 mb-2">{{ $order->email }}</div>
+                                    <div class="border p-2 mb-2">{{ $orders->email }}</div>
                                     <label class="mt-2" for="">Alamat</label>
-                                    <div class="border p-2">{{ $order->alamat }}</div>
+                                    <div class="border p-2">{{ $orders->alamat }}</div>
                                 </div>
                                 <div class="col-md-6">
                                     <h4>Order Detail</h4>
@@ -55,34 +55,71 @@
                                                 <th>Quantity</th>
                                                 <th>Image</th>
                                                 <th>Price</th>
+                                                <th>Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($order->orderitem as $item)
+                                            @php $total = 0; @endphp
+
+                                            @foreach ($orders->orderitem as $item)
                                             <tr>
-                                                <td>{{ $item->product->name }}</td>
-                                                <td>{{ $item->qty }}</td>
+                                                <td>{{ $item->products->name }}</td>
+                                                <td class="text-center">{{ $item->qty }}</td>
                                                 <td>
-                                                    @if ($item->image)
-                                                        <img src="{{ asset('storage/.' , $item->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}">
+                                                    @if ($item->products->image)
+                                                        <img src="{{ asset('storage/.' , $item->products->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}">
                                                     @else
                                                         <img src="{{ asset('template') }}/images/faces/profile.jpg"  style="width: 50px; height: 50px;" alt="{{ $item->name }}">
                                                     @endif
                                                 </td>
+                                                {{-- <td> <img src="{{ asset('storage/.' , $item->products->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}"></td> --}}
                                                 <td>{{ number_format($item->price) }}</td>
+                                                <td>{{ number_format($item->price * $item->qty) }}</td>
+
                                             </tr>
+
+                                            @php $total += $item->price * $item->qty; @endphp
+
                                             @endforeach
                                         </tbody>
                                     </table>
                                     <b>Information :</b><p>3 Digit angka dibelakang adalah kode unik.</p>
-                                    <h4 class="px-2">Grand Total : <span class="float-end">Rp. {{ number_format($order->total_price) }}</span> </h4>
+                                    <h4 class="px-2"><b>Grand Total : </b><span class="float-end">Rp. {{ number_format($orders->total_price) }}</span> </h4>
                                 </div>
                             </div>
-                            <div class="row">
+                            <br>
+                            <hr>
+                            {{-- <div class="row mt-5">
                                 <div class="col-md-6">
-asdasdasdasd
+                                    <h4><strong>Bank Transfer</strong></h4>
+                                    <p>Gunakan Bank Transfer untuk transaksi</p>
+                                    <hr>
+                                    <label for=""><strong>BRI</strong></label>
+                                    <div class="border p-2 mb-2">611401013164539</div>
+                                    <label for=""><strong>BSI</strong></label>
+                                    <div class="border p-2 mb-2">7173957787</div>
+                                    <label for=""><strong>JAGO</strong></label>
+                                    <div class="border p-2 mb-2">105573678757</div>
+                                    <label for=""><strong>NEO</strong></label>
+                                    <div class="border p-2 mb-2">5859458108708448 </div>
                                 </div>
-                            </div>
+                                <br>
+                                <div class="col-md-6">
+                                    <h4><strong>E-Wallet</strong></h4>
+                                    <p>Gunakan E-Wallet  untuk transaksi</p>
+                                    <hr>
+                                    <label for=""><strong>Gopay</strong></label>
+                                    <div class="border p-2 mb-2">082147639955</div>
+                                    <label for=""><strong>Dana</strong></label>
+                                    <div class="border p-2 mb-2">082147639955</div>
+                                    <label for=""><strong>ShopeePay</strong></label>
+                                    <div class="border p-2 mb-2">082147639955</div>
+                                    <label for=""><strong>OVO</strong></label>
+                                    <div class="border p-2 mb-2">082147639955</div>
+                                    <label for=""><strong>LinkAja</strong></label>
+                                    <div class="border p-2 mb-2">082147639955</div>
+                                </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

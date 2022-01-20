@@ -48,4 +48,17 @@ class OrderController extends Controller
         return redirect()->route('orders.index');
     }
 
+
+    public function destroy($id)
+    {
+        // abort_if(Gate::denies('role-destroy'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
+        $orders = Order::find($id);
+        $orders->delete();
+
+        toast('Data Berhasil Dihapus','success');
+
+        return redirect()->route('orders.index');
+    }
+
 }

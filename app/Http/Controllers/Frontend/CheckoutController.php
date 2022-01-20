@@ -50,27 +50,29 @@ class CheckoutController extends Controller
         $order->name = $request->input('name');
         $order->email = $request->input('email');
         $order->alamat = $request->input('alamat');
-        $order->tracking_no = 'RFS'.rand(1111,9999);
 
         // Total Price
         $total = 0;
-        $cartitem_total = Cart::where('user_id', Auth::id())->get();
-        foreach ($cartitem_total as $prod)
+        $cartitems_total = Cart::where('user_id', Auth::id())->get();
+        foreach ($cartitems_total as $prod)
         {
-            $total += $prod->product->selling_price;
+            $total += ($prod->products->selling_price * $prod->prod_qty);
         }
+
         $order->total_price = $total+rand(111,999);
+
+        $order->tracking_no = 'RFS'.rand(1111,9999);
 
         $order->save();
 
-        $cartitem = Cart::where('user_id', Auth::id())->get();
-        foreach ($cartitem as $item)
+        $cartitems = Cart::where('user_id', Auth::id())->get();
+        foreach ($cartitems as $item)
         {
             OrderItem::create([
                 'order_id' => $order->id,
                 'prod_id' => $item->prod_id,
-                'qty' => $item->prod_id,
-                'price' => $item->product->selling_price,
+                'qty' => $item->prod_qty,
+                'price' => $item->products->selling_price,
             ]);
 
             $prod = Product::where('id', $item->prod_id)->first();
@@ -93,6 +95,6 @@ class CheckoutController extends Controller
 
         toast('Checkout Berhasil', 'success');
 
-        return redirect()->route('store.index');
+        return redirect()->route('myorder.index');
     }
 }

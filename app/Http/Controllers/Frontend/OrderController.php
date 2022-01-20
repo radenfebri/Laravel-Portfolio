@@ -11,18 +11,18 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order = Order::where('user_id', Auth::id())->get();
+        $orders = Order::where('user_id', Auth::id())->get();
 
-        return view('user.order.index', compact('order'));
+        return view('user.order.index', compact('orders'));
     }
 
 
     public function view($id)
     {
-        $order = Order::where('id', $id)->where('user_id', Auth::id())->first();
+        $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
 
         // dd($order);
 
-        return view('user.order.view', compact('order'));
+        return view('user.order.view', compact('orders'));
     }
 }
