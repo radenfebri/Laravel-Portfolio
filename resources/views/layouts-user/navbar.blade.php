@@ -4,7 +4,7 @@
 
         <a href="index.html" class="logo d-flex align-items-center">
             <img src="{{ asset('front') }}/img/logo.png" alt="">
-            <span>FlexStart</span>
+            <span>RadenFebri</span>
         </a>
 
         <nav id="navbar" class="navbar">

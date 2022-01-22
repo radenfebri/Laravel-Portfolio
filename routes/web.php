@@ -18,7 +18,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ProfileUserController;
-use App\Http\Controllers\Frontend\UserController as FrontendUserController;
+use App\Http\Controllers\Frontend\RatingController;
+// use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -78,9 +79,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE VIEW ORDER
     Route::get('view-orders/{id}', [OrderController::class, 'view'])->name('vieworders');
 
-    // ROUTE ADMIN ORDER
-    Route::resource('orders', BackendOrderController::class);
-    Route::get('orders-completed', [BackendOrderController::class, 'completed'])->name('completed.index');
+    // ROUTE ADD RATING
+    Route::post('add-rating', [RatingController::class, 'add'])->name('rating');
+
 });
 
 
@@ -94,6 +95,10 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE FOR ARTICLE
     Route::resource('article', ArticleController::class);
     Route::resource('categorie', CategorieController::class);
+
+    // ROUTE ADMIN ORDER
+    Route::resource('orders', BackendOrderController::class);
+    Route::get('orders-completed', [BackendOrderController::class, 'completed'])->name('completed.index');
 
     // ROLE USER
     Route::get('role/trash', [RoleController::class, 'trash'])->name('role.trash');

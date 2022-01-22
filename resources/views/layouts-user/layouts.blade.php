@@ -25,6 +25,7 @@
   @endif
 
   @include('sweetalert::alert')
+  
 
 </body>
 

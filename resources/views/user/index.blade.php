@@ -7,25 +7,27 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
 
-<div class="container">
-    <div class="row">
-    <div class="col-lg-6 d-flex flex-column justify-content-center">
-        <h1 data-aos="fade-up">We offer modern solutions for growing your business</h1>
-        <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
-        <div data-aos="fade-up" data-aos-delay="600">
-        <div class="text-center text-lg-start">
-            <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-            <span>Get Started</span>
-            <i class="bi bi-arrow-right"></i>
-            </a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <h1 data-aos="fade-up">We offer modern solutions for growing your business</h1>
+                <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
+                <div data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-center text-lg-start">
+                        <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                            <span>Get Started</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+                {{-- <img src="{{ asset('front') }}/img/hero-img.png" class="img-fluid" alt=""> --}}
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_ETrXRU.json"  class="img-fluid" background="transparent"  speed="1"  style="width: 600px; height: 600px;"  loop  autoplay></lottie-player>
+            </div>
         </div>
-        </div>
     </div>
-    <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-        <img src="{{ asset('front') }}/img/hero-img.png" class="img-fluid" alt="">
-    </div>
-    </div>
-</div>
 
 </section>
 <!-- End Hero -->
@@ -55,7 +57,9 @@
                 </div>
 
                 <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('front') }}/img/about.jpg" class="img-fluid" alt="">
+                    {{-- <img src="{{ asset('front') }}/img/about.jpg" class="img-fluid" alt=""> --}}
+                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_ETrXRU.json"  background="transparent"  speed="1"  style="width: 600px; height: 600px;"  loop  autoplay></lottie-player>
                 </div>
 
             </div>
@@ -104,6 +108,7 @@
         </div>
 
     </section><!-- End Values Section -->
+
 
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">

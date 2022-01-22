@@ -53,4 +53,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('front') }}/css/style.css" rel="stylesheet">
 
+    {{-- <link href="{{ asset('front') }}/css/custom.css" rel="stylesheet"> --}}
+
+
 </head>
