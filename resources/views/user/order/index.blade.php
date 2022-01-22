@@ -56,7 +56,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-credit-card-2-back-fill"></i></a>
+                                            @if ($item->status == '0')
+                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-credit-card-2-back-fill"></i></a>
+                                            @else
+                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-success"><i class="bi bi-info-circle-fill"></i></a>
+                                            @endif
                                         </td>
                                     </tr>
                                     {{-- @php $total += $item->total_price * $item->prod_qty; @endphp --}}

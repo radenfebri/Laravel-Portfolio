@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ProfileUserController;
 use App\Http\Controllers\Frontend\RatingController;
+use App\Http\Controllers\Frontend\ReviewController;
 // use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +83,11 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE ADD RATING
     Route::post('add-rating', [RatingController::class, 'add'])->name('rating');
 
+    // ROUTE REVIEW PRODUCT
+    Route::get('add-review/{product_slug}/userreview', [ReviewController::class, 'add'])->name('review');
+
+    // ROUTE POST REVIEW PRODUCT
+    Route::post('add-review', [ReviewController::class, 'create']);
 });
 
 

@@ -180,10 +180,13 @@
                 </p>
             </div>
             <hr>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Rate This Product
                 </button>
+                <a href="{{ url('add-review/'.$product->slug.'/userreview' ) }}" class="btn btn-outline-primary">
+                   Write a Product
+                </a>
             </div>
 
         </div>
