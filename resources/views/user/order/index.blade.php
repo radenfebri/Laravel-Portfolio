@@ -50,14 +50,23 @@
                                         <td>{{ date('d F Y',strtotime($item->created_at)) }}</td>
                                         <td>
                                             @if ($item->status == '0')
-                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-danger btn-sm">Unpaid</a>
+                                                <span class="btn btn-danger btn-sm">Unpaid</span>
                                             @else
                                                 <span class="btn btn-success btn-sm">Paid</span>
                                             @endif
                                         </td>
                                         <td>
                                             @if ($item->status == '0')
-                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-credit-card-2-back-fill"></i></a>
+                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i></a>
+                                                <a href="https://wa.me/6285156000254?text=Hallo+kak+*Raden+Febri*,+Saya+mau+Konfirmasi+sudah+melakukan+pembayaran+dengan+data+berikut%3A%0A
+                                                    %0ANama+%3A+*{{ Auth::user()->name }}*
+                                                    %0ANo.Tracking+%3A+*{{ $item->tracking_no }}*
+                                                    %0ASudah+membayar+%3A+*Rp.{{ number_format($item->total_price) }}*
+                                                    %0ATanggal+%3A+*{{ date('d F Y h:i:s',strtotime($item->created_at)) }}*
+                                                    %0AAlamat+%3A+*{{ Auth::user()->alamat }}*
+                                                    %0A%0A+Tolong+segera+diproses+ya+kak."
+                                                    class="btn btn-success"><i class="bi bi-whatsapp"></i>
+                                                </a>
                                             @else
                                                 <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-success"><i class="bi bi-info-circle-fill"></i></a>
                                             @endif

@@ -34,7 +34,7 @@
                                 <form action="{{ url('/add-review') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product_id }}">
-                                    <textarea class="form-control" name="user_review" id="user_review" placeholder="Write a review" cols="" rows="5"></textarea>
+                                    <textarea class="form-control" name="user_reviewl" id="user_review" placeholder="Write a review" cols="" rows="5"></textarea>
                                     <button type="submit" class="btn btn-primary mt-3">Submit Review</button>
                                 </form>
                             @else

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategorieProduct;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Review;
@@ -19,12 +20,11 @@ class ReviewController extends Controller
 
         if($product)
         {
-
             $product_id = $product->id;
             $verified_purchase = Order::where('orders.user_id', Auth::id())
             ->join('order_items', 'orders.id', 'order_items.order_id')
             ->where('order_items.prod_id', $product_id)->get();
-            return view('user.review.index', compact('product_id', 'product', 'verified_purchase'));
+            return view('user.review.index', compact('product_id', 'product','verified_purchase'));
 
         } else {
             return redirect()->back()->with('status', "The link you followed was broken");
