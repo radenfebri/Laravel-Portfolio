@@ -88,6 +88,12 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
 
     // ROUTE POST REVIEW PRODUCT
     Route::post('add-review', [ReviewController::class, 'create']);
+
+    // ROUTE EDIT REVIEW PRODUCT
+    Route::get('review-edit/{product_slug}/userreview', [ReviewController::class, 'edit']);
+
+    // ROUTE UPDATE REVIEW PRODUCT
+    Route::put('update-review', [ReviewController::class, 'update']);
 });
 
 

@@ -10,11 +10,11 @@
     <section class="breadcrumbs">
         <div class="container">
 
-            <ol>
+            {{-- <ol>
                 <li><a href="{{ route('store.index') }}">Store</a></li>
                 <li><a href="{{ route('myorder.index') }}">My Orders</a></li>
                 <li><a href=""></a>Review</li>
-            </ol>
+            </ol> --}}
             <h2>@yield('title') Page</h2>
 
         </div>
@@ -30,11 +30,11 @@
                     <div class="card shadow">
                         <div class="card-body">
                             @if ($verified_purchase->count() > 0)
-                                <h5>You are writing a review for {{ $product->name }}</h5>
+                                <h5>You are writing a review for <b>{{ $product->name }}</b></h5>
                                 <form action="{{ url('/add-review') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product_id }}">
-                                    <textarea class="form-control" name="user_reviewl" id="user_review" placeholder="Write a review" cols="" rows="5"></textarea>
+                                    <textarea class="form-control" name="user_review" id="user_review" placeholder="Write a review" cols="" rows="5"></textarea>
                                     <button type="submit" class="btn btn-primary mt-3">Submit Review</button>
                                 </form>
                             @else

@@ -42,7 +42,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @php $total = 0; @endphp --}}
                                     @foreach ($orders as $item)
                                     <tr>
                                         <td>{{ $item->tracking_no }}</td>
@@ -68,12 +67,10 @@
                                                     class="btn btn-success"><i class="bi bi-whatsapp"></i>
                                                 </a>
                                             @else
-                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-success"><i class="bi bi-info-circle-fill"></i></a>
+                                                <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i></a>
                                             @endif
                                         </td>
                                     </tr>
-                                    {{-- @php $total += $item->total_price * $item->prod_qty; @endphp --}}
-                                    {{-- {{ $total }} --}}
                                     @endforeach
                                 </tbody>
                             </table>

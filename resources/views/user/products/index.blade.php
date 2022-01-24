@@ -82,7 +82,7 @@
 
                             <div class="swiper-slide">
                                 @if ($product->image)
-                                <img src="{{ asset('storage/'. $product->image) }}"  style="width: 80%; height: 80%;" alt="{{ $product->name }}">
+                                <img src="{{ asset('storage/'. $product->image) }}"  style="width: 70%; height: 70%;" alt="{{ $product->name }}">
                                 @else
                                 <img src="{{ asset('template') }}/images/faces/profile.jpg"  style="width: 80%; height: 80%;" alt="{{ $product->name }}">
                                 @endif
@@ -110,7 +110,19 @@
                         </ul>
                     </div>
                     <div class="portfolio-description">
-                        <h2>Detail</h2>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h2>Detail</h2>
+                            </div>
+                            &nbsp;
+                            <div class="col-md-4">
+                                @if ($product->qty > 0)
+                                <label class="btn-success btn-sm">In stock</label>
+                            @else
+                                <label class="btn-danger btn-sm">Out of stock</label>
+                            @endif
+                            </div>
+                        </div>
                         @php $ratenum = number_format($rating_value)  @endphp
                         <div class="rating">
                             @for($i = 1; $i <= $ratenum; $i++)
@@ -130,11 +142,6 @@
                             {{ $product->small_description }}.
                         </p>
 
-                        @if ($product->qty > 0)
-                        <label class="btn-success btn-sm">In stock</label>
-                        @else
-                        <label class="btn-danger btn-sm">Out of stock</label>
-                        @endif
                         <br>
                         <hr>
 
@@ -190,18 +197,33 @@
                     </a>
                 </div>
                 <div class="col-md-8">
-                    <label for="">Om Prakash</label>
-                    <a href="">Edit</a>
-                    <br>
-                    <i class="fas fa-star checked"></i>
-                    <i class="fas fa-star checked"></i>
-                    <i class="fas fa-star checked"></i>
-                    <i class="fas fa-star checked"></i>
-                    <i class="fas fa-star"></i>
-                    <small>Review on 22 Agustus 2022</small>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
+                    @foreach ($reviews as $item)
+                        <div class="user-reviews mt-3">
+                            <label for=""><b>{{ $item->user->name }}</b></label>
+                            @if ($item->user_id == Auth::id())
+                                <a href="{{ url('review-edit/'.$product->slug.'/userreview') }}">edit</a>
+                            @endif
+                            <br>
+                            @php
+
+                            $rating = App\Models\Rating::where('prod_id', $product->id)->where('user_id', $item->user->id)->first();
+
+                            @endphp
+                            @if ($rating)
+                            @php $user_rated = $rating->stars_rated @endphp
+                                @for($i = 1; $i <= $user_rated; $i++)
+                                    <i class="fas fa-star checked"></i>
+                                @endfor
+                                @for($j = $user_rated+1; $j <= 5; $j++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+                            @endif
+                            <small>Review on {{ $item->created_at->format('d M Y') }}</small>
+                            <p>
+                                {{ $item->user_review }}.
+                            </p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -21,10 +21,17 @@ class ReviewController extends Controller
         if($product)
         {
             $product_id = $product->id;
-            $verified_purchase = Order::where('orders.user_id', Auth::id())
-            ->join('order_items', 'orders.id', 'order_items.order_id')
-            ->where('order_items.prod_id', $product_id)->get();
-            return view('user.review.index', compact('product_id', 'product','verified_purchase'));
+            $review = Review::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
+            if($review)
+            {
+                return view('user.review.edit', compact('review'));
+            } else {
+                $verified_purchase = Order::where('orders.user_id', Auth::id())
+                ->join('order_items', 'orders.id', 'order_items.order_id')
+                ->where('order_items.prod_id', $product_id)->get();
+                return view('user.review.index', compact('product_id', 'product','verified_purchase'));
+            }
+
 
         } else {
             return redirect()->back()->with('status', "The link you followed was broken");
@@ -56,6 +63,50 @@ class ReviewController extends Controller
 
         } else {
             return redirect()->back()->with('status', "The link you followed was broken");
+        }
+    }
+
+
+
+    public function edit($product_slug)
+    {
+        $product = Product::where('slug', $product_slug)->where('status', '0')->first();
+        if($product)
+        {
+            $product_id = $product->id;
+            $review = Review::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
+            if($review)
+            {
+                return view('user.review.edit', compact('review', 'categorieproduct'));
+            } else {
+                return redirect()->back()->with('status', "The link you followed was broken");
+            }
+        } else {
+            return redirect()->back()->with('status', "The link you followed was broken");
+        }
+    }
+
+
+
+    public function update(Request $request)
+    {
+        $user_review = $request->input('user_review');
+        if($user_review != '')
+        {
+            $review_id = $request->input('review_id');
+            $review = Review::where('id', $review_id)->where('user_id', Auth::id())->first();
+            $category_slug = $review->product->categorieproduct->slug;
+            $prod_slug = $review->product->slug;
+            if($review)
+            {
+                $review->user_review = $request->input('user_review');
+                $review->update();
+                return redirect('categorie-product/'.$category_slug.'/'.$prod_slug)->with('status', "Review Updated successfully");
+            } else {
+                return redirect()->back()->with('status', "The link you followed was broken");
+            }
+        } else {
+            return redirect()->back()->with('status', "You cannot submit an empty review");
         }
     }
 }

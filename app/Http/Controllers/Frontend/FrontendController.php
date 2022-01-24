@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CategorieProduct;
 use App\Models\Product;
 use App\Models\Rating;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,6 +54,7 @@ class FrontendController extends Controller
                 $rating = Rating::where('prod_id', $product->id)->get();
                 $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
                 $user_rating = Rating::where('prod_id', $product->id)->where('user_id', Auth::id())->first();
+                $reviews = Review::where('prod_id', $product->id)->get();
 
                 if($rating->count() > 0)
                 {
@@ -60,7 +62,7 @@ class FrontendController extends Controller
                 } else {
                     $rating_value = 0;
                 }
-                return view('user.products.index', compact('product', 'rating', 'rating_value', 'categorieproduct', 'user_rating'));
+                return view('user.products.index', compact('product', 'rating', 'rating_value','reviews' ,'categorieproduct', 'user_rating'));
             } else {
                 return redirect('/')->with('status', "The link was broken");
             }
