@@ -23,7 +23,7 @@
     <!-- ======= Pricing Section ======= -->
     <section>
         <div class="container">
-            <div class="card shadow">
+            <div class="card shadow wishlist">
                 <div class="card-body">
                     @if ($wishlist->count() > 0)
 

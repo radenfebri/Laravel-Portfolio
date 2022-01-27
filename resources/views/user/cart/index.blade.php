@@ -23,7 +23,7 @@
     <!-- ======= Pricing Section ======= -->
     <section>
         <div class="container">
-            <div class="card shadow">
+            <div class="card shadow cartItem">
                 @if ($cartItem->count() > 0)
 
                 <div class="card-body">
