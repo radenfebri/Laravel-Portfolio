@@ -21,8 +21,6 @@ class OrderController extends Controller
     {
         $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
 
-        // dd($order);
-
         return view('user.order.view', compact('orders'));
     }
 }

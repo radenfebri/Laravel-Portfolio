@@ -35,12 +35,10 @@
                                 {{ date('d F Y, h:i:s A',strtotime($item->created_at)) }}
                             </td>
                             <td>{{ $item->tracking_no }}</td>
-                            <td>{{ $item->total_price }}</td>
+                            <td>Rp.{{ number_format($item->total_price) }}</td>
                             <td>{{ $item->status == '0' ? 'Pending' : 'Completed' }}</td>
                             <td>
                                 <a href="{{ route('orders.show', $item->id ) }}" class="btn btn-sm text-info"><i class="fas fa-eye"></i></a>
-
-                                {{-- <a href="" class="btn btn-sm text-primary"><i class="fas fa-edit"></i></a> --}}
 
                                 <form action="{{ route('orders.destroy', $item->id) }}" onsubmit="return confirm('Yakin anda akan menghapus article ?')" method="POST" class="d-inline">
                                     @csrf

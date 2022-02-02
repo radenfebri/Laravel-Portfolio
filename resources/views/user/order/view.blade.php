@@ -67,12 +67,11 @@
                                                 <td class="text-center">{{ $item->qty }}</td>
                                                 <td>
                                                     @if ($item->products->image)
-                                                        <img src="{{ asset('storage/.' , $item->products->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}">
+                                                        <img src="{{ asset('storage/'. $item->products->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}">
                                                     @else
                                                         <img src="{{ asset('template') }}/images/faces/profile.jpg"  style="width: 50px; height: 50px;" alt="{{ $item->name }}">
                                                     @endif
                                                 </td>
-                                                {{-- <td> <img src="{{ asset('storage/.' , $item->products->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}"></td> --}}
                                                 <td>{{ number_format($item->price) }}</td>
                                                 <td>{{ number_format($item->price * $item->qty) }}</td>
 

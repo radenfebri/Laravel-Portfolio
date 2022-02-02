@@ -44,8 +44,8 @@
                                             <td>{{ $item->products->name }}</td>
                                             <td>{{ $item->qty }}</td>
                                             <td>
-                                                @if ($item->image)
-                                                <img src="{{ asset('storage/.' , $item->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}">
+                                                @if ($item->products->image)
+                                                <img src="{{ asset('storage/'. $item->products->image) }}" style="width: 50px; height: 50px;" alt="{{ $item->name }}">
                                                 @else
                                                 <img src="{{ asset('template') }}/images/faces/profile.jpg"  style="width: 50px; height: 50px;" alt="{{ $item->name }}">
                                                 @endif
