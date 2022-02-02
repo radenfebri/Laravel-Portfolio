@@ -26,6 +26,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    @if ($orders->count() > 0)
+
                     <div class="card shadow">
                         <div class="card-header">
                             <h4><strong>My Orders</strong></h4>
@@ -76,6 +78,17 @@
                             </table>
                         </div>
                     </div>
+
+                    @else
+
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h2>Your <i class="bi bi-receipt"></i> Orders is Empty</h2>
+                        </div>
+                    </div>
+
+                    @endif
+
                 </div>
             </div>
         </div>

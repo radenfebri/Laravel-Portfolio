@@ -67,7 +67,9 @@
 
                     @else
 
-                        <h4>There are no products in your Wishlist</h4>
+                        {{-- <div class="card-body text-center"> --}}
+                            <h2 class="text-center">Your <i class="bi bi-heart-fill"></i> Wishlist is Empty</h2>
+                        {{-- </div> --}}
 
                     @endif
                 </div>
