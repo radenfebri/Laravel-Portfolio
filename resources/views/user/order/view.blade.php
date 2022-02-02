@@ -83,12 +83,12 @@
                                         </tbody>
                                     </table>
                                     <b>Information :</b><p>3 Digit angka dibelakang adalah kode unik.</p>
-                                    <h4 class="px-2"><b>Grand Total : </b><span class="float-end">Rp. {{ number_format($orders->total_price) }}</span> </h4>
+                                    <h4><b>Grand Total : </b><span class="float-end">Rp. {{ number_format($orders->total_price) }}</span> </h4>
                                 </div>
                             </div>
                             <br>
                             <hr>
-                            {{-- <div class="row mt-5">
+                            <div class="row mt-5">
                                 <div class="col-md-6">
                                     <h4><strong>Bank Transfer</strong></h4>
                                     <p>Gunakan Bank Transfer untuk transaksi</p>
@@ -118,7 +118,7 @@
                                     <label for=""><strong>LinkAja</strong></label>
                                     <div class="border p-2 mb-2">082147639955</div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
