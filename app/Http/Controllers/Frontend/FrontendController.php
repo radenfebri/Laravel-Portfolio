@@ -28,6 +28,40 @@ class FrontendController extends Controller
     }
 
 
+    public function search()
+    {
+        $products = Product::select('name')->where('status', '0')->get();
+        $data = [];
+
+        foreach ($products as $item) {
+            $data[] = $item['name'];
+        }
+
+        return $data;
+    }
+
+
+
+    public function searchproduct(Request $request)
+    {
+        $search_product = $request->product_name;
+
+        if($search_product != "")
+        {
+            $product = Product::where("name", "LIKE", "%$search_product%")->first();
+            $categorieproduct = CategorieProduct::all();
+            if($product)
+            {
+                return redirect('categorie-product/'.$product->categorieproduct->slug.'/'.$product->slug);
+            } else {
+                return back()->with('status', 'Product Tidak ditemukan');
+            }
+        } else {
+            return back();
+        }
+    }
+
+
     public function viewcategorie($slug)
     {
         if(CategorieProduct::where('slug', $slug)->exists())

@@ -20,6 +20,20 @@
     </section>
     <!-- End Breadcrumbs -->
 
+    {{-- START SEARCH --}}
+    <section>
+        <div class="container" style="width: 30%;">
+            <form action="{{ route('searchproduct') }}" method="POST">
+                @csrf
+                <div class="input-group flex-nowrap" >
+                    <input type="search" class="form-control" id="search_product" name="product_name" placeholder="Search Product" aria-label="Search Product" aria-describedby="addon-wrapping" required>
+                    <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </section>
+    {{-- END SEARCH --}}
+
     <!-- ======= Featured Product Section ======= -->
     <section id="testimonials" class="testimonials">
         <div class="container" data-aos="fade-up">
@@ -33,9 +47,9 @@
                         <div class="testimonial-item">
                             <div class="stars">
                                 @if ($item->image)
-                                    <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                                <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
                                 @else
-                                    <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
+                                <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
                                 @endif
                             </div>
                             {{-- <p>

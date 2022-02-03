@@ -12,10 +12,6 @@
   <script src="{{ asset('template') }}/vendors/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{{ asset('template') }}/js/extensions/toastify.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-
   <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=61dfc8a76539b10019887ee7&product=inline-share-buttons' async='async'></script>
 
 

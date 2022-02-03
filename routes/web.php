@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 // HALAMAN FRONTEND
 Route::get('/', [FrontendController::class, 'index'])->name('user.index');
 Route::get('store', [FrontendController::class, 'store'])->name('store.index');
+Route::get('product-list', [FrontendController::class, 'search']);
+Route::post('searchproduct', [FrontendController::class, 'searchproduct'])->name('searchproduct');
 Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategorie'])->name('viewcategorie.index');
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
 
