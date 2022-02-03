@@ -51,7 +51,6 @@
                             <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
                             @endif
                         </div>
-                        {{-- <img src="assets/img/pricing-starter.png" class="img-fluid" alt=""> --}}
                         <ul>
                             <li>{{ \Illuminate\Support\Str::words($item->description, 10,'....') }}</li>
 

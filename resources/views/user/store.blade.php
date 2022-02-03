@@ -133,8 +133,55 @@
                             @endif
                         </div>
                         <h3 class="post-title">{{ $item->name }}</h3>
-                        <p>{{ $item->description }}</p>
+                        <p>{{ \Illuminate\Support\Str::words($item->description, 10,'....') }}</p>
                         <a href="{{ route('viewcategorie.index', $item->slug ) }}" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- End All Categorie Section -->
+
+    <!-- ======= All Product Section ======= -->
+    <section id="pricing" class="pricing">
+
+        <div class="container" data-aos="fade-up">
+
+            <header class="section-header">
+                <p>All Product</p>
+            </header>
+
+            <div class="row gy-4" data-aos="fade-left">
+                @foreach ($allproduct as $item)
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="box">
+
+                        @if ($item->trending == '1')
+                        <span class="featured">Trending</span>
+                        @else
+
+                        @endif
+
+                        <h3 style="color: #65c600;">{{ $item->name }}</h3>
+
+                        <div class="price"><sup>Rp</sup><s>{{ number_format($item->original_price) }}</s></div>
+                        <div class="price"><sup>Rp</sup>{{ number_format($item->selling_price) }}</div>
+                        <div>
+                            @if ($item->image)
+                            <img src="{{ asset('storage/'. $item->image ) }}" class="card-img-top" alt="{{ $item->name }}">
+                            @else
+                            <img src="{{ asset('template') }}/images/faces/profile.jpg" class="card-img-top" alt="{{ $item->name }}">
+                            @endif
+                        </div>
+                        <ul>
+                            <li>{{ \Illuminate\Support\Str::words($item->description, 10,'....') }}</li>
+
+                        </ul>
+                        <a href="{{ url('categorie-product/'.$item->categorieproduct->slug.'/'.$item->slug) }}" class="btn-buy">Detail</a>
                     </div>
                 </div>
                 @endforeach

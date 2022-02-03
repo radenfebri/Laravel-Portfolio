@@ -22,9 +22,10 @@ class FrontendController extends Controller
     {
         $featured_product = Product::where('trending', '1')->take(15)->get();
         $trending_categorie = CategorieProduct::where('popular', '1')->take(15)->get();
+        $allproduct = Product::all();
         $categorieproduct = CategorieProduct::all();
 
-        return view('user.store', compact('featured_product', 'trending_categorie','categorieproduct'));
+        return view('user.store', compact('featured_product', 'trending_categorie','categorieproduct', 'allproduct'));
     }
 
 
@@ -49,7 +50,6 @@ class FrontendController extends Controller
         if($search_product != "")
         {
             $product = Product::where("name", "LIKE", "%$search_product%")->first();
-            $categorieproduct = CategorieProduct::all();
             if($product)
             {
                 return redirect('categorie-product/'.$product->categorieproduct->slug.'/'.$product->slug);
