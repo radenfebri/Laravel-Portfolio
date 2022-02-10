@@ -25,7 +25,7 @@
         <div class="container" style="width: 30%;">
             <form action="{{ route('searchproduct') }}" method="POST">
                 @csrf
-                <div class="input-group flex-nowrap" >
+                <div class="input-group flex-nowrap search-form" >
                     <input type="search" class="form-control" id="search_product" name="product_name" placeholder="Search Product" aria-label="Search Product" aria-describedby="addon-wrapping" required>
                     <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
                 </div>
@@ -196,6 +196,27 @@
 
 </main>
 <!-- End #main -->
+
+
+<script>
+
+    var availableTags = [];
+    $.ajax({
+        method: "GET",
+        url: "/product-list",
+        success: function (response) {
+            startAutoComplete(response);
+        }
+    });
+
+    function startAutoComplete(availableTags)
+    {
+        $( "#search_product" ).autocomplete({
+            source: availableTags
+        });
+    }
+
+</script>
 
 @endsection
 

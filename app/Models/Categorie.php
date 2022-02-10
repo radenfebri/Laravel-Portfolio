@@ -17,6 +17,6 @@ class Categorie extends Model
 
     public function articles()
     {
-        return $this->hasMany(Article::class, 'id');
+        return $this->hasMany(Article::class, 'kategori_id');
     }
 }

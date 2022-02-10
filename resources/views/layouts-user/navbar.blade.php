@@ -10,6 +10,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto {{ $menu == 'home' ? 'active' : '' }} " href="/">Home</a></li>
+                <li><a class="nav-link scrollto {{ $menu == 'blog' ? 'active' : '' }} " href="{{ route('blog.index') }}">Blog</a></li>
                 {{-- <li><a class="nav-link scrollto" href="#about">About</a></li> --}}
                 <li><a class="nav-link scrollto {{ $menu == 'store' ? 'active' : '' }} " href="{{ route('store.index') }}">Store</a></li>
                 <li>
@@ -21,6 +22,7 @@
                         <span class="badge badge-pill bg-success wish-count">0</span>
                     </a>
                 </li>
+
 
                 <li>
                     @guest

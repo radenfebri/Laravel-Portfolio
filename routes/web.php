@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -33,6 +34,10 @@ Route::get('product-list', [FrontendController::class, 'search']);
 Route::post('searchproduct', [FrontendController::class, 'searchproduct'])->name('searchproduct');
 Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategorie'])->name('viewcategorie.index');
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
+
+Route::get('artikel-list', [BlogController::class, 'search']);
+Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
+Route::resource('blog', BlogController::class);
 
 
 // ADD TO CART
