@@ -76,6 +76,9 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE PLACE ORDER
     Route::post('place-order', [CheckoutController::class, 'placeorder']);
 
+    // ROUTE MIDTRANS
+    Route::get('place-order-midtrans', [CheckoutController::class, 'midtrans']);
+
     // ROUTE CEK ORDER
     Route::get('my-orders', [OrderController::class, 'index'])->name('myorder.index');
 
