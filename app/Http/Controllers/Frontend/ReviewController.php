@@ -77,7 +77,7 @@ class ReviewController extends Controller
             $review = Review::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
             if($review)
             {
-                return view('user.review.edit', compact('review', 'categorieproduct'));
+                return view('user.review.edit', compact('review'));
             } else {
                 return redirect()->back()->with('status', "The link you followed was broken");
             }

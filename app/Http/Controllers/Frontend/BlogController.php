@@ -13,9 +13,28 @@ class BlogController extends Controller
     {
         $artikel = Article::orderBy('created_at','DESC')->where('is_active', 1 )->paginate(5);
         $kategori = Categorie::all();
-        $postinganTerbaru = Article::orderBy('created_at','DESC')->limit('5')->get();
+        $postinganTerbaru = Article::orderBy('created_at','DESC')->where('is_Active', 1)->limit('5')->get();
 
         return view('user.blog.index', compact('artikel', 'kategori', 'postinganTerbaru'));
+    }
+
+
+    public function detail($slug)
+    {
+        $artikel = Article::where('slug', $slug)->first();;
+        $kategori = Categorie::all();
+        $postinganTerbaru = Article::orderBy('created_at','DESC')->limit('5')->get();
+
+        return view('user.blog.detail', compact('artikel', 'kategori', 'postinganTerbaru'));
+    }
+
+
+    public function categorie($slug)
+    {
+        $artikel = Article::orderBy('created_at','DESC')->where('is_active', 1 )->paginate(5);
+        $kategori = Categorie::where('slug', $slug)->first();
+
+        return view('user.blog.categorie', compact('artikel', 'kategori'));
     }
 
 
@@ -40,7 +59,7 @@ class BlogController extends Controller
             $artikel = Article::where("judul", "LIKE", "%$search_artikel%")->first();
             if($artikel)
             {
-                // return redirect('categorie-product/'.$artikel->categorieproduct->slug.'/'.$artikel->slug);
+                return redirect('blog/detail/'.$artikel->slug);
             } else {
                 return back()->with('status', 'Artikel Tidak ditemukan');
             }

@@ -35,9 +35,11 @@ Route::post('searchproduct', [FrontendController::class, 'searchproduct'])->name
 Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategorie'])->name('viewcategorie.index');
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
 
+Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blog/categorie/{slug}', [BlogController::class, 'categorie'])->name('blog.categorie');
+Route::get('/blog/detail/{slug}', [BlogController::class, 'detail'])->name('detail');
 Route::get('artikel-list', [BlogController::class, 'search']);
 Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
-Route::resource('blog', BlogController::class);
 
 
 // ADD TO CART

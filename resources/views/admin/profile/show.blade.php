@@ -65,7 +65,7 @@
                         @if ($username->website)
                         <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
                             <div class="feature-box d-flex align-items-center">
-                                <a href="http://{{ $username->website }}"><h3><i class="bi bi-link"></i> Website</h3></a>
+                                <a href="http://{{ $username->website }}"><h3><i class="bi bi-globe"></i> Website</h3></a>
                             </div>
                         </div>
                         @else

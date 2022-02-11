@@ -40,14 +40,14 @@
                         @endif
 
                         <h2 class="entry-title">
-                            <a href="blog-single.html">{{ $item->judul }}</a>
+                            <a href="{{ route('detail', $item->slug) }}">{{ $item->judul }}</a>
                         </h2>
 
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{ $item->users->name }}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{date('d M Y',strtotime($item->created_at))}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ route('detail', $item->slug) }}">{{date('d M Y',strtotime($item->created_at))}}</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ route('detail', $item->slug) }}">12 Comments</a></li>
                             </ul>
                         </div>
 
@@ -56,7 +56,7 @@
                                 {!! \Illuminate\Support\Str::words($item->deskripsi, 100,'....') !!}
                             </p>
                             <div class="read-more">
-                                <a href="blog-single.html">Read More</a>
+                                <a href="{{ route('detail', $item->slug) }}">Read More</a>
                             </div>
                         </div>
 
@@ -83,16 +83,6 @@
 
                     <div class="sidebar">
 
-                        {{-- <div class="container">
-                            <form action="{{ route('searchartikel') }}" method="POST">
-                                @csrf
-                                <div class="input-group flex-nowrap" >
-                                    <input type="search" class="form-control" id="search_artikel" name="artikel_name" placeholder="Search Product" aria-label="Search Product" aria-describedby="addon-wrapping" required>
-                                    <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
-                                </div>
-                            </form>
-                        </div> --}}
-
                         <h3 class="sidebar-title">Search</h3>
                         <div class="sidebar-item search-form">
                             <form action="{{ route('searchartikel') }}" method="POST">
@@ -107,7 +97,7 @@
                         <div class="sidebar-item categories">
                             <ul>
                                 @foreach ($kategori as $item)
-                                <li><a href="#">{{ $item->nama_kategori }} <span>({{ $item->articles->count() }})</span></a></li>
+                                <li><a href="{{ route('blog.categorie', $item->slug ) }}">{{ $item->nama_kategori }} <span>({{ $item->articles->count() }})</span></a></li>
                                 @endforeach
                             </ul>
                         </div>
