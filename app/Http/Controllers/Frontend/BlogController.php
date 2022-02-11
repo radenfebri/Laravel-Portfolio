@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -31,10 +32,22 @@ class BlogController extends Controller
 
     public function categorie($slug)
     {
-        $artikel = Article::orderBy('created_at','DESC')->where('is_active', 1 )->paginate(5);
-        $kategori = Categorie::where('slug', $slug)->first();
+        $categories = Categorie::where('slug', $slug)->first();
+        $artikel = Article::where('kategori_id', $categories->id)->orderBy('created_at','DESC')->where('is_active', 1 )->paginate(6);
 
-        return view('user.blog.categorie', compact('artikel', 'kategori'));
+        return view('user.blog.categorie', compact('artikel', 'categories'));
+    }
+
+
+    public function author(User $author)
+    {
+        // $articles = Article::where($author)->first();
+        // $artikel = Article::where('kategori_id', $categories->id)->orderBy('created_at','DESC')->where('is_active', 1 )->paginate(6);
+
+        // return view('user.blog.author', compact('articles'));
+        return view('user.blog.author',[
+            'articles' => $author->articles,
+        ]);
     }
 
 

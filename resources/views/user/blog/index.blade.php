@@ -45,7 +45,7 @@
 
                         <div class="entry-meta">
                             <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">{{ $item->users->name }}</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ route('author', $item->users->username ) }}">{{ $item->users->name }}</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ route('detail', $item->slug) }}">{{date('d M Y',strtotime($item->created_at))}}</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ route('detail', $item->slug) }}">12 Comments</a></li>
                             </ul>
@@ -112,7 +112,7 @@
                                 @else
                                 <img src="{{ asset('template') }}/images/faces/profile.jpg" alt="{{ $item->categories->nama_kategori }}">
                                 @endif
-                                <h4><a href="blog-single.html">{{ $item->judul }}</a></h4>
+                                <h4><a href="{{ route('detail', $item->slug) }}">{{ $item->judul }}</a></h4>
                                 <time datetime="2020-01-01">{{date('d M Y',strtotime($item->created_at))}}</time>
                             </div>
                             @empty

@@ -37,6 +37,11 @@ class User extends Authenticatable
         'facebook'
     ];
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -55,4 +60,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

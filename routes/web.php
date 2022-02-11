@@ -26,18 +26,21 @@ use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-// HALAMAN FRONTEND
+// HALAMAN FRONTEND HOME
 Route::get('/', [FrontendController::class, 'index'])->name('user.index');
+
+// HALAMAN FRONTEND STORE
 Route::get('store', [FrontendController::class, 'store'])->name('store.index');
 Route::get('product-list', [FrontendController::class, 'search']);
 Route::post('searchproduct', [FrontendController::class, 'searchproduct'])->name('searchproduct');
 Route::get('categorie-product/{slug}', [FrontendController::class, 'viewcategorie'])->name('viewcategorie.index');
 Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::class, 'productview'])->name('productview.index');
 
+// HALAMAN FRONTEND BLOG
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/categorie/{slug}', [BlogController::class, 'categorie'])->name('blog.categorie');
 Route::get('/blog/detail/{slug}', [BlogController::class, 'detail'])->name('detail');
+Route::get('/blog/author/{author:username}', [BlogController::class, 'author'])->name('author');
 Route::get('artikel-list', [BlogController::class, 'search']);
 Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
 
