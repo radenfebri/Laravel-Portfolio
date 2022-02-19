@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -43,6 +44,7 @@ Route::get('/blog/detail/{slug}', [BlogController::class, 'detail'])->name('deta
 Route::get('/blog/author/{username}', [BlogController::class, 'author'])->name('author');
 Route::get('artikel-list', [BlogController::class, 'search']);
 Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
+Route::post('/comment/{artikel}', [CommentController::class, 'store'])->name('comment.store');
 
 
 // ADD TO CART
