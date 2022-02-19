@@ -1,6 +1,6 @@
 @extends('layouts-user.layouts', ['menu' => 'blog', 'submenu' => ''])
 
-@section('title' , "Raden Febri - Author")
+@section('title' , "Raden Febri - Author $users->name ")
 
 @section('content')
 
@@ -13,7 +13,7 @@
             <ol>
                 <li><a href="/">Home</a></li>
                 <li><a href="{{ route('blog.index') }}">Blog</a></li>
-                <li><a href="#">NAMA</a></li>
+                <li><a href="{{ url('/blog/author', $users->username ) }}">{{ $users->name }}</a></li>
             </ol>
             <h2>@yield('title') Page</h2>
 
@@ -27,12 +27,12 @@
         <div class="container" data-aos="fade-up">
 
             <header class="section-header">
-                <p>Author : {{ $articles->name }}</p>
+                <p>Author : {{ $users->name }}</p>
             </header>
 
             <div class="row">
 
-                @forelse ($articles as $item)
+                @forelse ($artikel as $item)
                 <div class="col-lg-4 mb-5">
                     <div class="post-box">
                         <div class="post-img">
@@ -51,7 +51,7 @@
                 <center><strong>Data Masih Kosong</strong></center>
                 @endforelse
 
-                {{-- <div>{{ $articles->links() }}</div> --}}
+                {{-- <div>{{ $artikel->links() }}</div> --}}
 
             </div>
 

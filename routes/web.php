@@ -40,7 +40,7 @@ Route::get('categorie-product/{cate_slug}/{prod_slug}', [FrontendController::cla
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/categorie/{slug}', [BlogController::class, 'categorie'])->name('blog.categorie');
 Route::get('/blog/detail/{slug}', [BlogController::class, 'detail'])->name('detail');
-Route::get('/blog/author/{author:username}', [BlogController::class, 'author'])->name('author');
+Route::get('/blog/author/{username}', [BlogController::class, 'author'])->name('author');
 Route::get('artikel-list', [BlogController::class, 'search']);
 Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
 

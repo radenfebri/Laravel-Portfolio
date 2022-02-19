@@ -12,9 +12,9 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $artikel = Article::orderBy('created_at','DESC')->where('is_active', 1 )->paginate(5);
+        $artikel = Article::latest()->where('is_active', 1 )->paginate(5);
         $kategori = Categorie::all();
-        $postinganTerbaru = Article::orderBy('created_at','DESC')->where('is_Active', 1)->limit('5')->get();
+        $postinganTerbaru = Article::latest()->where('is_Active', 1)->limit('5')->get();
 
         return view('user.blog.index', compact('artikel', 'kategori', 'postinganTerbaru'));
     }
@@ -24,30 +24,27 @@ class BlogController extends Controller
     {
         $artikel = Article::where('slug', $slug)->first();;
         $kategori = Categorie::all();
-        $postinganTerbaru = Article::orderBy('created_at','DESC')->limit('5')->get();
+        $postinganTerbaru = Article::latest()->limit('5')->get();
 
-        return view('user.blog.detail', compact('artikel', 'kategori', 'postinganTerbaru'));
+        return view('user.blog.detail', compact('artikel', 'kategori', 'postinganTerbaru',));
     }
 
 
     public function categorie($slug)
     {
         $categories = Categorie::where('slug', $slug)->first();
-        $artikel = Article::where('kategori_id', $categories->id)->orderBy('created_at','DESC')->where('is_active', 1 )->paginate(6);
+        $artikel = Article::where('kategori_id', $categories->id)->latest()->where('is_active', 1 )->paginate(6);
 
         return view('user.blog.categorie', compact('artikel', 'categories'));
     }
 
 
-    public function author(User $author)
+    public function author($username)
     {
-        // $articles = Article::where($author)->first();
-        // $artikel = Article::where('kategori_id', $categories->id)->orderBy('created_at','DESC')->where('is_active', 1 )->paginate(6);
+        $users = User::where('username', $username)->first();
+        $artikel = Article::where('user_id', $users->id)->orderBy('created_at','DESC')->where('is_active', 1 )->paginate(6);
 
-        // return view('user.blog.author', compact('articles'));
-        return view('user.blog.author',[
-            'articles' => $author->articles,
-        ]);
+        return view('user.blog.author', compact('users', 'artikel'));
     }
 
 
