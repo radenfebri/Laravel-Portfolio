@@ -22,6 +22,10 @@
                 <li class="submenu-item {{ $submenu == 'post' ? 'active' : '' }}">
                     <a href="{{ route('article.index') }}">Post</a>
                 </li>
+
+                <li class="submenu-item {{ $submenu == 'comment' ? 'active' : '' }}">
+                    <a href="{{ route('comment.index') }}">Comment</a>
+                </li>
             </ul>
         </li>
 

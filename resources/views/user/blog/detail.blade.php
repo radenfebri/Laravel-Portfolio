@@ -51,7 +51,7 @@
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ route('author', $artikel->users->username ) }}">{{ $artikel->users->name }}</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{date('d M Y',strtotime($artikel->created_at))}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="">12 Comments</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="">{{ $artikel->comments->count() }} Comments</a></li>
                             </ul>
                         </div>
 
@@ -73,21 +73,55 @@
                         <div>
                             <h4>{{ $artikel->users->name }}</h4>
                             <div class="social-links">
-                                <a href="https://twitter.com/{{ $artikel->users->twitter }}"><i class="bi bi-twitter"></i></a>
-                                <a href="https://facebook.com/{{ $artikel->users->facebook }}"><i class="bi bi-facebook"></i></a>
-                                <a href="https://instagram.com/{{ $artikel->users->instagram }}"><i class="biu bi-instagram"></i></a>
-                                <a href="https://github.com/{{ $artikel->users->github }}"><i class="biu bi-github"></i></a>
-                                <a href="https://{{ $artikel->users->website }}/"><i class="biu bi-globe"></i></a>
+                                @if ($artikel->users->twitter)
+                                    <a href="https://twitter.com/{{ $artikel->users->twitter }}"><i class="bi bi-twitter"></i></a>
+                                @else
+
+                                @endif
+                                {{-- end twitter --}}
+
+                                @if ($artikel->users->facebook)
+                                    <a href="https://facebook.com/{{ $artikel->users->facebook }}"><i class="bi bi-facebook"></i></a>
+                                @else
+
+                                @endif
+                                {{-- end facebook --}}
+
+                                @if ($artikel->users->instagram)
+                                    <a href="https://instagram.com/{{ $artikel->users->instagram }}"><i class="biu bi-instagram"></i></a>
+                                @else
+
+                                @endif
+                                {{-- end instagram --}}
+
+                                @if ($artikel->users->github)
+                                   <a href="https://github.com/{{ $artikel->users->github }}"><i class="biu bi-github"></i></a>
+                                @else
+
+                                @endif
+                                {{-- end github --}}
+
+                                @if ($artikel->users->website)
+                                    <a href="https://{{ $artikel->users->website }}/"><i class="biu bi-globe"></i></a>
+                                @else
+
+                                @endif
+                                {{-- end github --}}
                             </div>
                             <p>
-                                {{ $artikel->users->about }}.
+                                @if ($artikel->users->about)
+                                    {{ $artikel->users->about }}.
+                                @else
+
+                                @endif
+                                {{-- end about --}}
                             </p>
                         </div>
                     </div><!-- End blog author bio -->
 
                     <div class="blog-comments">
 
-                        <h4 class="comments-count">8 Comments</h4>
+                        <h4 class="comments-count">{{ $artikel->comments->count() }} Comments</h4>
 
                         <div id="comment-2" class="comment">
                             @foreach ($artikel->comments as $item)
@@ -99,7 +133,13 @@
                                     @endif
 
                                     <div>
-                                        <h5><a href="{{ url('/',$item->user->username ) }}">{{ $item->user->name }}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                        <h5><a href="{{ url('/',$item->user->username ) }}">{{ $item->user->name }}</a>
+                                            @guest
+
+                                            @else
+                                                <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a>
+                                            @endguest
+                                        </h5>
                                         <time datetime="2020-01-01">{{date('d M Y',strtotime($item->created_at)) }}</time>
                                         <p>
                                             {{ $item->comment }}.
@@ -141,7 +181,7 @@
                         <div class="reply-form">
                             <h4>Leave a Reply</h4>
                             <p>Your email address will not be published. Required fields are marked * </p>
-                            <form action="{{ route('comment.store', $artikel->id ) }}" method="POST">
+                            <form action="{{ route('commentartikel.store', $artikel->id ) }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col form-group">

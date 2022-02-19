@@ -47,7 +47,7 @@
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{{ route('author', $item->users->username ) }}">{{ $item->users->name }}</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="{{ route('detail', $item->slug) }}">{{date('d M Y',strtotime($item->created_at))}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ route('detail', $item->slug) }}">12 Comments</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="{{ route('detail', $item->slug) }}">{{ $item->comments->count() }} Comments</a></li>
                             </ul>
                         </div>
 

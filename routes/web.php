@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CategorieController;
 use App\Http\Controllers\Backend\CategorieProductController;
+use App\Http\Controllers\Backend\CommentController as BackendCommentController;
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\BlogController;
@@ -44,7 +45,7 @@ Route::get('/blog/detail/{slug}', [BlogController::class, 'detail'])->name('deta
 Route::get('/blog/author/{username}', [BlogController::class, 'author'])->name('author');
 Route::get('artikel-list', [BlogController::class, 'search']);
 Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
-Route::post('/comment/{artikel}', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/comment-artikel/{artikel}', [CommentController::class, 'store'])->name('commentartikel.store');
 
 
 // ADD TO CART
@@ -124,6 +125,7 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     // ROUTE FOR ARTICLE
     Route::resource('article', ArticleController::class);
     Route::resource('categorie', CategorieController::class);
+    Route::resource('comment', BackendCommentController::class);
 
     // ROUTE ADMIN ORDER
     Route::resource('orders', BackendOrderController::class);
