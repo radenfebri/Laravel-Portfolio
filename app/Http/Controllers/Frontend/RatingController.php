@@ -46,17 +46,18 @@ class RatingController extends Controller
                         ]);
 
                     }
-                    return redirect()->back()->with('status', "Thank you for Rating this product");
+                    toast('Trimakasih Sudah memberikan Rating','success');
+                    return back();
 
 
                 } else {
-
-                    return redirect()->back()->with('status', "You cannot rate a product whitout purchase");
+                    toast('Kamu Tidak dapat memberiakn Rating pada Produk ini','error');
+                    return back();
 
                 }
             } else {
-
-                return redirect()->back()->with('status', "The link you followed wa broken");
+                toast('Link Tidak dapat Ditemukan','error');
+                return back();
 
             }
         }

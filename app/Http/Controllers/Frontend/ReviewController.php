@@ -34,7 +34,8 @@ class ReviewController extends Controller
 
 
         } else {
-            return redirect()->back()->with('status', "The link you followed was broken");
+            toast('Link Tidak dapat Ditemukan','error');
+            return back();
         }
     }
 
@@ -58,11 +59,14 @@ class ReviewController extends Controller
             $prod_slug = $product->slug;
             if($new_review)
             {
-                return redirect('categorie-product/'.$category_slug.'/'.$prod_slug)->with('status', "Thank you for writing a review");
+                toast('Trimakasih Sudah memberikan Review','success');
+                return redirect('categorie-product/'.$category_slug.'/'.$prod_slug);
             }
 
         } else {
-            return redirect()->back()->with('status', "The link you followed was broken");
+
+            toast('Link Tidak dapat Ditemukan','error');
+            return back();
         }
     }
 
@@ -79,10 +83,12 @@ class ReviewController extends Controller
             {
                 return view('user.review.edit', compact('review'));
             } else {
-                return redirect()->back()->with('status', "The link you followed was broken");
+                toast('Link Tidak dapat Ditemukan','error');
+                return back();
             }
         } else {
-            return redirect()->back()->with('status', "The link you followed was broken");
+            toast('Link Tidak dapat Ditemukan','error');
+            return back();
         }
     }
 
@@ -101,12 +107,14 @@ class ReviewController extends Controller
             {
                 $review->user_review = $request->input('user_review');
                 $review->update();
-                return redirect('categorie-product/'.$category_slug.'/'.$prod_slug)->with('status', "Review Updated successfully");
+                return redirect('categorie-product/'.$category_slug.'/'.$prod_slug)->toast('Review Telah berhasil Diupdate','success');;
             } else {
-                return redirect()->back()->with('status', "The link you followed was broken");
+                toast('Link Tidak dapat Ditemukan','error');
+                return back();
             }
         } else {
-            return redirect()->back()->with('status', "You cannot submit an empty review");
+            toast('Review Tidak boleh Kosong','error');
+            return back();
         }
     }
 }

@@ -19,8 +19,17 @@ class OrderController extends Controller
 
     public function view($id)
     {
-        $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
+        if(Order::where('id', $id)->where('user_id', Auth::id())->exists())
+        {
+            $orders = Order::where('id', $id)->where('user_id', Auth::id())->first();
 
-        return view('user.order.view', compact('orders'));
+            return view('user.order.view', compact('orders'));
+        } else {
+
+            toast('Link Tidak dapat Ditemukan','error');
+            return back();
+        }
+
+
     }
 }

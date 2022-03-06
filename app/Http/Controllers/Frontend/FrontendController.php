@@ -54,7 +54,8 @@ class FrontendController extends Controller
             {
                 return redirect('categorie-product/'.$product->categorieproduct->slug.'/'.$product->slug);
             } else {
-                return back()->with('status', 'Product Tidak ditemukan');
+                toast('Produk Tidak dapat Ditemukan','error');
+                return back();
             }
         } else {
             return back();
@@ -71,8 +72,8 @@ class FrontendController extends Controller
             return view('user.categorieproduct.index', compact('categorieproduct', 'product'));
 
         } else {
-
-            return redirect('/')->with('status', "Slug Doesnot Exists");
+            toast('Link Tidak dapat Ditemukan','error');
+            return back();
         }
     }
 
@@ -98,10 +99,12 @@ class FrontendController extends Controller
                 }
                 return view('user.products.index', compact('product', 'rating', 'rating_value','reviews' ,'categorieproduct', 'user_rating'));
             } else {
-                return redirect('/')->with('status', "The link was broken");
+                toast('Link Tidak dapat Ditemukan','error');
+                return back();
             }
         } else {
-            return redirect('/')->with('status', "No such categorie found");
+            toast('Link Tidak dapat Ditemukan','error');
+            return back();
         }
     }
 }

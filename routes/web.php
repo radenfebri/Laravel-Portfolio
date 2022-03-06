@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CommentController;
+use App\Http\Controllers\Frontend\CommentReplyController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -46,6 +47,9 @@ Route::get('/blog/author/{username}', [BlogController::class, 'author'])->name('
 Route::get('artikel-list', [BlogController::class, 'search']);
 Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('searchartikel');
 Route::post('/comment-artikel/{artikel}', [CommentController::class, 'store'])->name('commentartikel.store');
+Route::post('/comment-reply/{comment}', [CommentReplyController::class, 'store'])->name('commentreply.store');
+Route::post('/like-post/{artikel}', [BlogController::class, 'likeArticle'])->name('artikel.like');
+
 
 
 // ADD TO CART

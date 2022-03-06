@@ -30,6 +30,11 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function likeUsers()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -53,8 +54,10 @@ class OrderController extends Controller
     {
         // abort_if(Gate::denies('role-destroy'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
-        $orders = Order::find($id);
-        $orders->delete();
+        $orders = Order::find($id)->get();
+        $orderitem = OrderItem::where('order_id', $id)->get();
+        Order::destroy($orders);
+        OrderItem::destroy($orderitem);
 
         toast('Data Berhasil Dihapus','success');
 
