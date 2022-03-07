@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -111,7 +112,7 @@ class BlogController extends Controller
     public function likeArticle($artikel)
     {
         $user = Auth::user();
-        $likeArticle = $user->likedArticle()->where('post_id', $artikel)->count();
+        $likeArticle = $user->likedArticle()->where('article_id', $artikel)->count();
         if ($likeArticle == 0){
             $user->likedArticle()->attach($artikel);
         } else {

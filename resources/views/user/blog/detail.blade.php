@@ -55,8 +55,11 @@
                                 @guest
                                     <li class="d-flex align-items-center"><i class="bi bi-heart"></i> {{ $artikel->comments->count() }} Like</></li>
                                 @else
-                                    <li class="d-flex align-items-center"><a href="" onclick="document.getElementById('like-form-{{ $artikel->id }}').submit();"><i class="bi bi-heart"></i>{{ $artikel->comments->count() }} Like</a></li>
-                                    <form action="{{ route('artikel.like',$artikel->id ) }}" method="POST" style="display: none" id="like-form-{{ $artikel->id }}">
+                                    <li class="d-flex align-items-center"><i class="bi bi-heart{{ Auth::user()->likedArticle()->where('article_id', $artikel->id)->count() > 0 ? '-fill' : ''  }}"
+                                        style="color: {{ Auth::user()->likedArticle()->where('article_id', $artikel->id)->count() > 0 ? 'red' : ''  }}">
+                                        <a href="#" onclick="document.getElementById('like-form-{{ $artikel->id }}').submit();"></i>{{ $artikel->likedUsers->count() }} Like</a>
+                                    </li>
+                                    <form action="{{ route('artikel.like', $artikel->id ) }}" method="POST" style="display: none" id="like-form-{{ $artikel->id }}">
                                     @csrf
                                     </form>
                                 @endguest

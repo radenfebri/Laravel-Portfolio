@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function likedArticle()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class)->withTimestamps();
     }
 
     /**

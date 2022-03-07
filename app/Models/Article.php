@@ -30,9 +30,9 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likeUsers()
+    public function likedUsers()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
     public function getRouteKeyName()

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAerticleUserTable extends Migration
+class CreateArticleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateAerticleUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('aerticle_user', function (Blueprint $table) {
+        Schema::create('article_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('article_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateAerticleUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aerticle_user');
+        Schema::dropIfExists('article_user');
     }
 }
