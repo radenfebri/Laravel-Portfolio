@@ -53,17 +53,60 @@
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#">{{date('d M Y',strtotime($artikel->created_at))}}</a></li>
                                 <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="">{{ $artikel->comments->count() }} Comments</a></li>
                                 @guest
-                                    <li class="d-flex align-items-center"><i class="bi bi-heart"></i> {{ $artikel->comments->count() }} Like</></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-heart"></i> {{ $artikel->comments->count() }} Like</></li>
                                 @else
-                                    <li class="d-flex align-items-center"><i class="bi bi-heart{{ Auth::user()->likedArticle()->where('article_id', $artikel->id)->count() > 0 ? '-fill' : ''  }}"
-                                        style="color: {{ Auth::user()->likedArticle()->where('article_id', $artikel->id)->count() > 0 ? 'red' : ''  }}">
-                                        <a href="#" onclick="document.getElementById('like-form-{{ $artikel->id }}').submit();"></i>{{ $artikel->likedUsers->count() }} Like</a>
-                                    </li>
-                                    <form action="{{ route('artikel.like', $artikel->id ) }}" method="POST" style="display: none" id="like-form-{{ $artikel->id }}">
+                                <li class="d-flex align-items-center"><i class="bi bi-heart{{ Auth::user()->likedArticle()->where('article_id', $artikel->id)->count() > 0 ? '-fill' : ''  }}"
+                                    style="color: {{ Auth::user()->likedArticle()->where('article_id', $artikel->id)->count() > 0 ? 'red' : ''  }}">
+                                    <a href="#" onclick="document.getElementById('like-form-{{ $artikel->id }}').submit();"></i>{{ $artikel->likedUsers->count() }} Like</a>
+                                </li>
+                                <form action="{{ route('artikel.like', $artikel->id ) }}" method="POST" style="display: none" id="like-form-{{ $artikel->id }}">
                                     @csrf
-                                    </form>
+                                </form>
                                 @endguest
                             </ul>
+                        </div>
+
+                        {{-- SOCIAL ICON --}}
+                        <div class="row">
+                            <div class="col-lg-6 single-b-wrap col-md-12 pt-4">
+                                <h5><b>Share this post on your social accounts.</b></h5>
+                            </div>
+                            <div class="col-lg-6 single-b-wrap col-md-12 mt-3">
+                                <div class="social-icons">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="#" target="_blank" class="social-icon" id="email-btn">
+                                                <i class="bi bi-envelope" style="font-size: 2rem; color: #ff0000;"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" target="_blank" class="social-icon" id="facebook-btn">
+                                                <i class="bi bi-facebook" style="font-size: 2rem; color: #1877f2;"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" target="_blank" class="social-icon" id="twitter-btn">
+                                                <i class="bi bi-twitter" style="font-size: 2rem; color: #1da1f2;"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" target="_blank" class="social-icon" id="google-btn">
+                                                <i class="bi bi-google" style="font-size: 2rem; color: #dd4b39;"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" target="_blank" class="social-icon" id="linkedin-btn">
+                                                <i class="bi bi-linkedin" style="font-size: 2rem; color: #00a0dc;"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#" target="_blank" class="social-icon" id="whatsapp-btn">
+                                                <i class="bi bi-whatsapp" style="font-size: 2rem; color: #25d366;"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="entry-content">
@@ -183,7 +226,7 @@
                                         @guest
 
                                         @else
-                                            {{-- <button class="reply" id="reply-btn" onclick="showReplyForm('{{ $item->id }}','{{ $item->user->name }}')"><i class="bi bi-reply-fill"></i> Reply</button> --}}
+                                        {{-- <button class="reply" id="reply-btn" onclick="showReplyForm('{{ $item->id }}','{{ $item->user->name }}')"><i class="bi bi-reply-fill"></i> Reply</button> --}}
                                         @endguest
                                     </h5>
                                     <time datetime="2020-01-01">{{date('d M Y',strtotime($item->created_at)) }}</time>
@@ -225,27 +268,27 @@
                         <!-- End comment #2-->
 
                         @guest
-                            <div class="reply-from">
-                                <div class="row">
-                                    <div class="col form-group">
-                                        <h4>Please Login in to Comment</h4>
-                                    </div>
+                        <div class="reply-from">
+                            <div class="row">
+                                <div class="col form-group">
+                                    <h4>Login Terlebih dahulu sebelum coment</h4>
                                 </div>
                             </div>
+                        </div>
                         @else
-                            <div class="reply-form">
-                                <h4>Leave a Reply</h4>
-                                <p>Your email address will not be published. Required fields are marked * </p>
-                                <form action="{{ route('commentartikel.store', $artikel->id ) }}" method="POST">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col form-group">
-                                            <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                                        </div>
+                        <div class="reply-form">
+                            <h4>Leave a Reply</h4>
+                            <p>Your email address will not be published. Required fields are marked * </p>
+                            <form action="{{ route('commentartikel.store', $artikel->id ) }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Post Comment</button>
-                                </form>
-                            </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Post Comment</button>
+                            </form>
+                        </div>
                         @endguest
 
                     </div>
@@ -355,6 +398,7 @@
 </main>
 <!-- End #main -->
 
+
 <script>
     var availableTags = [];
     $.ajax({
@@ -372,23 +416,42 @@
         });
     }
 
+    // Social share link
+    const emailBtn = document.getElementById("email-btn");
+    const facebookBtn = document.getElementById("facebook-btn");
+    const twitterBtn = document.getElementById("twitter-btn");
+    const linkedinBtn = document.getElementById("linkedin-btn");
+    const googleBtn = document.getElementById("google-btn");
+    const whatsappBtn = document.getElementById("whatsapp-btn");
+
+    // Post share link
+    let postUrl = encodeURI(window.location.href);
+    let postTitle = encodeURI(document.title);
+
+    emailBtn.setAttribute("href", `https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUrl}`);
+    facebookBtn.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`);
+    twitterBtn.setAttribute("href", `https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+    linkedinBtn.setAttribute("href", `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`);
+    googleBtn.setAttribute("href", `https://plus.google.com/share?url=${postUrl}`);
+    whatsappBtn.setAttribute("href", `https://wa.me/?text=${postTitle} ${postUrl}`);
+
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     function showReplyForm(commentId,user) {
-      var x = document.getElementById(`comment-reply${commentId}`);
-      var input = document.getElementById(`comment-reply${commentId}-text`);
+        var x = document.getElementById(`comment-reply${commentId}`);
+        var input = document.getElementById(`comment-reply${commentId}-text`);
 
-      if (x.style.display === "none") {
-        x.style.display = "block";
-        input.innerText=`@${user} `;
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            input.innerText=`@${user} `;
 
-      } else {
-        x.style.display = "none";
-      }
+        } else {
+            x.style.display = "none";
+        }
     }
 
-    </script>
+</script> --}}
 
 
 @endsection

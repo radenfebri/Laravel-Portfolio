@@ -31,7 +31,7 @@ class FrontendController extends Controller
 
     public function search()
     {
-        $products = Product::select('name')->where('status', '0')->get();
+        $products = Product::select('name')->where('status', '1')->get();
         $data = [];
 
         foreach ($products as $item) {
