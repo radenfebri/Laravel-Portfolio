@@ -42,6 +42,14 @@ abstract class PackageServiceProvider extends ServiceProvider
     {
         $this->bootingPackage();
 
+        if ($this->package->hasTranslations) {
+            $langPath = 'vendor/' . $this->package->shortName();
+
+            $langPath = (function_exists('lang_path'))
+                ? lang_path($langPath)
+                : resource_path('lang/' . $langPath);
+        }
+
         if ($this->app->runningInConsole()) {
             foreach ($this->package->configFileNames as $configFileName) {
                 $this->publishes([
@@ -57,8 +65,14 @@ abstract class PackageServiceProvider extends ServiceProvider
 
             $now = Carbon::now();
             foreach ($this->package->migrationFileNames as $migrationFileName) {
+                $filePath = $this->package->basePath("/../database/migrations/{$migrationFileName}.php");
+                if (! file_exists($filePath)) {
+                    // Support for the .stub file extension
+                    $filePath .= '.stub';
+                }
+
                 $this->publishes([
-                    $this->package->basePath("/../database/migrations/{$migrationFileName}.php.stub") => $this->generateMigrationName(
+                    $filePath => $this->generateMigrationName(
                         $migrationFileName,
                         $now->addSecond()
                     ), ], "{$this->package->shortName()}-migrations");
@@ -66,7 +80,7 @@ abstract class PackageServiceProvider extends ServiceProvider
 
             if ($this->package->hasTranslations) {
                 $this->publishes([
-                    $this->package->basePath('/../resources/lang') => resource_path("lang/vendor/{$this->package->shortName()}"),
+                    $this->package->basePath('/../resources/lang') => $langPath,
                 ], "{$this->package->shortName()}-translations");
             }
 
@@ -88,7 +102,8 @@ abstract class PackageServiceProvider extends ServiceProvider
             );
 
             $this->loadJsonTranslationsFrom($this->package->basePath('/../resources/lang/'));
-            $this->loadJsonTranslationsFrom(resource_path('lang/vendor/'. $this->package->shortName()));
+
+            $this->loadJsonTranslationsFrom($langPath);
         }
 
         if ($this->package->hasViews) {

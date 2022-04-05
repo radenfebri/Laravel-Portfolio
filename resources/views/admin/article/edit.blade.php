@@ -43,11 +43,11 @@
                                                     <select class="form-select" name="kategori_id" id="kategori_id" required>
                                                         <option disabled selected>--pilih kategori--</option>
                                                         @foreach ($categories as $item)
-                                                        @if ($item->id == $articles->kategori_id )
-                                                        <option value="{{ $item->id }}" selected>{{ $item->nama_kategori }}</option>
-                                                        @else
-                                                        <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
-                                                        @endif
+                                                            @if ($item->id == $articles->kategori_id )
+                                                                <option value="{{ $item->id }}" selected>{{ $item->nama_kategori }}</option>
+                                                            @else
+                                                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                     @error('kategori_id')

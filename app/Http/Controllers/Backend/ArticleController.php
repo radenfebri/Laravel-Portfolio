@@ -82,67 +82,67 @@ class ArticleController extends Controller
     }
 
 
-        public function edit($id)
-        {
-            $articles = Article::findOrFail($id);
-            $categories = Categorie::all();
+    public function edit($id)
+    {
+        $articles = Article::findOrFail($id);
+        $categories = Categorie::all();
 
 
-            return view('admin.article.edit', compact('articles', 'categories'));
-        }
+        return view('admin.article.edit', compact('articles', 'categories'));
+    }
 
 
-        public function show($id)
-        {
-            return view('admin.article.show', [
-                'articles' => Article::findOrFail($id)
+    public function show($id)
+    {
+        return view('admin.article.show', [
+            'articles' => Article::findOrFail($id)
+        ]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'judul' => 'required|string|unique:articles,judul,'.$id,
+            'gambar_artikel' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi' => 'required',
+            'kategori_id' => 'required',
+        ]);
+
+
+        if (empty($request->file('gambar_artikel'))) {
+            $articles = Article::find($id);
+            $articles->update([
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'deskripsi' => $request->deskripsi,
+                'kategori_id' => $request->kategori_id,
+                'tgl_publish' => $request->tgl_publish ?? (now()),
+                'is_active' => $request->is_active,
+                'user_id' => Auth::id(),
             ]);
-        }
 
+            toast('Data Berhasil Diupdate','success');
 
-        public function update(Request $request, $id)
-        {
-            request()->validate([
-                'judul' => 'required|string|unique:articles,judul,'.$id,
-                'gambar_artikel' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'deskripsi' => 'required',
-                'kategori_id' => 'required',
+            return redirect()->route('article.index');
+
+        } else {
+            $articles = Article::find($id);
+            Storage::delete($articles->gambar_artikel);
+            $articles->update([
+                'judul' => $request->judul,
+                'slug' => Str::slug($request->judul),
+                'deskripsi' => $request->deskripsi,
+                'kategori_id' => $request->kategori_id,
+                'tgl_publish' => $request->tgl_publish ?? (now()),
+                'is_active' => $request->is_active,
+                'user_id' => Auth::id(),
+                'gambar_artikel' => $request->file('gambar_artikel')->store('gambar-artikel'),
             ]);
 
+            toast('Data Berhasil Diupdate','success');
 
-            if (empty($request->file('gambar_artikel'))) {
-                $articles = Article::find($id);
-                $articles->update([
-                    'judul' => $request->judul,
-                    'slug' => Str::slug($request->judul),
-                    'deskripsi' => $request->deskripsi,
-                    'kategori_id' => $request->kategori_id,
-                    'tgl_publish' => $request->tgl_publish ?? (now()),
-                    'is_active' => $request->is_active,
-                    'user_id' => Auth::id(),
-                ]);
-
-                toast('Data Berhasil Diupdate','success');
-
-                return redirect()->route('article.index');
-
-            } else {
-                $articles = Article::find($id);
-                Storage::delete($articles->gambar_artikel);
-                $articles->update([
-                    'judul' => $request->judul,
-                    'slug' => Str::slug($request->judul),
-                    'deskripsi' => $request->deskripsi,
-                    'kategori_id' => $request->kategori_id,
-                    'tgl_publish' => $request->tgl_publish ?? (now()),
-                    'is_active' => $request->is_active,
-                    'user_id' => Auth::id(),
-                    'gambar_artikel' => $request->file('gambar_artikel')->store('gambar-artikel'),
-                ]);
-
-                toast('Data Berhasil Diupdate','success');
-
-                return redirect()->route('article.index');
-            }
+            return redirect()->route('article.index');
         }
     }
+}
