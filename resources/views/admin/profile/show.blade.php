@@ -15,7 +15,7 @@
                     @if ($username->foto)
                     <img src="{{ ('storage/'. $username->foto ) }}" style="width: 400px; height: 400px; border-radius: 50%;" class="shadow img-fluid" alt="{{ $username->name }}">
                     @else
-                    <img src="{{ asset('template') }}/images/faces/profile.jpg" style="width: 400px; height: 400px; border-radius: 50%;" class="shadow img-fluid alt="{{ $username->name }}">
+                    <img src="{{ asset('template') }}/images/faces/profile.jpg" style="width: 400px; height: 400px; border-radius: 50%;" class="shadow img-fluid" alt="{{ $username->name }}">
                     @endif
 
                 </div>
