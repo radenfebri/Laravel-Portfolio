@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\AssignPermissionController;
 use App\Http\Controllers\Backend\AssignRoleController;
@@ -29,6 +30,21 @@ use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+// LOGIN DENGAN GOOGLE
+Route::get('login/google', [LoginController::class, 'googleRedirectToProvider'])->name('login.google');
+Route::get('login/google/callback', [LoginController::class, 'googleHandlerCallback'])->name('google.callback');
+
+// LOGIN DENGAN FACEBOOK
+Route::get('login/facebook', [LoginController::class, 'facebookRedirectToProvider'])->name('login.facebook');
+
+// LOGIN DENGAN GITHUB
+Route::get('login/github', [LoginController::class, 'githubRedirectToProvider'])->name('login.github');
+Route::get('login/github/callback', [LoginController::class, 'githubHandlerCallback'])->name('github.callback');
+
+
+
+
 // HALAMAN FRONTEND HOME
 Route::get('/', [FrontendController::class, 'index'])->name('user.index');
 
@@ -49,8 +65,6 @@ Route::post('searchartikel', [BlogController::class, 'searchartikel'])->name('se
 Route::post('/comment-artikel/{artikel}', [CommentController::class, 'store'])->name('commentartikel.store');
 Route::post('/comment-reply/{comment}', [CommentReplyController::class, 'store'])->name('commentreply.store');
 Route::post('/like-post/{artikel}', [BlogController::class, 'likeArticle'])->name('artikel.like');
-
-
 
 // ADD TO CART
 Route::post('add-to-cart', [CartController::class, 'addProduct'])->name('addcart');
