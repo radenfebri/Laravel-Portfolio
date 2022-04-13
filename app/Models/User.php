@@ -15,16 +15,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, SoftDeletes, HasFactory, Notifiable, HasRoles, AuthenticationLoggable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'email',
         'username',
         'password',
+        'google_id',
+        'facebook_id',
+        'github_id',
         'foto',
         'alamat',
         'about',
@@ -35,9 +33,6 @@ class User extends Authenticatable
         'twitter',
         'instagram',
         'facebook',
-        'google_id',
-        'facebook_id',
-        'github_id',
     ];
 
     public function articles()
@@ -54,6 +49,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Article::class)->withTimestamps();
     }
+
 
     /**
      * The attributes that should be hidden for serialization.

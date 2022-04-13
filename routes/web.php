@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\AssignPermissionController;
 use App\Http\Controllers\Backend\AssignRoleController;
@@ -25,22 +26,23 @@ use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\ProfileUserController;
 use App\Http\Controllers\Frontend\RatingController;
 use App\Http\Controllers\Frontend\ReviewController;
-// use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
 // LOGIN DENGAN GOOGLE
-Route::get('login/google', [LoginController::class, 'googleRedirectToProvider'])->name('login.google');
-Route::get('login/google/callback', [LoginController::class, 'googleHandlerCallback'])->name('google.callback');
+Route::get('login/google', [SocialLoginController::class, 'redirectGoogle'])->name('login.google');
+Route::get('login/google/callback', [SocialLoginController::class, 'callbackGoogle'])->name('google.callback');
 
 // LOGIN DENGAN FACEBOOK
-Route::get('login/facebook', [LoginController::class, 'facebookRedirectToProvider'])->name('login.facebook');
+Route::get('login/facebook', [SocialLoginController::class, 'redirectFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [SocialLoginController::class, 'callbackFacebook'])->name('facebook.callback');
+
 
 // LOGIN DENGAN GITHUB
-Route::get('login/github', [LoginController::class, 'githubRedirectToProvider'])->name('login.github');
-Route::get('login/github/callback', [LoginController::class, 'githubHandlerCallback'])->name('github.callback');
+Route::get('login/github', [SocialLoginController::class, 'redirectGithub'])->name('login.github');
+Route::get('login/github/callback', [SocialLoginController::class, 'callbackGithub'])->name('github.callback');
 
 
 
