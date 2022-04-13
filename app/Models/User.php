@@ -24,9 +24,6 @@ class User extends Authenticatable
         'name',
         'email',
         'username',
-        'google_id',
-        'facebook_id',
-        'github_id',
         'password',
         'foto',
         'alamat',
@@ -37,7 +34,10 @@ class User extends Authenticatable
         'github',
         'twitter',
         'instagram',
-        'facebook'
+        'facebook',
+        'google_id',
+        'facebook_id',
+        'github_id',
     ];
 
     public function articles()

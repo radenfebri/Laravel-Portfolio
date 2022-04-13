@@ -27,25 +27,14 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-    * Where to redirect users after login.
-    *
-    * @var string
-    */
+
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-    * Create a new controller instance.
-    *
-    * @return void
-    */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
-
-
-
 
 
     public function googleRedirectToProvider()
@@ -55,23 +44,33 @@ class LoginController extends Controller
 
     public function googleHandlerCallback()
     {
-        // try {
+        try {
             $user = Socialite::driver('google')->user();
             dd($user);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        // try {
+        //     $user = Socialite::driver('google')->user();
+        //     dd($user);
         //     $finduser = User::where('google_id', $user->id)->first();
 
         //     if ($finduser) {
         //         Auth::login($finduser);
-        //         return redirect('/');
+        //         return redirect()->intended('/');
+
         //     } else {
         //         $newUser = User::create([
         //             'name' => $user->name,
+        //             'username' => $user->email,
         //             'email' => $user->email,
         //             'google_id' => $user->id,
         //             'password' => Hash::make(Str::random($length = 10)),
         //         ]);
+
         //         Auth::login($newUser);
-        //         return redirect('/');
+        //         return redirect()->intended('/');
         //     }
         // } catch (\Throwable $th) {
 
@@ -108,13 +107,16 @@ class LoginController extends Controller
             if ($finduser) {
                 Auth::login($finduser);
                 return redirect('/');
+
             } else {
                 $newUser = User::create([
                     'name' => $user->name,
+                    'username' => $user->email,
                     'email' => $user->email,
                     'github_id' => $user->id,
                     'password' => ''
                 ]);
+
                 Auth::login($newUser);
                 return redirect('/');
             }
