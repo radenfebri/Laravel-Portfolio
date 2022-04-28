@@ -63,10 +63,10 @@
                                                     %0ANama+%3A+*{{ Auth::user()->name }}*
                                                     %0ANo.Tracking+%3A+*{{ $item->tracking_no }}*
                                                     %0ASudah+membayar+%3A+*Rp.{{ number_format($item->total_price) }}*
-                                                    %0ATanggal+%3A+*{{ date('d F Y h:i:s',strtotime($item->created_at)) }}*
+                                                    %0ATanggal+Pesanan+dibuat+%3A+*{{ date('d F Y h:i:s',strtotime($item->created_at)) }}*
                                                     %0AAlamat+%3A+*{{ Auth::user()->alamat }}*
                                                     %0A%0A+Tolong+segera+diproses+ya+kak."
-                                                    class="btn btn-success"><i class="bi bi-whatsapp"></i>
+                                                    class="btn btn-success" target="_blank"><i class="bi bi-whatsapp"></i>
                                                 </a>
                                             @else
                                                 <a href="{{ route('vieworders', $item->id ) }}" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i></a>

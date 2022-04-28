@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\AssignPermissionController;

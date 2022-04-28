@@ -89,7 +89,7 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                </table> 
+                                </table>
                                 <button type="submit" class="btn btn-primary w-100">Place Order</button>
 
                                 @else

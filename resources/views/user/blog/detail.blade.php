@@ -429,7 +429,7 @@
     let postTitle = encodeURI(document.title);
 
     emailBtn.setAttribute("href", `https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUrl}`);
-    facebookBtn.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`);
+    facebookBtn.setAttribute("href", ` https://www.facebook.com/sharer/sharer.php?u=${postUrl}`);
     twitterBtn.setAttribute("href", `https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
     linkedinBtn.setAttribute("href", `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`);
     googleBtn.setAttribute("href", `https://plus.google.com/share?url=${postUrl}`);
