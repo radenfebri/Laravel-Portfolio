@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\AssignPermissionController;
 use App\Http\Controllers\Backend\AssignRoleController;
+use App\Http\Controllers\Backend\BankEwalletController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\LogController;
 use App\Http\Controllers\Backend\PermissionController;
@@ -187,6 +188,15 @@ Route::middleware(['has.role'])->middleware('auth')->group(function (){
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('setting-profile', [ProfileUserController::class, 'index'])->name('userprofile.index');
     Route::put('setting-profile', [ProfileUserController::class, 'update'])->name('userprofile.update');
+
+    // SETTING BANK & EWALLET
+    // Route::get('setting-payment', [BankEwalletController::class, 'index'])->name('payment.index');
+    // Route::get('create-payment', [BankEwalletController::class, 'create'])->name('payment.cretae');
+    // Route::post('store-payment', [BankEwalletController::class, 'store'])->name('payment.store');
+    // Route::get('edit-payment/{id}/edit', [BankEwalletController::class, 'edit'])->name('payment.edit');
+    // Route::put('update-payment/{id}', [BankEwalletController::class, 'update'])->name('payment.update');
+    // Route::get('delete-payment/{id}', [BankEwalletController::class, 'destroy'])->name('payment.delete');
+    Route::resource('payment', BankEwalletController::class);
 
     // LOG USER
     Route::resource('log', LogController::class);

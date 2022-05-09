@@ -93,30 +93,20 @@
                                     <h4><strong>Bank Transfer</strong></h4>
                                     <p>Gunakan Bank Transfer untuk transaksi</p>
                                     <hr>
-                                    <label for=""><strong>BRI</strong></label>
-                                    <div class="border p-2 mb-2">611401013164539</div>
-                                    <label for=""><strong>BSI</strong></label>
-                                    <div class="border p-2 mb-2">7173957787</div>
-                                    <label for=""><strong>JAGO</strong></label>
-                                    <div class="border p-2 mb-2">105573678757</div>
-                                    <label for=""><strong>NEO</strong></label>
-                                    <div class="border p-2 mb-2">5859458108708448 </div>
+                                    @foreach ($payment_bank as $item)
+                                        <label for="name"><strong>{{ $item->name }}</strong></label>
+                                        <div class="border p-2 mb-2">{{ $item->nomor }}</div>
+                                    @endforeach
                                 </div>
                                 <br>
                                 <div class="col-md-6">
                                     <h4><strong>E-Wallet</strong></h4>
                                     <p>Gunakan E-Wallet  untuk transaksi</p>
                                     <hr>
-                                    <label for=""><strong>Gopay</strong></label>
-                                    <div class="border p-2 mb-2">082147639955</div>
-                                    <label for=""><strong>Dana</strong></label>
-                                    <div class="border p-2 mb-2">082147639955</div>
-                                    <label for=""><strong>ShopeePay</strong></label>
-                                    <div class="border p-2 mb-2">082147639955</div>
-                                    <label for=""><strong>OVO</strong></label>
-                                    <div class="border p-2 mb-2">082147639955</div>
-                                    <label for=""><strong>LinkAja</strong></label>
-                                    <div class="border p-2 mb-2">082147639955</div>
+                                    @foreach ($payment_ewallet as $item)
+                                        <label for="name"><strong>{{ $item->name }}</strong></label>
+                                        <div class="border p-2 mb-2">{{ $item->nomor }}</div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

@@ -35,7 +35,7 @@
                 <i class="bi bi-cart4"></i>
                 <span>Store</span>
             </a>
-            <ul class="submenu ">
+        <ul class="submenu ">
                 <li class="submenu-item {{ $submenu == 'categorie-product' ? 'active' : '' }}">
                     <a href="{{ route('categorieproduct.index') }}">Categorie</a>
                 </li>
@@ -46,6 +46,10 @@
 
                 <li class="submenu-item {{ $submenu == 'order' ? 'active' : '' }}">
                     <a href="{{ route('orders.index') }}">Order</a>
+                </li>
+
+                <li class="submenu-item {{ $submenu == 'payment' ? 'active' : '' }}">
+                    <a href="{{ route('payment.index') }}">Payment</a>
                 </li>
 
             </ul>
